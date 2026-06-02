@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.2",
+    "version": "0.3",
     "updated": "2026-06-02"
   },
   "topics": [
@@ -154,6 +154,60 @@
             "Требования по Mindestlohn не имеют Ausschlussfrist"
           ],
           "review": "Ausschlussfrist касается только Interne Mitarbeiter. Для Gewerbliche — смотреть BRTV. Уточните у юриста в спорных случаях."
+        },
+        {
+          "id": "onboarding-8",
+          "title": "Home Office Vereinbarung — оформление удалённой работы",
+          "patterns": [
+            "homeoffice vereinbarung",
+            "home office",
+            "удалённая работа",
+            "работа из дома",
+            "heimarbeit",
+            "remote arbeit"
+          ],
+          "keywords": [
+            "homeoffice", "remote", "häuslich", "удалённо", "дома", "vereinbarung"
+          ],
+          "answer": "Для работы из дома в LK Bauservice необходимо заключить отдельную *Vereinbarung Home Office* — дополнение к трудовому договору.\n\nДокумент регулирует:\n• Место работы (полностью дома или чередование офис/дом)\n• Рабочее время и его документирование (табель — ежедневно, отправка после конца месяца)\n• Оборудование (предоставляет работодатель, запрещено личное использование и передача третьим лицам)\n• Pauschalbetrag — ежемесячная компенсация расходов на аренду, отопление, электричество\n• Право работодателя на проверку рабочего места (с уведомлением за 24 ч)\n• Полная Datenschutz — кабинет запирать при отсутствии",
+          "checklist": [
+            "Подготовить Vereinbarung Home Office (дополнение к договору)",
+            "Указать точный адрес домашнего рабочего места",
+            "Указать тип HomeOffice: полный или alternierend (дни распределения)",
+            "Указать Pauschalbetrag за расходы на дом",
+            "Составить Übergabeprotokoll на переданное оборудование",
+            "Подписи обеих сторон",
+            "Объяснить правила Datenschutz и Arbeitszeitdokumentation",
+            "Хранить экземпляр в личном деле"
+          ],
+          "review": "HomeOffice для gewerbliche Mitarbeiter (строители) — как правило невозможно по характеру работы. Vereinbarung применяется только для офисных должностей. При сомнениях — согласовать с юристом."
+        },
+        {
+          "id": "onboarding-9",
+          "title": "Gehaltserhöhung / Erhöhung Stundenlohn — оформление повышения зарплаты",
+          "patterns": [
+            "gehaltserhöhung",
+            "lohnerhöhung",
+            "stundenlohn erhöhen",
+            "повышение зарплаты",
+            "повышение оклада",
+            "повышение ставки",
+            "gehalt anpassen"
+          ],
+          "keywords": [
+            "gehaltserhöhung", "lohnerhöhung", "zusatzvereinbarung", "anpassen", "повышение", "зарплата"
+          ],
+          "answer": "Повышение зарплаты или часовой ставки в LK Bauservice оформляется через *Zusatzvereinbarung zum Arbeitsvertrag*.\n\nДокумент содержит:\n• Дату вступления в силу нового оклада\n• Старый и новый размер зарплаты (brutto)\n• Подтверждение, что все остальные условия договора остаются без изменений\n• Подпись Geschäftsführer Laszlo Kosztevics и сотрудника\n\nГород и дата на документе: Salzgitter, дата подписания.",
+          "checklist": [
+            "Подготовить Zusatzvereinbarung (шаблон «Erhöhung Stundenlohn»)",
+            "Указать дату вступления в силу нового оклада/ставки",
+            "Указать старый оклад (brutto) и новый оклад (brutto)",
+            "Подписи: Geschäftsführer + сотрудник",
+            "Передать копию сотруднику, оригинал — в личное дело",
+            "Уведомить Baulohn/бухгалтерию о новой ставке с указанием даты вступления в силу",
+            "Проверить, не нарушает ли новая ставка актуальный Mindestlohn"
+          ],
+          "review": "Для gewerbliche Mitarbeiter — проверить соответствие новой ставки актуальному Mindestlohn Bauhauptgewerbe (Tarifvertrag). Задним числом изменения не допускаются без письменного соглашения."
         },
         {
           "id": "onboarding-7",
