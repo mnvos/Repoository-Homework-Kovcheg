@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit question - {{ question.title }}</title>
+  </head>
+  <body>
+    <h1>Edit: {{ question.title }}</h1>
+    <form method="post" action="/admin/question/{{ question.id }}/edit">
+      <label>Title: <input name="title" value="{{ question.title }}"></label><br>
+      <label>Patterns (comma separated): <input name="patterns" value="{{ question.patterns | join(", ") }}"></label><br>
+      <label>Keywords (comma separated): <input name="keywords" value="{{ question.keywords | join(", ") }}"></label><br>
+      <label>Answer: <textarea name="answer">{{ question.answer }}</textarea></label><br>
+      <label>Checklist (one per line): <textarea name="checklist">{% for c in question.checklist %}{{ c }}
+{% endfor %}</textarea></label><br>
+      <label>Review note: <input name="review" value="{{ question.review }}"></label><br>
+      <label>API Key: <input name="api_key" type="password"></label><br>
+      <button type="submit">Save</button>
+    </form>
+
+    <p><a href="/admin{% if request.query_params.api_key %}?api_key={{ request.query_params.api_key }}{% endif %}">Back to topics</a></p>
+  </body>
+</html>

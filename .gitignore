@@ -1,0 +1,15 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+*.log
+*.tmp
+*.output
+*.out
+pytest_run_output.txt
+test_output.txt
+.DS_Store
+.idea/
+.vscode/
