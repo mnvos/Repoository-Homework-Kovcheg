@@ -69,6 +69,19 @@ docker build -t lk-hr-assistant .
 docker run -e TELEGRAM_BOT_TOKEN=your_token -e WEBHOOK_URL=your_webhook -e ADMIN_API_KEY=your_admin_key -p 8000:8000 lk-hr-assistant
 ```
 
+### Deployment on Railway
+
+When deploying on Railway, set the required environment variables in the project settings:
+
+- `TELEGRAM_BOT_TOKEN`
+- `ADMIN_API_KEY`
+- `WEBHOOK_URL` as `https://<your-railway-app>.railway.app/webhook`
+- optional `WEBHOOK_SECRET`
+- optional `DATABASE_URL` for SQLite if you want persistent storage across restarts
+- Railway may provide a dynamic `PORT`, which is now honored by the Docker container
+
+If `TELEGRAM_BOT_TOKEN` is not configured, the app fails on startup with a clear error. Ensure this value is present before redeploying.
+
 ## Security notes
 
 - `ADMIN_API_KEY` protects admin forms and admin APIs for editing and import/export.
