@@ -14,10 +14,10 @@ class DummyMessage:
         self.text = text
         self.last_reply = None
 
-    async def reply_text(self, text: str):
+    async def reply_text(self, text: str, **kwargs):
         self.last_reply = text
 
-    async def reply_markdown_v2(self, text: str):
+    async def reply_markdown_v2(self, text: str, **kwargs):
         self.last_reply = text
 
 
@@ -31,21 +31,14 @@ class DummyContext:
         self.application = SimpleNamespace(bot_data={"knowledge": kb})
 
 
-def run_coro(coro):
-    return asyncio.get_event_loop().run_until_complete(coro)
-
-
 def test_start_handler():
-    # simple smoke test for /start handler
     update = DummyUpdate("")
     ctx = SimpleNamespace()
-    coro = bot_main.start(update, ctx)
-    asyncio.get_event_loop().run_until_complete(coro)
+    asyncio.run(bot_main.start(update, ctx))
     assert "внутренний помощник" in update.message.last_reply.lower()
 
 
 def test_topics_and_handle_text(tmp_path):
-    # Prepare KB file
     kb_path = tmp_path / "kb.json"
     kb_data = {
         "meta": {},
@@ -67,16 +60,15 @@ def test_topics_and_handle_text(tmp_path):
             }
         ]
     }
-    kb_path.write_text(json.dumps(kb_data, ensure_ascii=False))
+    kb_path.write_text(json.dumps(kb_data, ensure_ascii=False), encoding="utf-8")
 
     kb = KnowledgeBase(str(kb_path))
-    # topics handler
+
     upd_topics = DummyUpdate("")
     ctx = DummyContext(kb)
-    asyncio.get_event_loop().run_until_complete(bot_main.topics_command(upd_topics, ctx))
+    asyncio.run(bot_main.topics_command(upd_topics, ctx))
     assert "бол" in upd_topics.message.last_reply.lower() or "темы" in upd_topics.message.last_reply.lower()
 
-    # handle_text should find the KB entry
     upd_q = DummyUpdate("Что делать с больничным?")
-    asyncio.get_event_loop().run_until_complete(bot_main.handle_text(upd_q, ctx))
+    asyncio.run(bot_main.handle_text(upd_q, ctx))
     assert "чек-лист" in (upd_q.message.last_reply or "").lower() or "передать" in (upd_q.message.last_reply or "").lower()

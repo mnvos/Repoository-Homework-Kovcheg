@@ -28,4 +28,3 @@ def test_export_and_import_protection(tmp_path, monkeypatch):
     # Import with correct key should work
     r = client.post("/kb/import", headers={"X-API-KEY": "secretkey"}, json={"meta": {}, "topics": []})
     assert r.status_code == 200
-*** End Patch
