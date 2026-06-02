@@ -1,4 +1,4 @@
-import os
+himport os
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request, Depends, Header, Form, Query
 from fastapi.responses import HTMLResponse, RedirectResponse
@@ -122,7 +122,10 @@ async def kb_import(payload: Dict[str, Any], admin: None = Depends(require_admin
 @app.on_event("startup")
 async def startup_event() -> None:
     if WEBHOOK_URL:
-        await telegram_app.bot.set_webhook(WEBHOOK_URL)
+        await telegram_app.initialize()
+                await telegram_app.bot.set_webhook(WEBHOOK_URL)
+        
+        
 
 
 @app.post("/webhook")
