@@ -1,4 +1,4 @@
-himport os
+import os
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request, Depends, Header, Form, Query
 from fastapi.responses import HTMLResponse, RedirectResponse
