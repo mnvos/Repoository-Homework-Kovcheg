@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.3",
+    "version": "0.4",
     "updated": "2026-06-02"
   },
   "topics": [
@@ -393,6 +393,35 @@
             "Уведомить Krankenkasse и SOKA-Bau"
           ],
           "review": "Взыскание Vertragsstrafe требует юридической проверки. Не удерживайте из зарплаты без согласования с юристом."
+        },
+        {
+          "id": "termination-4",
+          "title": "Aufhebungsvertrag — расторжение договора по соглашению сторон",
+          "patterns": [
+            "aufhebungsvertrag",
+            "einvernehmliche auflösung",
+            "auflösungsvertrag",
+            "расторжение по соглашению",
+            "соглашение о расторжении",
+            "aufhebung arbeitsvertrag"
+          ],
+          "keywords": [
+            "aufhebungsvertrag", "einvernehmlich", "aufhebung", "соглашение", "расторжение"
+          ],
+          "answer": "Aufhebungsvertrag — расторжение трудового договора по взаимному согласию сторон без соблюдения Kündigungsfrist.\n\nПо шаблону LK Bauservice (Salzgitter) договор содержит:\n\n*§ 1* — дата расторжения, Kündigungsfrist не применяется\n*§ 2* — зарплата выплачивается до последнего дня\n*§ 3* — сотрудник обязан встать на учёт в Agentur für Arbeit:\n  • За 3 месяца до окончания — если срок известен заранее\n  • В течение 3 дней — если до окончания менее 3 месяцев\n*§ 4* — Ausgleichsklausel: все взаимные финансовые претензии считаются урегулированными\n*§ 5* — Verschwiegenheitsvereinbarung остаётся в силе\n*§ 6* — возврат имущества компании в последний день + качественное Arbeitszeugnis\n*§ 7* — 2 экземпляра, оба подписаны\n\n⚠️ Работодатель обязан письменно предупредить сотрудника, что подписание Aufhebungsvertrag *может привести к Sperrfrist* по Arbeitslosengeld (до 12 недель).",
+          "checklist": [
+            "Согласовать дату расторжения с сотрудником",
+            "Подготовить Aufhebungsvertrag (шаблон LK Bauservice)",
+            "Указать дату заключения исходного трудового договора и дату расторжения",
+            "Письменно предупредить сотрудника о возможной Sperrfrist ALG",
+            "Подписать 2 экземпляра: Laszlo Kosztevics + сотрудник",
+            "Выдать сотруднику его экземпляр",
+            "Передать данные в Baulohn для итогового расчёта",
+            "Подготовить qualifiziertes Arbeitszeugnis",
+            "Принять назад всё имущество компании в последний день (Übergabeprotokoll)",
+            "Уведомить Krankenkasse, BG Bau и SOKA-Bau (für Gewerbliche)"
+          ],
+          "review": "Aufhebungsvertrag всегда требует добровольного согласия сотрудника — давление или принуждение делает его недействительным. Нестандартные условия (Abfindung, длинные Ausgleichsklauseln) — обязательно проконсультируйтесь с юристом до подписания."
         },
         {
           "id": "termination-3",
