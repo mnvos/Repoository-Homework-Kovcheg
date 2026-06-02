@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.4",
+    "version": "0.5",
     "updated": "2026-06-02"
   },
   "topics": [
@@ -563,6 +563,199 @@
             "При смене Krankenkasse — сотрудник уведомляет HR заблаговременно"
           ],
           "review": "Иностранные сотрудники с полисом из другой страны ЕС — уточнить у Steuerberater."
+        }
+      ]
+    },
+    {
+      "id": "brtv",
+      "title": "BRTV — Tarifvertrag Bau (gewerbliche Mitarbeiter)",
+      "questions": [
+        {
+          "id": "brtv-1",
+          "title": "BRTV Kündigungsfristen für gewerbliche Mitarbeiter (§ 11)",
+          "patterns": [
+            "brtv kündigung",
+            "kündigung gewerblich",
+            "kündigungsfrist bauarbeiter",
+            "tarifliche kündigungsfrist",
+            "§ 11 brtv",
+            "фрист увольнение строители"
+          ],
+          "keywords": [
+            "BRTV", "kündigung", "werktage", "gewerblich", "tarifvertrag", "kündigungsfrist"
+          ],
+          "answer": "Kündigungsfristen für gewerbliche Mitarbeiter nach *§ 11 BRTV*:\n\n*Grundfrist:* 6 Werktage (beide Seiten)\n*Nach 6 Monaten Betriebszugehörigkeit:* 12 Werktage\n\n*Verlängerte AG-Fristen nach Betriebszugehörigkeit:*\n• 3 Jahre → 1 Monat zum Monatsende\n• 5 Jahre → 2 Monate zum Monatsende\n• 8 Jahre → 3 Monate zum Monatsende\n• 10 Jahre → 4 Monate zum Monatsende\n• 12 Jahre → 5 Monate zum Monatsende\n• 15 Jahre → 6 Monate zum Monatsende\n• 20 Jahre → 7 Monate zum Monatsende\n\n*Achtung:* In der Schlechtwetterzeit (1. Dezember – 31. März) darf *nicht* aus Witterungsgründen gekündigt werden.\n\nSchwarzarbeit = fristloser Kündigungsgrund (§ 626 BGB).",
+          "checklist": [
+            "Betriebszugehörigkeit prüfen (Kalkulattor: /kuendigung im Bot — wähle 'Arbeitgeber + BRTV')",
+            "Schlechtwetterzeit beachten: 1.12.–31.03. — keine Kündigung aus Witterungsgründen",
+            "Kündigung immer schriftlich (§ 11 Abs. 1.3 BRTV)",
+            "Restlohn und Arbeitspapiere bei Beendigung aushändigen (§ 11 Abs. 4 BRTV)",
+            "SOKA-Bau und BG Bau über Beendigung informieren"
+          ],
+          "review": "Verlängerte Fristen gelten nur für AG-Kündigung. Bei Streit über Betriebszugehörigkeit oder unterbrochene Zeiten — Rechtsanwalt hinzuziehen."
+        },
+        {
+          "id": "brtv-2",
+          "title": "BRTV Arbeitszeit — Sommer/Winter, Überstunden (§ 3)",
+          "patterns": [
+            "brtv arbeitszeit",
+            "sommerarbeitszeit",
+            "winterarbeitszeit",
+            "arbeitszeit bauarbeiter",
+            "überstunden brtv",
+            "рабочее время строители"
+          ],
+          "keywords": [
+            "BRTV", "arbeitszeit", "sommer", "winter", "überstunden", "zuschlag", "40 stunden"
+          ],
+          "answer": "Regelarbeitszeit nach *§ 3 BRTV* (Durchschnitt: 40 Std./Woche):\n\n*Sommerarbeitszeit (April – November):*\n• Mo–Do: 8,5 Stunden\n• Fr: 7 Stunden\n• Woche: 41 Stunden\n\n*Winterarbeitszeit (Januar–März + Dezember):*\n• Mo–Do: 8 Stunden\n• Fr: 6 Stunden\n• Woche: 38 Stunden\n\n*24. und 31. Dezember:* arbeitsfrei, kein Lohnanspruch.\n\n*Überstundenzuschläge (§ 3 Nr. 6):*\n• Überstunden: +25%\n• Nachtarbeit (20–5 Uhr): +20%\n• Sonn- und Feiertage: +75% (Ostern/Pfingsten/1.Mai/1.Weihnachtstag: +200%)\n• Alle übrigen gesetzlichen Feiertage: +200%\n\nMehrere Zuschläge werden *nebeneinander* gezahlt.",
+          "checklist": [
+            "Sommer/Winter-Arbeitszeit rechtzeitig im Dienstplan umsetzen",
+            "Überstunden dokumentieren und mit korrektem Zuschlag abrechnen",
+            "24.12. und 31.12. als bezahlungsfrei im System markieren",
+            "Schlechtwetterausfall: Saison-Kurzarbeitergeld prüfen (§ 4 BRTV)"
+          ],
+          "review": "Abweichende Arbeitszeitverteilung (z.B. 12-Monats-Ausgleichskonto nach § 3 Nr. 1.4) nur per Betriebsvereinbarung oder einzelvertraglicher Vereinbarung. Steuerberater und ggf. Betriebsrat einbeziehen."
+        },
+        {
+          "id": "brtv-3",
+          "title": "BRTV Urlaub — 30 Tage, ULAK/SOKA-Bau (§ 8)",
+          "patterns": [
+            "brtv urlaub",
+            "urlaub bauarbeiter",
+            "urlaubstage gewerblich",
+            "ulak urlaub",
+            "30 tage urlaub bau",
+            "отпуск строители brtv"
+          ],
+          "keywords": [
+            "BRTV", "urlaub", "30 tage", "ULAK", "urlaubsvergütung", "14,25%", "urlaubskasse"
+          ],
+          "answer": "Urlaubsregelung für gewerbliche Mitarbeiter nach *§ 8 BRTV*:\n\n*Urlaubsanspruch:* 30 Arbeitstage pro Kalenderjahr (Samstage zählen nicht als Arbeitstage)\n*Schwerbehinderte:* +5 Tage = 35 Arbeitstage\n\n*Berechnung:* Pro 12 Beschäftigungstage = 1 Urlaubstag\n\n*Urlaubsvergütung:* 14,25% des Bruttolohns (BRTV)\n• davon Urlaubsentgelt: 11,4%\n• davon zusätzliches Urlaubsgeld: 25% des Urlaubsentgelts\n\n*Auszahlung:* über *ULAK* (Urlaubs- und Lohnausgleichskasse der Bauwirtschaft), nicht direkt durch Arbeitgeber!\n\n*Kranksein im Urlaub:* durch Attest nachgewiesene Tage zählen nicht als Urlaub → Resturlaub muss nachgewährt werden.\n\n*Resturlaub:* wird ins Folgejahr übertragen.",
+          "checklist": [
+            "Alle gewerblichen Mitarbeiter bei ULAK/SOKA-Bau angemeldet?",
+            "Urlaubstage über ULAK abrechnen (nicht direkt vom Arbeitgeber zahlen)",
+            "Krankmeldung während Urlaub: Attest verlangen, Urlaubstage gutschreiben",
+            "Übertragener Resturlaub aus Vorjahr: zuerst verbrauchen (§ 8 Nr. 3.2 BRTV)",
+            "Urlaubsabgeltung bei Beendigung: nur unter bestimmten Bedingungen möglich (§ 8 Nr. 6)"
+          ],
+          "review": "Urlaubsvergütung für Bau-Arbeiter wird durch ULAK ausgezahlt — nicht verwechseln mit der direkten Lohnzahlung. Beiträge pünktlich abführen. Bei Problemen: Steuerberater."
+        },
+        {
+          "id": "brtv-4",
+          "title": "BRTV Lohngruppen — Eingruppierung gewerblicher Mitarbeiter (§ 5)",
+          "patterns": [
+            "lohngruppe",
+            "eingruppierung bauarbeiter",
+            "lohngruppe brtv",
+            "welche lohngruppe",
+            "vorarbeiter lohngruppe",
+            "группа оплаты труда"
+          ],
+          "keywords": [
+            "lohngruppe", "eingruppierung", "vorarbeiter", "werkpolier", "facharbeiter", "werker"
+          ],
+          "answer": "Lohngruppen nach *§ 5 BRTV* — Eingruppierung nach Ausbildung, Kenntnissen und Tätigkeit:\n\n*LG 1 — Werker/Maschinenwerker:*\nEinfache Bau-/Montagearbeiten nach Anweisung. Keine Berufsausbildung erforderlich.\n_Beispiele: Sortieren, Reinigen, Mörtel mischen_\n\n*LG 2 — Fachwerker/Maschinist/Kraftfahrer:*\nFachlich begrenzte Arbeiten nach Anweisung. Stufenausbildung 1. Stufe oder gleichwertig.\n_Beispiele: Rohrleger, Schwarzdeckenbauer, Schalungsbauer, Kraftfahrer_\n\n*LG 3 — Facharbeiter/Baugeräteführer/Berufskraftfahrer:*\nFacharbeiten des Berufsbildes. Stufenausbildung 2. Stufe oder anerkannte Ausbildung.\n\n*LG 4 — Spezialfacharbeiter/Baumaschinenführer:*\nSelbständige Facharbeit. Stufenausbildung ab 2. Jahr oder langjährige Erfahrung.\n\n*LG 5 — Vorarbeiter:*\nFührung einer kleinen Gruppe + Vorarbeiterprüfung.\n\n*LG 6 — Werkpolier/Baumaschinen-Fachmeister:*\nFührung und Anleitung einer Gruppe in Teilbereichen der Bauausführung + Werkpolierprüfung.",
+          "checklist": [
+            "Eingruppierung schriftlich bestätigen — innerhalb 1 Monat nach Einstellung (§ 5 Nr. 2.2 BRTV)",
+            "Lohngruppe mit Qualifikation und tatsächlicher Tätigkeit abgleichen",
+            "Bei Tätigkeit in höherer Lohngruppe: höherer Lohn ab 1. Tag",
+            "Bestandener Prüfung: höherer Lohn ab Tag nach Prüfung (§ 5 Nr. 4.2)"
+          ],
+          "review": "Falsche Eingruppierung (zu niedrig) = Lohnnachzahlungspflicht. Im Zweifelsfall Steuerberater oder Rechtsanwalt hinzuziehen."
+        },
+        {
+          "id": "brtv-5",
+          "title": "BRTV Fahrtkosten und Verpflegungszuschuss (§ 7)",
+          "patterns": [
+            "fahrtkosten bauarbeiter",
+            "verpflegungszuschuss",
+            "kilometergeld bau",
+            "auslösung baustelle",
+            "fahrtkostenabgeltung brtv",
+            "командировочные строители"
+          ],
+          "keywords": [
+            "fahrtkosten", "verpflegung", "kilometergeld", "0,20 €", "auslösung", "Wegezeit"
+          ],
+          "answer": "Fahrtkosten und Verpflegung nach *§ 7 BRTV*:\n\n*Baustelle mit täglicher Heimfahrt (ab 10 km Entfernung):*\n• Kilometergeld: *0,20 € je km* (max. 30 €/Tag)\n• Öffentliche Verkehrsmittel: tatsächliche Kosten\n\n*Verpflegungszuschuss* (bei >8 Std. Abwesenheit von zu Hause):\n• bis 50 km: 7,00 €/Tag\n• 50–75 km: 8,00 €/Tag\n• ab 75 km: 9,00 €/Tag\n\n*Auswärtige Baustelle ohne tägliche Heimfahrt (ab 75 km + >75 Min. Fahrzeit):*\n• Wegezeitentschädigung: 9–39 €/Strecke (je nach Entfernung)\n• Verpflegungszuschuss: 24,00 €/Arbeitstag (bis 28 € per BV)\n• Unterkunft: vom Arbeitgeber zu stellen\n• Wochenendheimfahrt: 0,20 €/km ohne Begrenzung\n• Bei >500 km: 1 bezahlter Freistellungstag alle 4 Wochen",
+          "checklist": [
+            "Entfernung Wohnung ↔ Baustelle korrekt ermitteln (kürzeste PKW-Route)",
+            "Fahrtkosten monatlich mit Lohnabrechnung auszahlen",
+            "Verpflegungszuschuss pauschal versteuern (§ 40 Abs. 2 EStG)",
+            "Bei Auswärtsmontage: Unterkunft organisieren oder Kosten erstatten",
+            "Wochenendheimfahrten dokumentieren und abrechnen"
+          ],
+          "review": "Fahrtkosten und Verpflegungszuschuss dürfen nicht mit dem Lohn verrechnet werden (§ 5 Nr. 8.3 BRTV). Pauschalversteuerung durch Arbeitgeber — Überwälzung auf AN unzulässig."
+        },
+        {
+          "id": "brtv-6",
+          "title": "BRTV Freistellung bei familiären Ereignissen (§ 4)",
+          "patterns": [
+            "freistellung hochzeit",
+            "freistellung geburt",
+            "freistellung todesfall",
+            "sonderurlaub brtv",
+            "bezahlte freistellung",
+            "freier tag brtv"
+          ],
+          "keywords": [
+            "freistellung", "hochzeit", "geburt", "todesfall", "sonderurlaub", "familiär"
+          ],
+          "answer": "Bezahlte Freistellung nach *§ 4 Nr. 2 BRTV* (Gesamttarifstundenlohn wird weitergezahlt):\n\n• *Eigene Hochzeit / Eintragung Lebenspartnerschaft:* 3 Arbeitstage\n• *Geburt des eigenen Kindes:* 2 Arbeitstage\n• *Tod von Eltern, Ehegatte, Lebenspartner oder Kind:* 2 Arbeitstage\n• *Schwere Erkrankung Familienmitglied (Arztbescheinigung nötig):* 1 Arbeitstag\n• *Umzug mit eigenem Haushalt* (max. 1x/Jahr, nicht bei laufender Kündigung): 2 Arbeitstage\n\n*Arztbesuch/Behördengang:* bezahlte Freistellung wenn nachweislich nur während Arbeitszeit möglich (§ 4 Nr. 3 BRTV).",
+          "checklist": [
+            "Nachweis verlangen (Heiratsurkunde, Geburtsurkunde, Sterbeurkunde, ärztliches Attest)",
+            "Freistellung rechtzeitig beantragen lassen",
+            "Lohn für Freistellungstage normal weiterzahlen",
+            "In Baulohn als Freistellungstag (bezahlt) eintragen",
+            "Nicht auf Urlaubskonto anrechnen!"
+          ],
+          "review": "Freistellungsansprüche gelten nur für die im BRTV genannten Ereignisse. Darüber hinaus: freiwillige Regelung oder Tarifvertrag. Im Zweifelsfall Rechtsanwalt."
+        },
+        {
+          "id": "brtv-7",
+          "title": "BRTV Ausschlussfristen (§ 14)",
+          "patterns": [
+            "ausschlussfrist brtv",
+            "verfallklausel brtv",
+            "ansprüche brtv frist",
+            "§ 14 brtv",
+            "срок претензий строители brtv"
+          ],
+          "keywords": [
+            "ausschlussfrist", "BRTV", "2 monate", "verfall", "schriftlich geltend machen"
+          ],
+          "answer": "Ausschlussfristen nach *§ 14 BRTV* — kürzer als im Büro-Vertrag!\n\n*Stufe 1:* Alle Ansprüche müssen innerhalb von *2 Monaten* nach Fälligkeit schriftlich geltend gemacht werden.\n\n*Ausnahme Arbeitszeitguthaben:* 6 Monate Frist bei Ausscheiden.\n\n*Stufe 2:* Wenn die Gegenseite ablehnt oder nicht innerhalb von 2 Wochen antwortet — Klage innerhalb von *2 weiteren Monaten* einreichen.\n\n⚠️ *Vergleich:* Interne (Büro-)Mitarbeiter haben 3 Monate Frist (§ 10 Intern-Vertrag). Gewerbliche haben nur 2 Monate!",
+          "checklist": [
+            "Ansprüche (Lohn, Überstunden, Fahrtkosten usw.) innerhalb 2 Monate schriftlich stellen",
+            "Reaktionsfrist der Gegenseite: 2 Wochen",
+            "Keine Antwort / Ablehnung → Klage innerhalb 2 Monate",
+            "Arbeitszeitguthaben bei Ausscheiden: 6 Monate Frist"
+          ],
+          "review": "Die kurze 2-Monats-Frist gilt für BEIDE Seiten. HR sollte eigene Ansprüche (z.B. Rückforderungen) ebenfalls im Blick behalten. Bei Unklarheiten: Rechtsanwalt."
+        },
+        {
+          "id": "brtv-8",
+          "title": "BRTV Sterbegeld (§ 10)",
+          "patterns": [
+            "sterbegeld",
+            "tod mitarbeiter",
+            "todesfall betrieb",
+            "sterbegeld brtv",
+            "пособие в случае смерти"
+          ],
+          "keywords": [
+            "sterbegeld", "tod", "betriebszugehörigkeit", "wochenlohn", "erben"
+          ],
+          "answer": "Sterbegeld nach *§ 10 BRTV* — ausgezahlt an Ehegatte oder Unterhaltsberechtigte:\n\n• Betriebszugehörigkeit *> 1 Jahr:* 1 Wochenlohn\n• Betriebszugehörigkeit *> 5 Jahre:* 3 Wochenlöhne\n• Betriebszugehörigkeit *> 10 Jahre:* 4 Wochenlöhne\n• Tod durch *Betriebsunfall:* immer 4 Wochenlöhne (unabhängig von Betriebszugehörigkeit)\n\nBerechnung: Basis = 40 Std./Woche × Stundenlohn.",
+          "checklist": [
+            "Sterbeurkunde und Verwandtschaftsnachweis anfordern",
+            "Betriebszugehörigkeit prüfen (inkl. unterbrochener Zeiten bis 6 Monate)",
+            "Sterbegeld mit nächster Lohnabrechnung auszahlen",
+            "Bei Betriebsunfall: BG Bau informieren (Unfallanzeige)",
+            "Abmeldung bei Krankenkasse, SOKA-Bau, BG Bau"
+          ],
+          "review": "Sterbegeld ist eine tarifliche Pflichtleistung. Nicht zu verwechseln mit BG-Bau-Leistungen bei Arbeitsunfall."
         }
       ]
     },
