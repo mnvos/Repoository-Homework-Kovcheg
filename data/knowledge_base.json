@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.25",
+    "version": "0.26",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -1920,6 +1920,40 @@
             "Reisepasskopie zur Personalakte",
             "Mitarbeiter informieren: Verlaengerung rechtzeitig beantragen",
             "Kein Arbeitsbeginn ohne gueltigen Titel"
+          ]
+        },
+        {
+          "id": "auslaender-3",
+          "title": "Beschaeftigung von EU-Buergern — keine Arbeitserlaubnis erforderlich",
+          "patterns": [
+            "eu buerger beschaeftigung",
+            "eu buerger einstellung",
+            "eu buerger arbeitserlaubnis",
+            "eu mitarbeiter dokumente",
+            "ewr buerger",
+            "eu buerger aufenthaltstitel",
+            "граждане ес трудоустройство",
+            "гражданин евросоюза разрешение на работу",
+            "ес гражданин нужна ли виза",
+            "eu buerger personalakte"
+          ],
+          "keywords": [
+            "eu",
+            "ewr",
+            "europaeische union",
+            "arbeitserlaubnis",
+            "aufenthaltstitel",
+            "eu buerger",
+            "personalausweis eu"
+          ],
+          "answer": "*Beschaeftigung von EU-Buergern — LK Bauservice*\n\nGilt fuer Staatsbuerger der EU-Mitgliedstaaten sowie des EWR (Island, Norwegen, Liechtenstein).\n\n*Keine besonderen Voraussetzungen:*\nEU-Buerger benoetigen weder Arbeitserlaubnis noch Aufenthaltstitel. Die Einstellung erfolgt wie bei deutschen Arbeitnehmern.\n\n*Erforderliche Unterlagen (wie bei deutschen AN):*\n- Gueltiger Personalausweis oder Reisepass (Kopie zur Akte)\n- Deutsche Anschrift\n- Steuer-ID (vorhanden oder beantragt)\n- Sozialversicherungsnummer (vorhanden oder beantragt)\n- Krankenkasse gewaehlt\n\n*Personalakte:*\nAusweiskopie, Steuer-ID, Krankenkasse, Sozialversicherungsdaten, Arbeitsvertrag.",
+          "checklist": [
+            "Personalausweis oder Reisepass kopieren",
+            "Deutsche Anschrift erfassen",
+            "Steuer-ID und SV-Nummer aufnehmen (ggf. beantragen lassen)",
+            "Krankenkassenwahl bestaetigen",
+            "Kein Aufenthaltstitel, keine Arbeitserlaubnis erforderlich",
+            "Einstellung wie bei deutschem AN durchfuehren"
           ]
         }
       ]
