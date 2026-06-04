@@ -1,8 +1,8 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.5",
-    "updated": "2026-06-02"
+    "version": "0.6",
+    "updated": "2026-06-04"
   },
   "topics": [
     {
@@ -21,7 +21,12 @@
             "vertragsart"
           ],
           "keywords": [
-            "vertrag", "договор", "gewerblich", "intern", "büro", "baustelle"
+            "vertrag",
+            "договор",
+            "gewerblich",
+            "intern",
+            "büro",
+            "baustelle"
           ],
           "answer": "В LK Bauservice GmbH используются два основных вида договора:\n\n1. *Arbeitsvertrag für gewerbliche Arbeitnehmer* — для рабочих на стройке. Действует BRTV (Bundesrahmentarifvertrag Bau). Кündigung регулируется § 11 BRTV.\n\n2. *Arbeitsvertrag Muster Intern* — для офисных / внутренних сотрудников. Пробный период 6 месяцев, увольнение по § 622 BGB. Gerichtsstand: Braunschweig.",
           "checklist": [
@@ -45,7 +50,11 @@
             "что нужно при приёме"
           ],
           "keywords": [
-            "neueinstellung", "dokumente", "документы", "einstellung", "приём"
+            "neueinstellung",
+            "dokumente",
+            "документы",
+            "einstellung",
+            "приём"
           ],
           "answer": "При приёме нового сотрудника в LK Bauservice GmbH необходимо собрать все документы, оформить договор, зарегистрировать в Krankenkasse и передать данные в Baulohn. Зарплата выплачивается не позднее 10-го числа следующего месяца.",
           "checklist": [
@@ -76,7 +85,12 @@
             "BRTV"
           ],
           "keywords": [
-            "baustelle", "helm", "alkohol", "sozialversicherungsausweis", "BRTV", "строительная площадка"
+            "baustelle",
+            "helm",
+            "alkohol",
+            "sozialversicherungsausweis",
+            "BRTV",
+            "строительная площадка"
           ],
           "answer": "Для gewerbliche Mitarbeiter (рабочих на стройке) действуют дополнительные обязательные правила согласно трудовому договору LK Bauservice и BRTV:\n\n• На стройке обязательно иметь при себе Sozialversicherungsausweis mit Lichtbild и документ удостоверяющий личность\n• Обязательная защитная одежда: каска и защитная обувь\n• Категорический запрет работы под воздействием алкоголя или наркотиков — даже владение алкоголем на стройке запрещено\n• Посетители сотрудника на строительной площадке строго запрещены\n• Увольнение по § 11 BRTV (не § 622 BGB)\n• Kündigungsfrist nach Tarifvertrag",
           "checklist": [
@@ -100,7 +114,11 @@
             "увольнение на испытательном сроке"
           ],
           "keywords": [
-            "probezeit", "2 wochen", "6 monate", "пробный", "испытательный"
+            "probezeit",
+            "2 wochen",
+            "6 monate",
+            "пробный",
+            "испытательный"
           ],
           "answer": "Пробный период в LK Bauservice:\n\n*Interne Mitarbeiter (офис):* 6 месяцев. В течение Probezeit — Kündigungsfrist 2 недели, любой день.\n\n*Gewerbliche Mitarbeiter (стройка):* Согласно § 11 BRTV — Probezeit до 4 недель, Kündigung с уведомлением за 3 рабочих дня.",
           "checklist": [
@@ -123,7 +141,11 @@
             "überstunden abgeltung"
           ],
           "keywords": [
-            "überstunden", "mehrarbeit", "10%", "abgeltung", "сверхурочные"
+            "überstunden",
+            "mehrarbeit",
+            "10%",
+            "abgeltung",
+            "сверхурочные"
           ],
           "answer": "По договорам LK Bauservice переработка до 10% от договорного рабочего времени в неделю считается оплаченной базовой зарплатой (abgegolten).\n\nПример: при 40 ч/нед — до 4 ч переработки в неделю включены в зарплату без доплаты.\n\nСверх 10% — переработка должна оплачиваться отдельно.",
           "checklist": [
@@ -145,7 +167,11 @@
             "ansprüche geltend machen"
           ],
           "keywords": [
-            "ausschlussfrist", "3 monate", "verfall", "ansprüche", "претензии"
+            "ausschlussfrist",
+            "3 monate",
+            "verfall",
+            "ansprüche",
+            "претензии"
           ],
           "answer": "По договору внутренних сотрудников LK Bauservice (§ 10):\n\nВсе требования из трудовых отношений должны быть заявлены в письменном виде в течение *3 месяцев* с момента наступления срока выплаты.\n\nЕсли сторона отказала или не ответила в течение 1 месяца — подать иск в суд нужно в течение следующих 3 месяцев.\n\n*Исключения* (Ausschlussfrist не применяется):\n• Умышленные нарушения\n• Требования по Mindestlohn (MiLoG)\n• Требования по AEntG / AÜG",
           "checklist": [
@@ -167,7 +193,12 @@
             "remote arbeit"
           ],
           "keywords": [
-            "homeoffice", "remote", "häuslich", "удалённо", "дома", "vereinbarung"
+            "homeoffice",
+            "remote",
+            "häuslich",
+            "удалённо",
+            "дома",
+            "vereinbarung"
           ],
           "answer": "Для работы из дома в LK Bauservice необходимо заключить отдельную *Vereinbarung Home Office* — дополнение к трудовому договору.\n\nДокумент регулирует:\n• Место работы (полностью дома или чередование офис/дом)\n• Рабочее время и его документирование (табель — ежедневно, отправка после конца месяца)\n• Оборудование (предоставляет работодатель, запрещено личное использование и передача третьим лицам)\n• Pauschalbetrag — ежемесячная компенсация расходов на аренду, отопление, электричество\n• Право работодателя на проверку рабочего места (с уведомлением за 24 ч)\n• Полная Datenschutz — кабинет запирать при отсутствии",
           "checklist": [
@@ -195,7 +226,12 @@
             "gehalt anpassen"
           ],
           "keywords": [
-            "gehaltserhöhung", "lohnerhöhung", "zusatzvereinbarung", "anpassen", "повышение", "зарплата"
+            "gehaltserhöhung",
+            "lohnerhöhung",
+            "zusatzvereinbarung",
+            "anpassen",
+            "повышение",
+            "зарплата"
           ],
           "answer": "Повышение зарплаты или часовой ставки в LK Bauservice оформляется через *Zusatzvereinbarung zum Arbeitsvertrag*.\n\nДокумент содержит:\n• Дату вступления в силу нового оклада\n• Старый и новый размер зарплаты (brutto)\n• Подтверждение, что все остальные условия договора остаются без изменений\n• Подпись Geschäftsführer Laszlo Kosztevics и сотрудника\n\nГород и дата на документе: Salzgitter, дата подписания.",
           "checklist": [
@@ -220,7 +256,11 @@
             "nebenarbeit genehmigung"
           ],
           "keywords": [
-            "nebentätigkeit", "genehmigung", "zustimmung", "подработка", "вторая работа"
+            "nebentätigkeit",
+            "genehmigung",
+            "zustimmung",
+            "подработка",
+            "вторая работа"
           ],
           "answer": "По договорам LK Bauservice сотрудник обязан получить письменное согласие работодателя перед началом любой Nebentätigkeit.\n\nРаботодатель *обязан* дать согласие, если нет законных причин возразить (например, конкурирующая деятельность, нарушение Arbeitszeitgesetz).\n\nНебольшое исключение: подработки, которые уже существовали на момент подписания договора и были известны работодателю — считаются автоматически одобренными (Intern-Vertrag).",
           "checklist": [
@@ -249,7 +289,12 @@
             "что делать если заболел"
           ],
           "keywords": [
-            "krankmeldung", "attest", "2. tag", "arzt", "больничный", "врач"
+            "krankmeldung",
+            "attest",
+            "2. tag",
+            "arzt",
+            "больничный",
+            "врач"
           ],
           "answer": "По договорам LK Bauservice сотрудник при болезни обязан:\n\n1. *Сразу* — до начала рабочего времени сообщить своему руководителю или в отдел кадров по телефону или e-mail\n2. *До конца 2-го дня болезни* — предоставить врачебное свидетельство о нетрудоспособности (Attest) с указанием предполагаемой продолжительности\n3. *При продлении* — немедленно сообщить и подать Anschlussattest\n4. Работодатель может *в отдельных случаях* потребовать Attest раньше — с 1-го дня",
           "checklist": [
@@ -273,7 +318,11 @@
             "arzt schickt direkt"
           ],
           "keywords": [
-            "eAU", "elektronisch", "krankenkasse abruf", "электронный", "больничный автоматически"
+            "eAU",
+            "elektronisch",
+            "krankenkasse abruf",
+            "электронный",
+            "больничный автоматически"
           ],
           "answer": "С 2023 года в Германии действует eAU (elektronische Arbeitsunfähigkeitsbescheinigung):\n\n• Врач передаёт данные о больничном напрямую в Krankenkasse\n• Работодатель *сам запрашивает* eAU у Krankenkasse через систему (DATEV, Baulohn и т.д.)\n• Сотрудник всё равно обязан *сообщить* работодателю о болезни устно/письменно\n• Бумажный Ausdruck для сотрудника — только по желанию",
           "checklist": [
@@ -283,6 +332,33 @@
             "При технических проблемах — попросить бумажную копию у сотрудника"
           ],
           "review": "Система eAU не освобождает сотрудника от обязанности уведомить работодателя. Если Krankenkasse не передала данные — потребовать бумажный вариант."
+        },
+        {
+          "id": "sick_leave-3",
+          "title": "Entgeltfortzahlung im Krankheitsfall",
+          "patterns": [
+            "entgeltfortzahlung",
+            "lohnfortzahlung",
+            "krank bezahlt",
+            "6 wochen",
+            "entgfg",
+            "кто платит при болезни",
+            "зарплата при болезни",
+            "оплата больничного"
+          ],
+          "keywords": [
+            "entgeltfortzahlung",
+            "lohnfortzahlung",
+            "krank",
+            "6 wochen",
+            "entgfg"
+          ],
+          "answer": "*Entgeltfortzahlung im Krankheitsfall (§ 3 EntgFG)*\n\nDer Arbeitgeber zahlt bei Arbeitsunfähigkeit *bis zu 6 Wochen* das volle Gehalt weiter.\n\n*Voraussetzungen:* Beschäftigung seit mind. 4 Wochen. Keine Selbstverschuldung.\n\n*Pflichten des AN:* Erkrankung unverzüglich melden. Ab 2. Kalendertag: AU-Bescheinigung.\n\n*Nach 6 Wochen:* Krankenkasse zahlt Krankengeld (ca. 70% Brutto, max. 90% Netto) bis zu 78 Wochen innerhalb von 3 Jahren bei gleicher Erkrankung.",
+          "checklist": [
+            "Krankmeldung am 1. Fehltag telefonisch mitteilen",
+            "Ab 2. Kalendertag: eAU einreichen",
+            "Nach 6 Wochen: Krankengeld durch Krankenkasse"
+          ]
         }
       ]
     },
@@ -302,7 +378,12 @@
             "сколько дней отпуска"
           ],
           "keywords": [
-            "urlaubstage", "betriebsurlaub", "werktage", "urlaubsanspruch", "отпуск", "дни"
+            "urlaubstage",
+            "betriebsurlaub",
+            "werktage",
+            "urlaubsanspruch",
+            "отпуск",
+            "дни"
           ],
           "answer": "Количество дней отпуска указано в индивидуальном трудовом договоре (§ 5).\n\n*Важно:* LK Bauservice вправе объявить Betriebsurlaub — принудительный отпуск по решению работодателя. Он засчитывается в личный Urlaubsanspruch сотрудника.\n\nМинимальный законный отпуск: 24 Werktage (6-Tage-Woche) или 20 Arbeitstage (5-Tage-Woche) — по BUrlG.",
           "checklist": [
@@ -325,7 +406,11 @@
             "как взять отпуск"
           ],
           "keywords": [
-            "urlaubsantrag", "genehmigung", "antrag", "заявка", "согласование отпуска"
+            "urlaubsantrag",
+            "genehmigung",
+            "antrag",
+            "заявка",
+            "согласование отпуска"
           ],
           "answer": "Порядок оформления отпуска в LK Bauservice:\n\n1. Сотрудник подаёт Urlaubsantrag заранее — минимум за 2 недели (рекомендуется раньше)\n2. HR проверяет остаток дней и согласует с непосредственным руководителем\n3. Письменное подтверждение отпуска — сотруднику и в бухгалтерию\n4. Данные передаются в Baulohn",
           "checklist": [
@@ -355,7 +440,11 @@
             "arbeitgeber kündigt"
           ],
           "keywords": [
-            "kündigung", "entlassung", "kündigungsfrist", "увольнение", "расторжение"
+            "kündigung",
+            "entlassung",
+            "kündigungsfrist",
+            "увольнение",
+            "расторжение"
           ],
           "answer": "Увольнение по инициативе LK Bauservice GmbH:\n\n*Форма:* только письменно (§ 623 BGB) — никаких устных или электронных уведомлений\n\n*Сроки — Interne Mitarbeiter:* по § 622 BGB (используй /kuendigung в боте)\n*Сроки — Gewerbliche Mitarbeiter:* по § 11 BRTV\n\n*При Probezeit:* 2 недели (Intern) или 3 рабочих дня (Gewerblich, BRTV)\n\nАвтоматическое окончание договора без Kündigung: при достижении пенсионного возраста (67 лет) или при получении unbefristete Rente wegen voller Erwerbsminderung.",
           "checklist": [
@@ -381,7 +470,10 @@
             "eigenkündigung"
           ],
           "keywords": [
-            "eigenkündigung", "selbst kündigen", "сотрудник уволился", "заявление об уходе"
+            "eigenkündigung",
+            "selbst kündigen",
+            "сотрудник уволился",
+            "заявление об уходе"
           ],
           "answer": "Если сотрудник сам подаёт Kündigung:\n\n*Interne Mitarbeiter:* § 622 BGB — те же сроки, что и у работодателя (продлённые сроки применяются и к AN при наличии соответствующей договорной оговорки)\n\n*Gewerbliche Mitarbeiter:* § 11 BRTV\n\n*Vertragsstrafe:* Если сотрудник не выходит на работу в первый день или уходит без соблюдения Kündigungsfrist — штраф 1 Tageslohn за каждый пропущенный день Kündigungsfrist, максимум 1 Monatslohn (по договору Gewerblich).",
           "checklist": [
@@ -406,7 +498,11 @@
             "aufhebung arbeitsvertrag"
           ],
           "keywords": [
-            "aufhebungsvertrag", "einvernehmlich", "aufhebung", "соглашение", "расторжение"
+            "aufhebungsvertrag",
+            "einvernehmlich",
+            "aufhebung",
+            "соглашение",
+            "расторжение"
           ],
           "answer": "Aufhebungsvertrag — расторжение трудового договора по взаимному согласию сторон без соблюдения Kündigungsfrist.\n\nПо шаблону LK Bauservice (Salzgitter) договор содержит:\n\n*§ 1* — дата расторжения, Kündigungsfrist не применяется\n*§ 2* — зарплата выплачивается до последнего дня\n*§ 3* — сотрудник обязан встать на учёт в Agentur für Arbeit:\n  • За 3 месяца до окончания — если срок известен заранее\n  • В течение 3 дней — если до окончания менее 3 месяцев\n*§ 4* — Ausgleichsklausel: все взаимные финансовые претензии считаются урегулированными\n*§ 5* — Verschwiegenheitsvereinbarung остаётся в силе\n*§ 6* — возврат имущества компании в последний день + качественное Arbeitszeugnis\n*§ 7* — 2 экземпляра, оба подписаны\n\n⚠️ Работодатель обязан письменно предупредить сотрудника, что подписание Aufhebungsvertrag *может привести к Sperrfrist* по Arbeitslosengeld (до 12 недель).",
           "checklist": [
@@ -435,7 +531,11 @@
             "grober verstoß"
           ],
           "keywords": [
-            "fristlos", "außerordentlich", "wichtiger grund", "немедленно", "грубое нарушение"
+            "fristlos",
+            "außerordentlich",
+            "wichtiger grund",
+            "немедленно",
+            "грубое нарушение"
           ],
           "answer": "Немедленное расторжение договора (außerordentliche Kündigung) возможно только при наличии wichtiger Grund (§ 626 BGB).\n\nПримеры важных причин по договорам LK Bauservice:\n• Работа под воздействием алкоголя или наркотиков\n• Хищение имущества работодателя\n• Грубое нарушение охраны труда\n• Систематический прогул\n\nСрок: уведомление должно быть направлено в течение 2 недель с момента, когда стало известно об основании.",
           "checklist": [
@@ -464,7 +564,12 @@
             "verletzung baustelle"
           ],
           "keywords": [
-            "unfall", "verletzung", "erste hilfe", "BG Bau", "травма", "несчастный случай"
+            "unfall",
+            "verletzung",
+            "erste hilfe",
+            "BG Bau",
+            "травма",
+            "несчастный случай"
           ],
           "answer": "При несчастном случае на строительном объекте LK Bauservice:\n\n1. Первая помощь — немедленно\n2. Вызвать скорую при необходимости\n3. Сохранить место происшествия (по возможности)\n4. Сообщить руководителю и в HR немедленно\n5. Уведомить BG Bau (обязательно при нетрудоспособности более 3 дней)\n6. Оформить Unfallanzeige в течение 3 дней",
           "checklist": [
@@ -495,7 +600,11 @@
             "soka beitrag"
           ],
           "keywords": [
-            "SOKA-Bau", "urlaubskasse", "berufsbildung", "взносы", "строители"
+            "SOKA-Bau",
+            "urlaubskasse",
+            "berufsbildung",
+            "взносы",
+            "строители"
           ],
           "answer": "SOKA-Bau — Sozialkasse des Baugewerbes. Обязательна для всех gewerbliche Arbeitnehmer в строительной отрасли.\n\nДве кассы:\n• *ULAK* — Urlaubskasse (отпускные для рабочих)\n• *SOKA-Bau* — Zusatzversorgung Bau (дополнительное пенсионное страхование)\n\nРаботодатель ежемесячно перечисляет взносы и подаёт отчёты. Отпускные рабочим выплачивает напрямую SOKA-Bau, не работодатель.",
           "checklist": [
@@ -506,6 +615,63 @@
             "Архивировать все подтверждения отчётов"
           ],
           "review": "Несвоевременная подача Meldung или задержка взносов — штрафы и Nachzahlungen. Проконсультируйтесь с Steuerberater по актуальным ставкам."
+        },
+        {
+          "id": "soka_bau-2",
+          "title": "SOKA-BAU Urlaubsberechnung - Teilzeit, Elternzeit, Weiterbildung",
+          "patterns": [
+            "soka urlaub berechnung",
+            "urlaubstage teilzeit soka",
+            "soka teilzeit",
+            "elternzeit urlaub soka",
+            "meisterschule urlaub",
+            "weiterbildung urlaub",
+            "расчёт отпуска сока",
+            "отпуск при неполной занятости"
+          ],
+          "keywords": [
+            "soka",
+            "urlaub",
+            "teilzeit",
+            "elternzeit",
+            "weiterbildung",
+            "meisterschule",
+            "30 tage"
+          ],
+          "answer": "*SOKA-BAU Urlaubsberechnung (gewerbliche AN)*\n\nGrundanspruch: 30 Arbeitstage/Jahr (Vollzeit). Schwerbehinderte: 35 Tage.\n\n*Teilzeit-Formel:*\n(Arbeitstage/Woche / 5) x 30 = Beschaeftigungstage/Monat\nBeispiele: 3 Tage/Wo = 18 Tage, 3,5 Tage/Wo = 21 Tage\n\n24.12. und 31.12.: arbeitsfreie, unbezahlte Tage. AG/AN koennen je 1 Urlaubstag einsetzen.\n\n*Elternzeit:* Ansprueche verfallen nicht. Resturlaub -> Uebertrag ins Folgejahr.\n\n*Meisterschule (ruhendes AV):* Kein Abgeltungsanspruch. Resturlaub -> Uebertrag Folgejahr. Bei Verfall: Entschaedigungsanspruch ggue. SOKA-BAU.",
+          "checklist": [
+            "Wochenstunden pruefen und Teilzeit-Formel anwenden",
+            "Bei Elternzeit: Resturlaub dokumentieren",
+            "Fuer 24.12./31.12.: Einigung mit AN",
+            "Bei Meisterschule: SOKA-BAU ueber Ruhen informieren"
+          ]
+        },
+        {
+          "id": "soka_bau-3",
+          "title": "SOKA-BAU Berufsbildungsverfahren - Beitraege und Erstattungen fuer Azubis",
+          "patterns": [
+            "soka ausbildung",
+            "berufsbildung soka",
+            "azubi soka",
+            "ausbildungskosten erstattung",
+            "ueberbetriebliche ausbildung",
+            "возмещение обучения сока",
+            "взносы за учеников"
+          ],
+          "keywords": [
+            "berufsbildung",
+            "ausbildung",
+            "azubi",
+            "erstattung",
+            "soka",
+            "1,9"
+          ],
+          "answer": "*SOKA-BAU Berufsbildungsverfahren*\n\nBeitrag: 1,9% des Bruttolohns aller gewerblichen AN (ab 01.07.2025; vorher 2,2%)\n\nAzubi-Anmeldung: einmalig mit Ausbildungsvertrag bei SOKA-BAU.\n\nErstattung Ausbildungsverguetung:\n- 1. Lehrjahr: 10 Monate erstattet\n- 2. Lehrjahr: 6 Monate erstattet\n- 3. Lehrjahr: 1 Monat erstattet\n\nZusaetzlich: ueberbetriebliche Ausbildungskosten (Tagewerke + Internatsunterbringung) grossteils erstattet.",
+          "checklist": [
+            "Ausbildungsvertrag bei SOKA-BAU anmelden",
+            "Bruttoloeohne korrekt melden (1,9%)",
+            "Erstattungsantraege nach Lehrjahr stellen"
+          ]
         }
       ]
     },
@@ -524,7 +690,11 @@
             "регистрация bg bau"
           ],
           "keywords": [
-            "BG Bau", "unfallversicherung", "beitrag", "meldung", "страхование от несчастных случаев"
+            "BG Bau",
+            "unfallversicherung",
+            "beitrag",
+            "meldung",
+            "страхование от несчастных случаев"
           ],
           "answer": "BG Bau — Berufsgenossenschaft der Bauwirtschaft. Обязательное страхование от несчастных случаев для всех сотрудников строительной отрасли.\n\n*Обязанности работодателя:*\n• Регистрация всех сотрудников в BG Bau\n• Ежегодная подача Lohnnachweises (до 16 февраля)\n• Уведомление о несчастных случаях (Unfallanzeige) при нетрудоспособности > 3 дней\n• Соблюдение правил безопасности BG Bau (DGUV)",
           "checklist": [
@@ -535,6 +705,37 @@
             "Хранить документы по безопасности труда"
           ],
           "review": "При серьёзных несчастных случаях BG Bau проводит проверку. Нарушения охраны труда — значительные штрафы. Юрист обязателен."
+        },
+        {
+          "id": "bg_bau-2",
+          "title": "Arbeitsunfall - Unfallanzeige, Meldepflichten, Erste Hilfe",
+          "patterns": [
+            "unfallanzeige",
+            "arbeitsunfall melden",
+            "unfallmeldung",
+            "erste hilfe baustelle",
+            "meldepflicht unfall",
+            "сообщить о несчастном случае",
+            "производственная травма",
+            "первая помощь"
+          ],
+          "keywords": [
+            "unfall",
+            "unfallanzeige",
+            "meldepflicht",
+            "erste hilfe",
+            "durchgangsarzt",
+            "d-arzt",
+            "dguv"
+          ],
+          "answer": "*Arbeitsunfall - Meldepflichten und Erste Hilfe*\n\nMeldepflichten:\n- Jeder Unfall sofort dem Arbeitgeber melden\n- AU > 3 Tage oder Tod: Unfallanzeige BG BAU binnen 3 Tagen\n- Massenunfall: Sofortmeldung\n- Meldeweg: DGUV-Portal oder Post\n\nErste-Hilfe-Schritte:\n1. Schwere Verletzung: Notruf 112\n2. Ersthelfer informieren\n3. Erste Hilfe im Verbandbuch dokumentieren\n4. D-Arzt aufsuchen (nicht Hausarzt)\n5. Arzt ueber Arbeitsunfall informieren (Abrechnung ueber BG BAU)\n6. HR / Fuehrungskraft sofort informieren\n\nHerzinfarkt im Buero ohne aeussere Ursache = kein Arbeitsunfall.",
+          "checklist": [
+            "Notruf 112 bei schweren Verletzungen",
+            "Unfall sofort HR melden",
+            "Verbandbuch ausfuellen",
+            "D-Arzt aufsuchen (nicht Hausarzt)",
+            "Unfallanzeige BG BAU innerhalb 3 Tagen (AU > 3 Tage)"
+          ]
         }
       ]
     },
@@ -553,7 +754,11 @@
             "медицинское страхование"
           ],
           "keywords": [
-            "krankenkasse", "anmeldung", "versicherung", "страховая", "регистрация"
+            "krankenkasse",
+            "anmeldung",
+            "versicherung",
+            "страховая",
+            "регистрация"
           ],
           "answer": "При приёме нового сотрудника работодатель обязан зарегистрировать его в gesetzliche Krankenkasse (GKV) — если сотрудник не застрахован приватно.\n\nСотрудник сам выбирает Krankenkasse. Данные передаются через Baulohn/DATEV.",
           "checklist": [
@@ -582,7 +787,12 @@
             "фрист увольнение строители"
           ],
           "keywords": [
-            "BRTV", "kündigung", "werktage", "gewerblich", "tarifvertrag", "kündigungsfrist"
+            "BRTV",
+            "kündigung",
+            "werktage",
+            "gewerblich",
+            "tarifvertrag",
+            "kündigungsfrist"
           ],
           "answer": "Kündigungsfristen für gewerbliche Mitarbeiter nach *§ 11 BRTV*:\n\n*Grundfrist:* 6 Werktage (beide Seiten)\n*Nach 6 Monaten Betriebszugehörigkeit:* 12 Werktage\n\n*Verlängerte AG-Fristen nach Betriebszugehörigkeit:*\n• 3 Jahre → 1 Monat zum Monatsende\n• 5 Jahre → 2 Monate zum Monatsende\n• 8 Jahre → 3 Monate zum Monatsende\n• 10 Jahre → 4 Monate zum Monatsende\n• 12 Jahre → 5 Monate zum Monatsende\n• 15 Jahre → 6 Monate zum Monatsende\n• 20 Jahre → 7 Monate zum Monatsende\n\n*Achtung:* In der Schlechtwetterzeit (1. Dezember – 31. März) darf *nicht* aus Witterungsgründen gekündigt werden.\n\nSchwarzarbeit = fristloser Kündigungsgrund (§ 626 BGB).",
           "checklist": [
@@ -606,7 +816,13 @@
             "рабочее время строители"
           ],
           "keywords": [
-            "BRTV", "arbeitszeit", "sommer", "winter", "überstunden", "zuschlag", "40 stunden"
+            "BRTV",
+            "arbeitszeit",
+            "sommer",
+            "winter",
+            "überstunden",
+            "zuschlag",
+            "40 stunden"
           ],
           "answer": "Regelarbeitszeit nach *§ 3 BRTV* (Durchschnitt: 40 Std./Woche):\n\n*Sommerarbeitszeit (April – November):*\n• Mo–Do: 8,5 Stunden\n• Fr: 7 Stunden\n• Woche: 41 Stunden\n\n*Winterarbeitszeit (Januar–März + Dezember):*\n• Mo–Do: 8 Stunden\n• Fr: 6 Stunden\n• Woche: 38 Stunden\n\n*24. und 31. Dezember:* arbeitsfrei, kein Lohnanspruch.\n\n*Überstundenzuschläge (§ 3 Nr. 6):*\n• Überstunden: +25%\n• Nachtarbeit (20–5 Uhr): +20%\n• Sonn- und Feiertage: +75% (Ostern/Pfingsten/1.Mai/1.Weihnachtstag: +200%)\n• Alle übrigen gesetzlichen Feiertage: +200%\n\nMehrere Zuschläge werden *nebeneinander* gezahlt.",
           "checklist": [
@@ -629,7 +845,13 @@
             "отпуск строители brtv"
           ],
           "keywords": [
-            "BRTV", "urlaub", "30 tage", "ULAK", "urlaubsvergütung", "14,25%", "urlaubskasse"
+            "BRTV",
+            "urlaub",
+            "30 tage",
+            "ULAK",
+            "urlaubsvergütung",
+            "14,25%",
+            "urlaubskasse"
           ],
           "answer": "Urlaubsregelung für gewerbliche Mitarbeiter nach *§ 8 BRTV*:\n\n*Urlaubsanspruch:* 30 Arbeitstage pro Kalenderjahr (Samstage zählen nicht als Arbeitstage)\n*Schwerbehinderte:* +5 Tage = 35 Arbeitstage\n\n*Berechnung:* Pro 12 Beschäftigungstage = 1 Urlaubstag\n\n*Urlaubsvergütung:* 14,25% des Bruttolohns (BRTV)\n• davon Urlaubsentgelt: 11,4%\n• davon zusätzliches Urlaubsgeld: 25% des Urlaubsentgelts\n\n*Auszahlung:* über *ULAK* (Urlaubs- und Lohnausgleichskasse der Bauwirtschaft), nicht direkt durch Arbeitgeber!\n\n*Kranksein im Urlaub:* durch Attest nachgewiesene Tage zählen nicht als Urlaub → Resturlaub muss nachgewährt werden.\n\n*Resturlaub:* wird ins Folgejahr übertragen.",
           "checklist": [
@@ -653,7 +875,12 @@
             "группа оплаты труда"
           ],
           "keywords": [
-            "lohngruppe", "eingruppierung", "vorarbeiter", "werkpolier", "facharbeiter", "werker"
+            "lohngruppe",
+            "eingruppierung",
+            "vorarbeiter",
+            "werkpolier",
+            "facharbeiter",
+            "werker"
           ],
           "answer": "Lohngruppen nach *§ 5 BRTV* — Eingruppierung nach Ausbildung, Kenntnissen und Tätigkeit:\n\n*LG 1 — Werker/Maschinenwerker:*\nEinfache Bau-/Montagearbeiten nach Anweisung. Keine Berufsausbildung erforderlich.\n_Beispiele: Sortieren, Reinigen, Mörtel mischen_\n\n*LG 2 — Fachwerker/Maschinist/Kraftfahrer:*\nFachlich begrenzte Arbeiten nach Anweisung. Stufenausbildung 1. Stufe oder gleichwertig.\n_Beispiele: Rohrleger, Schwarzdeckenbauer, Schalungsbauer, Kraftfahrer_\n\n*LG 3 — Facharbeiter/Baugeräteführer/Berufskraftfahrer:*\nFacharbeiten des Berufsbildes. Stufenausbildung 2. Stufe oder anerkannte Ausbildung.\n\n*LG 4 — Spezialfacharbeiter/Baumaschinenführer:*\nSelbständige Facharbeit. Stufenausbildung ab 2. Jahr oder langjährige Erfahrung.\n\n*LG 5 — Vorarbeiter:*\nFührung einer kleinen Gruppe + Vorarbeiterprüfung.\n\n*LG 6 — Werkpolier/Baumaschinen-Fachmeister:*\nFührung und Anleitung einer Gruppe in Teilbereichen der Bauausführung + Werkpolierprüfung.",
           "checklist": [
@@ -676,7 +903,12 @@
             "командировочные строители"
           ],
           "keywords": [
-            "fahrtkosten", "verpflegung", "kilometergeld", "0,20 €", "auslösung", "Wegezeit"
+            "fahrtkosten",
+            "verpflegung",
+            "kilometergeld",
+            "0,20 €",
+            "auslösung",
+            "Wegezeit"
           ],
           "answer": "Fahrtkosten und Verpflegung nach *§ 7 BRTV*:\n\n*Baustelle mit täglicher Heimfahrt (ab 10 km Entfernung):*\n• Kilometergeld: *0,20 € je km* (max. 30 €/Tag)\n• Öffentliche Verkehrsmittel: tatsächliche Kosten\n\n*Verpflegungszuschuss* (bei >8 Std. Abwesenheit von zu Hause):\n• bis 50 km: 7,00 €/Tag\n• 50–75 km: 8,00 €/Tag\n• ab 75 km: 9,00 €/Tag\n\n*Auswärtige Baustelle ohne tägliche Heimfahrt (ab 75 km + >75 Min. Fahrzeit):*\n• Wegezeitentschädigung: 9–39 €/Strecke (je nach Entfernung)\n• Verpflegungszuschuss: 24,00 €/Arbeitstag (bis 28 € per BV)\n• Unterkunft: vom Arbeitgeber zu stellen\n• Wochenendheimfahrt: 0,20 €/km ohne Begrenzung\n• Bei >500 km: 1 bezahlter Freistellungstag alle 4 Wochen",
           "checklist": [
@@ -700,7 +932,12 @@
             "freier tag brtv"
           ],
           "keywords": [
-            "freistellung", "hochzeit", "geburt", "todesfall", "sonderurlaub", "familiär"
+            "freistellung",
+            "hochzeit",
+            "geburt",
+            "todesfall",
+            "sonderurlaub",
+            "familiär"
           ],
           "answer": "Bezahlte Freistellung nach *§ 4 Nr. 2 BRTV* (Gesamttarifstundenlohn wird weitergezahlt):\n\n• *Eigene Hochzeit / Eintragung Lebenspartnerschaft:* 3 Arbeitstage\n• *Geburt des eigenen Kindes:* 2 Arbeitstage\n• *Tod von Eltern, Ehegatte, Lebenspartner oder Kind:* 2 Arbeitstage\n• *Schwere Erkrankung Familienmitglied (Arztbescheinigung nötig):* 1 Arbeitstag\n• *Umzug mit eigenem Haushalt* (max. 1x/Jahr, nicht bei laufender Kündigung): 2 Arbeitstage\n\n*Arztbesuch/Behördengang:* bezahlte Freistellung wenn nachweislich nur während Arbeitszeit möglich (§ 4 Nr. 3 BRTV).",
           "checklist": [
@@ -723,7 +960,11 @@
             "срок претензий строители brtv"
           ],
           "keywords": [
-            "ausschlussfrist", "BRTV", "2 monate", "verfall", "schriftlich geltend machen"
+            "ausschlussfrist",
+            "BRTV",
+            "2 monate",
+            "verfall",
+            "schriftlich geltend machen"
           ],
           "answer": "Ausschlussfristen nach *§ 14 BRTV* — kürzer als im Büro-Vertrag!\n\n*Stufe 1:* Alle Ansprüche müssen innerhalb von *2 Monaten* nach Fälligkeit schriftlich geltend gemacht werden.\n\n*Ausnahme Arbeitszeitguthaben:* 6 Monate Frist bei Ausscheiden.\n\n*Stufe 2:* Wenn die Gegenseite ablehnt oder nicht innerhalb von 2 Wochen antwortet — Klage innerhalb von *2 weiteren Monaten* einreichen.\n\n⚠️ *Vergleich:* Interne (Büro-)Mitarbeiter haben 3 Monate Frist (§ 10 Intern-Vertrag). Gewerbliche haben nur 2 Monate!",
           "checklist": [
@@ -745,7 +986,11 @@
             "пособие в случае смерти"
           ],
           "keywords": [
-            "sterbegeld", "tod", "betriebszugehörigkeit", "wochenlohn", "erben"
+            "sterbegeld",
+            "tod",
+            "betriebszugehörigkeit",
+            "wochenlohn",
+            "erben"
           ],
           "answer": "Sterbegeld nach *§ 10 BRTV* — ausgezahlt an Ehegatte oder Unterhaltsberechtigte:\n\n• Betriebszugehörigkeit *> 1 Jahr:* 1 Wochenlohn\n• Betriebszugehörigkeit *> 5 Jahre:* 3 Wochenlöhne\n• Betriebszugehörigkeit *> 10 Jahre:* 4 Wochenlöhne\n• Tod durch *Betriebsunfall:* immer 4 Wochenlöhne (unabhängig von Betriebszugehörigkeit)\n\nBerechnung: Basis = 40 Std./Woche × Stundenlohn.",
           "checklist": [
@@ -775,7 +1020,12 @@
             "auszahlung gehalt"
           ],
           "keywords": [
-            "lohn", "gehalt", "auszahlung", "10. des monats", "зарплата", "выплата"
+            "lohn",
+            "gehalt",
+            "auszahlung",
+            "10. des monats",
+            "зарплата",
+            "выплата"
           ],
           "answer": "По договорам LK Bauservice GmbH:\n\nЗарплата выплачивается *не позднее 10-го числа следующего месяца* банковским переводом на счёт сотрудника.\n\nПример: работа в мае → зарплата до 10 июня.\n\nВычитаются все законные налоги и взносы на социальное страхование.",
           "checklist": [
@@ -786,6 +1036,161 @@
             "Выдать расчётный лист (Lohnzettel) сотруднику"
           ],
           "review": "Ошибочная переплата: сотрудник обязан вернуть. Отказ сотрудника от возврата — правовой вопрос, юрист."
+        },
+        {
+          "id": "baulohn-2",
+          "title": "Mindestlohn 2026",
+          "patterns": [
+            "mindestlohn",
+            "минимальная зарплата",
+            "gesetzlicher mindestlohn",
+            "13,90",
+            "14,60"
+          ],
+          "keywords": [
+            "mindestlohn",
+            "13,90",
+            "14,60",
+            "stundenlohn"
+          ],
+          "answer": "*Gesetzlicher Mindestlohn (MiLoG)*\n\nAktuell: *13,90 EUR brutto/Stunde*\nAb 01.01.2027: *14,60 EUR brutto/Stunde*\n\nFuer gewerbliche AN im Baugewerbe gilt der tarifliche Mindestlohn (BRTV/VTV) und liegt i.d.R. darueber.\n\nUnterschreitung: Ordnungswidrigkeit, Busssgeld bis 500.000 EUR."
+        }
+      ]
+    },
+    {
+      "id": "agg",
+      "title": "AGG - Gleichbehandlung / Diskriminierungsschutz",
+      "questions": [
+        {
+          "id": "agg-1",
+          "title": "AGG - Diskriminierungsschutz im Arbeitsverhaltnis",
+          "patterns": [
+            "agg",
+            "diskriminierung",
+            "gleichbehandlung",
+            "benachteiligung",
+            "allgemeines gleichbehandlungsgesetz",
+            "дискриминация",
+            "равное обращение"
+          ],
+          "keywords": [
+            "agg",
+            "diskriminierung",
+            "benachteiligung",
+            "gleichbehandlung",
+            "geschlecht",
+            "religion",
+            "alter",
+            "behinderung",
+            "rasse"
+          ],
+          "answer": "*Allgemeines Gleichbehandlungsgesetz (AGG)*\n\nVerbietet Benachteiligungen im Arbeitsverhaeltnis aufgrund von:\n- Rasse und ethnische Herkunft\n- Geschlecht\n- Religion oder Weltanschauung\n- Behinderung\n- Alter\n- Sexuelle Identitaet\n\nGeltungsbereich: Bewerbung, Einstellung, Arbeitsbedingungen, Befoerderung, Kuendigung.\n\nBeschwerderecht: AN kann sich ohne Nachteile an HR wenden.\n\nFrist: Schadensersatzansprueche innerhalb 2 Monate (§ 15 Abs. 4 AGG).\n\nDiskriminierende Stellenausschreibungen (z.B. 'jung und dynamisch') sind unzulaessig.",
+          "checklist": [
+            "Stellenausschreibungen auf diskriminierende Formulierungen pruefen",
+            "Keine Fragen zu Alter/Herkunft/Familienplanung im Vorstellungsgespraech",
+            "AGG-Beschwerden dokumentieren",
+            "Reaktionsfrist: 2 Monate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ausbildungsverguetung",
+      "title": "Ausbildungsverguetungen im Baugewerbe",
+      "questions": [
+        {
+          "id": "ausbildung-1",
+          "title": "Ausbildungsverguetungen im Baugewerbe - aktuelle Betraege",
+          "patterns": [
+            "ausbildungsverguetung",
+            "ausbildungsgehalt",
+            "azubi gehalt",
+            "lehrlingsvergutung",
+            "зарплата ученика",
+            "lehrjahr verguetung"
+          ],
+          "keywords": [
+            "ausbildung",
+            "azubi",
+            "lehrjahr",
+            "verguetung",
+            "gewerblich",
+            "kaufmaennisch",
+            "feuerungstechnik"
+          ],
+          "answer": "*Ausbildungsverguetungen Baugewerbe (tariflich)*\n\nGewerbliche Ausbildung:\n- 1. Lehrjahr: 1.122 EUR\n- 2. Lehrjahr: 1.351 EUR\n- 3. Lehrjahr: 1.610 EUR\n- 4. Lehrjahr: 1.714 EUR\n\nFeuerungstechnik:\n- 1. Lehrjahr: 1.122 EUR\n- 2. Lehrjahr: 1.395 EUR\n- 3. Lehrjahr: 1.719 EUR\n\nKaufmaennisch / Technisch:\n- 1. Lehrjahr: 1.122 EUR\n- 2. Lehrjahr: 1.247 EUR\n- 3. Lehrjahr: 1.507 EUR\n\nTeil der Kosten wird ueber SOKA-BAU Berufsbildungsverfahren erstattet."
+        }
+      ]
+    },
+    {
+      "id": "zvk_tarifrente",
+      "title": "ZVK - Tarifrente Bau (Betriebliche Altersvorsorge)",
+      "questions": [
+        {
+          "id": "zvk-1",
+          "title": "ZVK / Tarifrente Bau - betriebliche Altersvorsorge",
+          "patterns": [
+            "zvk",
+            "tarifrente",
+            "betriebliche altersvorsorge bau",
+            "tza bau",
+            "altersvorsorge baugewerbe",
+            "пенсия строители",
+            "bav bau"
+          ],
+          "keywords": [
+            "zvk",
+            "tarifrente",
+            "altersvorsorge",
+            "tza",
+            "rente",
+            "3,2",
+            "betriebsrente"
+          ],
+          "answer": "*ZVK - Tarifrente Bau*\n\nVerwaltet durch ZVK der SOKA-BAU. Rechtsgrundlage: TZA Bau 2018 (allgemeinverbindlich).\n\nFinanzierung: ausschliesslich durch Arbeitgeber, kein AN-Beitrag.\n\nBeitragssaetze ab 01.07.2025:\n- Gewerbliche AN West: 3,2% des Bruttolohns\n- Gewerbliche AN Ost: 1,7% des Bruttolohns\n- Angestellte West: 42,50 EUR/Monat\n- Auszubildende: 20,00 EUR/Monat (bundesweit)\n\nLeistungen:\n- Lebenslange Altersrente oder Kapitalabfindung\n- Erwerbsminderungsrente\n- Hinterbliebenenrente\n\nAbrechnung monatlich ueber SOKA-BAU-Portal.",
+          "checklist": [
+            "Beitragssatz: West 3,2% / Ost 1,7% (gewerblich)",
+            "Angestellte: 42,50 EUR/Monat",
+            "Azubis: 20,00 EUR/Monat",
+            "Abrechnung ueber SOKA-BAU-Portal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dsgvo",
+      "title": "DSGVO im Arbeitsverhaeltnis / Datenschutz",
+      "questions": [
+        {
+          "id": "dsgvo-1",
+          "title": "DSGVO im Arbeitsverhaeltnis - Bewerberdaten, Personalakte, Aufbewahrungsfristen",
+          "patterns": [
+            "dsgvo",
+            "datenschutz",
+            "personalakte einsicht",
+            "bewerberdaten loeschen",
+            "aufbewahrungsfrist personalakte",
+            "bdsg",
+            "защита данных",
+            "личное дело",
+            "сроки хранения"
+          ],
+          "keywords": [
+            "dsgvo",
+            "datenschutz",
+            "personalakte",
+            "aufbewahrung",
+            "bewerber",
+            "loeschung",
+            "bdsg"
+          ],
+          "answer": "*DSGVO im Arbeitsverhaeltnis - § 26 BDSG*\n\nBewerberdaten:\n- Nur erforderliche Daten erheben\n- Loeschung nach 6 Monaten (AGG-Frist)\n- Talent-Pool: nur mit Einwilligung (12-24 Monate)\n\nPersonalakte:\n- Zugriff: nur HR und direkte Vorgesetzte\n- AN hat Recht auf Einsicht, Auskunft, Loeschung unrechtmaessiger Daten\n- AG darf keine Diagnose erfragen\n\nAufbewahrungsfristen:\n- Bewerbungsunterlagen: 6 Monate\n- Lohnsteuerunterlagen: 6 Jahre\n- Sozialversicherungsdokumente: 5 Jahre\n- Arbeitsvertraege / Kuendigungen: mind. 3 Jahre nach AV-Ende\n\nAb 01.01.2027: Entgeltunterlagen muessen elektronisch gefuehrt werden. Befreiungsantrag bis 31.12.2026 moeglich.\n\nBeschaeftigtendatengesetz (BeschDG) nach Koalitionsbruch 2024 gescheitert.",
+          "checklist": [
+            "Bewerberdaten nach 6 Monaten loeschen",
+            "Personalakten: Zugriffsrechte beschraenken",
+            "Keine Diagnosen aufbewahren",
+            "Bis 31.12.2026: Befreiungsantrag fuer Entgeltunterlagen pruefen"
+          ]
         }
       ]
     }
