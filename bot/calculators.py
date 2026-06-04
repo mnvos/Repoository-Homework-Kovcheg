@@ -211,8 +211,9 @@ def get_kuendigung_handler() -> ConversationHandler:
             KU_EINSTELLUNG: [MessageHandler(filters.TEXT & ~filters.COMMAND, ku_einstellung)],
             KU_KUENDIGUNG: [MessageHandler(filters.TEXT & ~filters.COMMAND, ku_kuendigung)],
         },
-        fallbacks=[CommandHandler("cancel", _cancel)],
+        fallbacks=[CommandHandler("cancel", _cancel), CommandHandler("kuendigung", ku_start)],
         per_message=False,
+        allow_reentry=True,
     )
 
 
@@ -338,8 +339,9 @@ def get_urlaub_handler() -> ConversationHandler:
             UR_MONATE:         [CallbackQueryHandler(ur_monate, pattern="^([1-9]|1[0-2])$")],
             UR_GENOMMEN:       [MessageHandler(filters.TEXT & ~filters.COMMAND, ur_genommen)],
         },
-        fallbacks=[CommandHandler("cancel", _cancel)],
+        fallbacks=[CommandHandler("cancel", _cancel), CommandHandler("urlaub", ur_start)],
         per_message=False,
+        allow_reentry=True,
     )
 
 
@@ -529,6 +531,7 @@ def get_bruttonetto_handler() -> ConversationHandler:
             BN_KINDER: [CallbackQueryHandler(bn_kinder, pattern="^(ja|nein)$")],
             BN_KIRCHE: [CallbackQueryHandler(bn_kirche, pattern="^(ja|nein)$")],
         },
-        fallbacks=[CommandHandler("cancel", _cancel)],
+        fallbacks=[CommandHandler("cancel", _cancel), CommandHandler("bruttonetto", bn_start)],
         per_message=False,
+        allow_reentry=True,
     )
