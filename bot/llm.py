@@ -41,15 +41,56 @@ Urlaubsabfragen — zusätzliche Pflichthinweise:
 """
 
 
+def _profile_context(profile: dict, lang: str) -> str:
+    if not profile:
+        return ""
+    ptype = profile.get("type", "")
+    tenure = profile.get("tenure", "")
+
+    type_map = {
+        "gewerblich":    {"ru": "Gewerbliche Mitarbeiter (рабочий на стройке)", "de": "Gewerblicher Mitarbeiter (Baustelle)"},
+        "kaufmaennisch": {"ru": "Kaufmännische Mitarbeiter (административный сотрудник)", "de": "Kaufmännischer Mitarbeiter (Büro)"},
+    }
+    tenure_map = {
+        "new":    {"ru": "менее 6 месяцев", "de": "weniger als 6 Monate"},
+        "mid":    {"ru": "6 месяцев – 2 года", "de": "6 Monate – 2 Jahre"},
+        "senior": {"ru": "более 2 лет", "de": "mehr als 2 Jahre"},
+    }
+
+    ptype_str  = type_map.get(ptype, {}).get(lang, ptype)
+    tenure_str = tenure_map.get(tenure, {}).get(lang, tenure)
+
+    if lang == "ru":
+        return (
+            f"\nПрофиль сотрудника: {ptype_str}, стаж в LK Bauservice: {tenure_str}.\n"
+            "Учитывай это при ответе:\n"
+            "- Если Gewerbliche: применяй правила BRTV (отпуск 30 дней, Kündigungsfrist §11 BRTV, SOKA-BAU, Urlaubskonto через ULAK).\n"
+            "- Если Kaufmännische: применяй правила BGB (§622, §4 BUrlG), пропорциональный отпуск, Resturlaub в верхнем блоке Lohnabrechnung.\n"
+            "- Если стаж менее 6 месяцев: обязательно упомяни Probezeit и особые условия (сокращённый Kündigungsfrist, пропорциональный отпуск).\n"
+            "- Если стаж более 2 лет: учитывай накопленный Urlaubsanspruch и удлинённые Kündigungsfristen.\n"
+        )
+    else:
+        return (
+            f"\nMitarbeiterprofil: {ptype_str}, Betriebszugehörigkeit bei LK Bauservice: {tenure_str}.\n"
+            "Beachte bei der Antwort:\n"
+            "- Gewerbliche: BRTV-Regeln (Urlaub 30 Tage, §11 BRTV Kündigungsfrist, SOKA-BAU, ULAK).\n"
+            "- Kaufmännische: BGB-Regeln (§622, §4 BUrlG), anteiliger Urlaub, Resturlaub oben rechts in Lohnabrechnung.\n"
+            "- Weniger als 6 Monate: Probezeit erwähnen, verkürzte Kündigungsfrist, anteiliger Urlaub.\n"
+            "- Mehr als 2 Jahre: verlängerte Kündigungsfristen und aufgelaufener Urlaubsanspruch.\n"
+        )
+
+
 def ask_llm(
     question: str,
     lang: str,
     kb_entry: Optional[dict] = None,
     kb_summary: Optional[str] = None,
+    profile: Optional[dict] = None,
 ) -> str:
     client = _get_client()
 
     lang_instruction = "Antworte auf Russisch." if lang == "ru" else "Antworte auf Deutsch."
+    profile_ctx = _profile_context(profile or {}, lang)
 
     if kb_entry:
         context = (
@@ -60,18 +101,17 @@ def ask_llm(
         checklist = kb_entry.get("checklist", [])
         if checklist:
             context += "Checkliste:\n" + "\n".join(f"- {c}" for c in checklist) + "\n"
-        user_message = f"{lang_instruction}\n\nKontext aus der Wissensdatenbank:\n{context}\nFrage: {question}"
+        user_message = f"{lang_instruction}{profile_ctx}\nKontext aus der Wissensdatenbank:\n{context}\nFrage: {question}"
     elif kb_summary:
-        # Compact overview when no direct match found
         user_message = (
-            f"{lang_instruction}\n\n"
+            f"{lang_instruction}{profile_ctx}\n"
             f"Die Wissensdatenbank enthält folgende Themen (Kurzübersicht):\n{kb_summary}\n\n"
             f"Frage: {question}\n\n"
             f"Wenn die Antwort nicht eindeutig aus den obigen Themen hervorgeht, "
             f"weise den Nutzer auf /topics oder die HR-Abteilung hin."
         )
     else:
-        user_message = f"{lang_instruction}\n\nFrage: {question}"
+        user_message = f"{lang_instruction}{profile_ctx}\nFrage: {question}"
 
     response = client.chat.completions.create(
         model="llama-3.1-8b-instant",

@@ -57,6 +57,7 @@ STRINGS = {
             "/kuendigung — калькулятор Kündigungsfrist\n"
             "/urlaub — калькулятор отпуска\n"
             "/bruttonetto — Brutto-Netto 2026\n"
+            "/profil — моя должность и стаж\n"
             "/help — справка\n"
             "/language — сменить язык"
         ),
@@ -399,6 +400,104 @@ _MENU_RESPONSES = {
 }
 
 
+# ── Профиль сотрудника ────────────────────────────────────────────────────────
+
+_PROFILE_TYPES = {
+    "gewerblich": {"ru": "👷 Рабочий на стройке (Gewerbliche)", "de": "👷 Gewerblicher Mitarbeiter (Baustelle)"},
+    "kaufmaennisch": {"ru": "🗂 Административный (Kaufmännische)", "de": "🗂 Kaufmännischer Mitarbeiter (Büro)"},
+}
+
+_PROFILE_TENURES = {
+    "new":    {"ru": "Менее 6 месяцев",  "de": "Weniger als 6 Monate"},
+    "mid":    {"ru": "6 мес. — 2 года",  "de": "6 Monate – 2 Jahre"},
+    "senior": {"ru": "Более 2 лет",      "de": "Mehr als 2 Jahre"},
+}
+
+
+def _profile_type_keyboard(lang: str) -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton(_PROFILE_TYPES["gewerblich"][lang],    callback_data="profile:type:gewerblich")],
+        [InlineKeyboardButton(_PROFILE_TYPES["kaufmaennisch"][lang], callback_data="profile:type:kaufmaennisch")],
+    ])
+
+
+def _profile_tenure_keyboard(lang: str) -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton(_PROFILE_TENURES["new"][lang],    callback_data="profile:tenure:new")],
+        [InlineKeyboardButton(_PROFILE_TENURES["mid"][lang],    callback_data="profile:tenure:mid")],
+        [InlineKeyboardButton(_PROFILE_TENURES["senior"][lang], callback_data="profile:tenure:senior")],
+    ])
+
+
+def _get_profile(context: CallbackContext) -> dict:
+    return context.user_data.get("profile", {})
+
+
+def _profile_summary(context: CallbackContext) -> str:
+    """Human-readable one-line profile for debug/display."""
+    p = _get_profile(context)
+    lang = _lang(context)
+    ptype = _PROFILE_TYPES.get(p.get("type", ""), {}).get(lang, "?")
+    tenure = _PROFILE_TENURES.get(p.get("tenure", ""), {}).get(lang, "?")
+    return f"{ptype} · {tenure}"
+
+
+async def _ask_profile_type(message, lang: str) -> None:
+    prompt = (
+        "Чтобы давать точные ответы, мне нужно знать немного о тебе.\n\n"
+        "*Кто ты по должности?*"
+        if lang == "ru" else
+        "Um genaue Antworten zu geben, brauche ich ein paar Infos.\n\n"
+        "*Was ist deine Stelle?*"
+    )
+    await message.reply_text(prompt, parse_mode="Markdown",
+                             reply_markup=_profile_type_keyboard(lang))
+
+
+async def profile_callback(update: Update, context: CallbackContext) -> None:
+    query = update.callback_query
+    await query.answer()
+    lang = _lang(context)
+    parts = query.data.split(":")  # profile:type:gewerblich  or  profile:tenure:new
+
+    if parts[1] == "type":
+        context.user_data.setdefault("profile", {})["type"] = parts[2]
+        label = _PROFILE_TYPES[parts[2]][lang]
+        tenure_prompt = (
+            f"Отлично, *{label}*.\n\nКак давно ты работаешь в LK Bauservice?"
+            if lang == "ru" else
+            f"Super, *{label}*.\n\nWie lange arbeitest du schon bei LK Bauservice?"
+        )
+        await query.edit_message_text(tenure_prompt, parse_mode="Markdown",
+                                      reply_markup=_profile_tenure_keyboard(lang))
+
+    elif parts[1] == "tenure":
+        context.user_data.setdefault("profile", {})["tenure"] = parts[2]
+        p = _get_profile(context)
+        ptype_label  = _PROFILE_TYPES.get(p.get("type", ""), {}).get(lang, "")
+        tenure_label = _PROFILE_TENURES[parts[2]][lang]
+        confirm = (
+            f"✅ Профиль сохранён:\n*{ptype_label}* · *{tenure_label}*\n\n"
+            "Теперь я буду давать ответы с учётом твоей должности и стажа.\n"
+            "Изменить можно командой /profil."
+            if lang == "ru" else
+            f"✅ Profil gespeichert:\n*{ptype_label}* · *{tenure_label}*\n\n"
+            "Ich beantworte jetzt Fragen passend zu deiner Stelle und Betriebszugehörigkeit.\n"
+            "Ändern mit /profil."
+        )
+        await query.edit_message_text(confirm, parse_mode="Markdown")
+        await query.message.reply_text(
+            "Выбери раздел:" if lang == "ru" else "Wähle einen Bereich:",
+            reply_markup=_main_menu_keyboard(lang),
+        )
+
+    elif parts[1] == "edit":
+        await query.edit_message_text(
+            "Кто ты по должности?" if lang == "ru" else "Was ist deine Stelle?",
+            reply_markup=_profile_type_keyboard(lang),
+        )
+
+
 # ── Handlers ─────────────────────────────────────────────────────────────────
 
 async def start(update: Update, context: CallbackContext) -> None:
@@ -422,10 +521,36 @@ async def language_callback(update: Update, context: CallbackContext) -> None:
     context.user_data["lang"] = lang
     await query.edit_message_text(STRINGS[lang]["lang_chosen"])
     await query.message.reply_text(STRINGS[lang]["welcome"], parse_mode="Markdown")
-    await query.message.reply_text(
-        "Выбери раздел / Wähle einen Bereich:" if lang == "ru" else "Wähle einen Bereich:",
-        reply_markup=_main_menu_keyboard(lang),
-    )
+    # Если профиль ещё не заполнен — спрашиваем
+    if not _get_profile(context).get("type"):
+        await _ask_profile_type(query.message, lang)
+    else:
+        await query.message.reply_text(
+            "Выбери раздел:" if lang == "ru" else "Wähle einen Bereich:",
+            reply_markup=_main_menu_keyboard(lang),
+        )
+
+
+async def profil_command(update: Update, context: CallbackContext) -> None:
+    lang = _lang(context)
+    p = _get_profile(context)
+    if p.get("type") and p.get("tenure"):
+        current = (
+            f"Твой текущий профиль:\n*{_profile_summary(context)}*\n\nИзменить:"
+            if lang == "ru" else
+            f"Dein aktuelles Profil:\n*{_profile_summary(context)}*\n\nÄndern:"
+        )
+        await update.message.reply_text(
+            current, parse_mode="Markdown",
+            reply_markup=InlineKeyboardMarkup([[
+                InlineKeyboardButton(
+                    "✏️ Изменить профиль" if lang == "ru" else "✏️ Profil ändern",
+                    callback_data="profile:edit:start"
+                )
+            ]])
+        )
+    else:
+        await _ask_profile_type(update.message, lang)
 
 
 async def menu_command(update: Update, context: CallbackContext) -> None:
@@ -585,15 +710,16 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
     thinking_text = "⏳ Обрабатываю запрос..." if lang == "ru" else "⏳ Verarbeite Anfrage..."
     thinking_msg = await update.message.reply_text(thinking_text)
 
+    profile = _get_profile(context)
     try:
         if kb_match:
             response = await asyncio.get_event_loop().run_in_executor(
-                None, lambda: ask_llm(query, lang, kb_entry=kb_match)
+                None, lambda: ask_llm(query, lang, kb_entry=kb_match, profile=profile)
             )
         else:
             kb_summary = build_kb_summary(kb.export_data())
             response = await asyncio.get_event_loop().run_in_executor(
-                None, lambda: ask_llm(query, lang, kb_summary=kb_summary)
+                None, lambda: ask_llm(query, lang, kb_summary=kb_summary, profile=profile)
             )
         await thinking_msg.edit_text(response)
     except Exception as e:
@@ -621,10 +747,12 @@ def build_application(token: str, knowledge_path: str) -> Application:
     app.add_handler(CallbackQueryHandler(language_callback, pattern=r"^lang:"))
     app.add_handler(CallbackQueryHandler(menu_callback, pattern=r"^menu:"))
     app.add_handler(CallbackQueryHandler(topics_callback, pattern=r"^(topic:|qid:|topics:back)"))
+    app.add_handler(CallbackQueryHandler(profile_callback, pattern=r"^profile:"))
 
     # Команды
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("menu", menu_command))
+    app.add_handler(CommandHandler("profil", profil_command))
     app.add_handler(CommandHandler("language", language_command))
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(CommandHandler("topics", topics_command))
