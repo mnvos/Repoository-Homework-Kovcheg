@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.20",
+    "version": "0.21",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -1474,6 +1474,43 @@
             "Abmeldung bei Krankenkasse, SOKA-Bau, BG Bau"
           ],
           "review": "Sterbegeld ist eine tarifliche Pflichtleistung. Nicht zu verwechseln mit BG-Bau-Leistungen bei Arbeitsunfall."
+        },
+        {
+          "id": "brtv-9",
+          "title": "Wer faellt unter den BRTV? Gewerbliche AN vs. kaufmaennische Angestellte",
+          "patterns": [
+            "wer faellt unter brtv",
+            "brtv anwendbarkeit",
+            "brtv gewerblich oder kaufmaennisch",
+            "gilt brtv fuer mich",
+            "brtv buero",
+            "brtv maler elektriker",
+            "кто подпадает под brtv",
+            "brtv для каких профессий",
+            "brtv строительные рабочие",
+            "офисный сотрудник brtv",
+            "brtv применимость"
+          ],
+          "keywords": [
+            "brtv",
+            "gewerblich",
+            "kaufmaennisch",
+            "angestellte",
+            "maler",
+            "helfer",
+            "trockenbauer",
+            "buero",
+            "buchhalter",
+            "tarifvertrag anwendung"
+          ],
+          "answer": "*Wer faellt unter den BRTV Bau? — LK Bauservice*\n\nBei LK Bauservice GmbH werden gewerbliche Mitarbeiter grundsaetzlich nach BRTV Bau behandelt. Bei Fragen zu Kuendigungsfristen, Urlaub, Schlechtwetterregelungen und tariflichen Anspruechen ist zunaechst von der Anwendbarkeit des BRTV auszugehen.\n\n*Typischerweise unter BRTV (gewerbliche AN):*\n- Maler\n- Helfer / Bauhelfer\n- Trockenbauer\n- Maurer\n- Fliesenleger\n- Elektriker auf Baustellen\n- Sanitaermonteure\n- Vorarbeiter (je nach Funktion)\n\n*Typischerweise NICHT unter BRTV (kaufmaennische / leitende AN):*\n- Bueroangestellte\n- Personalsachbearbeiter\n- Buchhalter\n- Assistenz der Geschaeftsfuehrung\n- Kaufmaennische Angestellte\n- Geschaeftsfuehrer\n- Viele Bauleiter und leitende Angestellte\n\nFuer kaufmaennische Angestellte gelten die gesetzlichen Regelungen des BGB und des Arbeitsvertrags.",
+          "checklist": [
+            "Bei Einstellung: Taetigkeit pruefen — gewerblich (BRTV) oder kaufmaennisch (BGB)?",
+            "Einstellungsbogen (§ 2 BRTV) nur bei gewerblichen AN ausfuellen",
+            "Kuendigungsfristen: gewerblich nach § 11 BRTV, kaufmaennisch nach § 622 BGB",
+            "Urlaub: gewerblich ueber SOKA-BAU (30 Tage), kaufmaennisch nach BUrlG / Vertrag",
+            "Im Zweifelsfall: Taetigkeitsbeschreibung und Lohngruppe als Entscheidungsgrundlage"
+          ]
         }
       ]
     },
