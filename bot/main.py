@@ -141,9 +141,16 @@ STRINGS = {
 
 def _lang(context: CallbackContext, text: str = "") -> str:
     stored = context.user_data.get("lang", "de")
-    if text and any("Ѐ" <= ch <= "ӿ" for ch in text):
+    if not text:
+        return stored
+    has_cyrillic = any("Ѐ" <= ch <= "ӿ" for ch in text)
+    has_latin = any("a" <= ch.lower() <= "z" for ch in text)
+    if has_cyrillic:
         context.user_data["lang"] = "ru"
         return "ru"
+    if has_latin:
+        context.user_data["lang"] = "de"
+        return "de"
     return stored
 
 
@@ -254,8 +261,7 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
         if kb_match:
             await update.message.reply_markdown_v2(kb.question_summary(kb_match))
         else:
-            err_msg = f"{_t(context, 'llm_error')}\n\n[debug] {type(e).__name__}: {str(e)[:200]}"
-            await update.message.reply_text(err_msg)
+            await update.message.reply_text(_t(context, "llm_error"))
 
 
 # ── App builder ───────────────────────────────────────────────────────────────
