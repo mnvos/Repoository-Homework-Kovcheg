@@ -124,7 +124,14 @@ async def kb_import(payload: Dict[str, Any], admin: None = Depends(require_admin
 async def startup_event() -> None:
     if WEBHOOK_URL:
         await telegram_app.initialize()
+        await telegram_app.start()
         await telegram_app.bot.set_webhook(WEBHOOK_URL)
+
+
+@app.on_event("shutdown")
+async def shutdown_event() -> None:
+    await telegram_app.stop()
+    await telegram_app.shutdown()
         
         
 
