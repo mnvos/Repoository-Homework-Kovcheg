@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.24",
+    "version": "0.25",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -1883,6 +1883,43 @@
             "EU-Buerger: kein Sonderdokument noetig — Ausweis genuegt",
             "Nicht-EU: ohne gueltigen Titel keine Beschaeftigung starten",
             "AN auf Meldepflicht bei Aenderung des Aufenthaltsstatus hinweisen"
+          ]
+        },
+        {
+          "id": "auslaender-2",
+          "title": "Checkliste Aufenthaltstitel — Pruefung vor Arbeitsaufnahme",
+          "patterns": [
+            "checkliste aufenthaltstitel",
+            "aufenthaltstitel vor arbeitsaufnahme",
+            "aufenthaltstitel pruefen checkliste",
+            "nebenbestimmungen aufenthaltstitel",
+            "beschaeftigungsumfang erlaubt",
+            "aufenthaltstitel kopie personalakte",
+            "wiedervorlage aufenthaltstitel ablauf",
+            "чеклист вид на жительство",
+            "проверить внж до начала работы",
+            "ограничения внж разрешение"
+          ],
+          "keywords": [
+            "aufenthaltstitel",
+            "checkliste",
+            "nebenbestimmungen",
+            "beschaeftigungsumfang",
+            "wiedervorlage",
+            "personalakte",
+            "gueltigkeitsdatum",
+            "verlaengerungspflicht"
+          ],
+          "answer": "*Checkliste Aufenthaltstitel — LK Bauservice (vor Arbeitsaufnahme)*\n\n*Vor Arbeitsaufnahme zwingend pruefen:*\n- Gueltiger Aufenthaltstitel vorhanden?\n- Originaldokument eingesehen\n- Kopie fuer Personalakte erstellt\n- Name stimmt mit Ausweisdokument ueberein\n- Gueltigkeit geprueft\n- Nebenbestimmungen geprueft (Einschraenkungen auf Branche, Stunden, Region)\n- Beschaeftigung grundsaetzlich erlaubt?\n- Beschaeftigungsumfang (Stunden) erlaubt?\n- Befristung dokumentiert\n- Wiedervorlage vor Ablauf eingerichtet\n\n*Dokumentation in Personalakte:*\n- Kopie Aufenthaltstitel\n- Kopie Reisepass\n- Ablaufdatum im Kalender hinterlegt\n- Mitarbeiter ueber Verlaengerungspflicht informiert\n\nOhne gueltigen Aufenthaltstitel und erforderliche Arbeitserlaubnis darf keine Beschaeftigung erfolgen.",
+          "checklist": [
+            "Original Aufenthaltstitel einsehen und Kopie erstellen",
+            "Name mit Reisepass abgleichen",
+            "Nebenbestimmungen lesen: Branche, Stundenzahl, Region eingeschraenkt?",
+            "Beschaeftigung UND Beschaeftigungsumfang erlaubt?",
+            "Ablaufdatum dokumentieren und Wiedervorlage setzen (4-6 Wochen vorher)",
+            "Reisepasskopie zur Personalakte",
+            "Mitarbeiter informieren: Verlaengerung rechtzeitig beantragen",
+            "Kein Arbeitsbeginn ohne gueltigen Titel"
           ]
         }
       ]
