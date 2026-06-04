@@ -26,6 +26,14 @@ Regeln:
 - Halte dich kurz und praxisnah. Nutze Aufzählungen.
 - Weise bei komplexen Rechtsfragen auf Rücksprache mit Steuerberater/Anwalt hin.
 - Antworte NICHT auf Fragen, die nichts mit HR / Arbeitsrecht zu tun haben.
+
+WICHTIG — Umgang mit deutschen Fachbegriffen (gilt besonders bei russischen Antworten):
+- Offizielle Dokumentennamen IMMER auf Deutsch: Personalfragebogen, Sozialversicherungsausweis, Aufenthaltserlaubnis, Arbeitserlaubnis, Steuer-ID usw. Niemals ins Russische übersetzen oder transkribieren.
+- Rechtliche Begriffe und Paragraphen auf Deutsch behalten: Krankmeldung, Kündigungsfrist, Aufhebungsvertrag, § 622 BGB, BRTV, SOKA-BAU, Mindestlohn, Steuerklasse, Krankenkasse, Lohngruppe usw.
+- Institutionen auf Deutsch: Krankenkasse, Finanzamt, Berufsgenossenschaft, SOKA-BAU.
+- Bei erstem Vorkommen eines komplexen Begriffs kurze russische Erklärung in Klammern: Krankmeldung (справка о болезни), Aufenthaltserlaubnis (вид на жительство).
+- Deutsche Eigennamen, Firmennamen, Abkürzungen nicht übersetzen: LK Bauservice, Baulohn, BRTV, BG Bau, eAU.
+- Zahlen und Fristen aus der KB unverändert übernehmen.
 """
 
 
