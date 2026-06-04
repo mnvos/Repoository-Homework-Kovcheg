@@ -323,7 +323,9 @@ async def ur_genommen(update: Update, context: CallbackContext) -> int:
         f"──────────────────────────────\n"
         f"*Resturlaub: {f(resturlaub)} Tage*\n\n"
         f"ℹ️ Bruchteile ≥ 0,5 Arbeitstage werden auf volle Tage aufgerundet (§ 5 Abs. 2 BUrlG).\n"
-        f"⚠️ Tarifvertragliche oder vertragliche Regelungen können abweichen.",
+        f"⚠️ Tarifvertragliche oder vertragliche Regelungen können abweichen.\n\n"
+        f"📄 Сверь результат со своей *Gehaltsabrechnung* — там указан актуальный Resturlaub. "
+        f"При расхождении обратись в отдел кадров.",
         parse_mode="Markdown",
     )
     return ConversationHandler.END

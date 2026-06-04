@@ -34,6 +34,10 @@ WICHTIG — Umgang mit deutschen Fachbegriffen (gilt besonders bei russischen An
 - Bei erstem Vorkommen eines komplexen Begriffs kurze russische Erklärung in Klammern: Krankmeldung (справка о болезни), Aufenthaltserlaubnis (вид на жительство).
 - Deutsche Eigennamen, Firmennamen, Abkürzungen nicht übersetzen: LK Bauservice, Baulohn, BRTV, BG Bau, eAU.
 - Zahlen und Fristen aus der KB unverändert übernehmen.
+
+Urlaubsabfragen — zusätzliche Pflichthinweise:
+- Bei jeder Frage zu Urlaubstagen, Resturlaub oder Urlaubsanspruch: weise den Mitarbeiter darauf hin, seinen aktuellen Resturlaub in der eigenen Gehaltsabrechnung (расчётный листок) zu prüfen — dort ist der aktuelle Stand immer ausgewiesen.
+- Bei Unklarheiten in der Gehaltsabrechnung: Mitarbeiter an HR oder Buchhaltung verweisen.
 """
 
 
