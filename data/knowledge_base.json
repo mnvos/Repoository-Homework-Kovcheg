@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.21",
+    "version": "0.22",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -1250,30 +1250,38 @@
       "questions": [
         {
           "id": "brtv-1",
-          "title": "BRTV Kündigungsfristen für gewerbliche Mitarbeiter (§ 11)",
+          "title": "Kuendigungsfristen BRTV § 11 — Werktage, Tabelle, Schlechtwetter",
           "patterns": [
-            "brtv kündigung",
-            "kündigung gewerblich",
-            "kündigungsfrist bauarbeiter",
-            "tarifliche kündigungsfrist",
-            "§ 11 brtv",
-            "фрист увольнение строители"
+            "kuendigung brtv",
+            "kuendigungsfrist baugewerbe",
+            "brtv kuendigungsfrist",
+            "kuendigung gewerblich",
+            "6 werktage kuendigung",
+            "12 werktage kuendigung",
+            "schlechtwetter kuendigung",
+            "увольнение строительные рабочие сроки",
+            "срок уведомления об увольнении строители",
+            "brtv kuendigung probezeit"
           ],
           "keywords": [
-            "BRTV",
-            "kündigung",
+            "kuendigung",
+            "brtv",
             "werktage",
-            "gewerblich",
-            "tarifvertrag",
-            "kündigungsfrist"
+            "kuendigungsfrist",
+            "schlechtwetter",
+            "monatsende",
+            "probezeit brtv",
+            "6 werktage",
+            "12 werktage"
           ],
-          "answer": "Kündigungsfristen für gewerbliche Mitarbeiter nach *§ 11 BRTV*:\n\n*Grundfrist:* 6 Werktage (beide Seiten)\n*Nach 6 Monaten Betriebszugehörigkeit:* 12 Werktage\n\n*Verlängerte AG-Fristen nach Betriebszugehörigkeit:*\n• 3 Jahre → 1 Monat zum Monatsende\n• 5 Jahre → 2 Monate zum Monatsende\n• 8 Jahre → 3 Monate zum Monatsende\n• 10 Jahre → 4 Monate zum Monatsende\n• 12 Jahre → 5 Monate zum Monatsende\n• 15 Jahre → 6 Monate zum Monatsende\n• 20 Jahre → 7 Monate zum Monatsende\n\n*Achtung:* In der Schlechtwetterzeit (1. Dezember – 31. März) darf *nicht* aus Witterungsgründen gekündigt werden.\n\nSchwarzarbeit = fristloser Kündigungsgrund (§ 626 BGB).",
+          "answer": "*Kuendigungsfristen nach BRTV § 11 (gewerbliche AN Baugewerbe)*\n\n*Allgemeine Fristen:*\n- Bis 6 Monate Betriebszugehoerigkeit: *6 Werktage* (AG und AN)\n- Ab 6 Monaten: *12 Werktage* (AG und AN)\nWerktage = Mo-Sa. Sonn- und Feiertage zaehlen nicht. Kein Monatsende erforderlich.\n\n*Verlaengerte Fristen fuer AG (AN bleibt bei 12 Werktagen):*\n- ab 3 Jahren: 1 Monat zum Monatsende\n- ab 5 Jahren: 2 Monate zum Monatsende\n- ab 8 Jahren: 3 Monate zum Monatsende\n- ab 10 Jahren: 4 Monate zum Monatsende\n- ab 12 Jahren: 5 Monate zum Monatsende\n- ab 15 Jahren: 6 Monate zum Monatsende\n- ab 20 Jahren: 7 Monate zum Monatsende\n\n*Probezeit (erste 6 Monate):* 6 Werktage. Keine 2-Wochen-Regelung wie § 622 BGB.\n\n*Schriftform:* Kuendigung zwingend schriftlich + eigenhaendig unterschrieben. Per E-Mail, WhatsApp, SMS oder Telegram: unwirksam.\n\n*Schlechtwetterzeit (01.12. bis 31.03.):* Keine Kuendigung wegen schlechter Witterung. Stattdessen: Saison-Kurzarbeitergeld (S-KUG).\n\n*Beispiele:*\n- 4 Monate dabei → 6 Werktage\n- 1 Jahr dabei → 12 Werktage\n- 7 Jahre: AG kuendigt → 2 Monate zum ME; AN kuendigt → 12 Werktage\n\n*Vor jeder Kuendigung bei LK pruefen:*\nBRTV anwendbar? KSchG-Schutz? Schwerbehinderung? Schwangerschaft? Elternzeit? Bei Unsicherheit: Ruecksprache mit Steuerberater oder Rechtsanwalt.",
           "checklist": [
-            "Betriebszugehörigkeit prüfen (Kalkulattor: /kuendigung im Bot — wähle 'Arbeitgeber + BRTV')",
-            "Schlechtwetterzeit beachten: 1.12.–31.03. — keine Kündigung aus Witterungsgründen",
-            "Kündigung immer schriftlich (§ 11 Abs. 1.3 BRTV)",
-            "Restlohn und Arbeitspapiere bei Beendigung aushändigen (§ 11 Abs. 4 BRTV)",
-            "SOKA-Bau und BG Bau über Beendigung informieren"
+            "Betriebszugehoerigkeit berechnen und richtige Frist ermitteln",
+            "AN oder AG kuendigt? Frist fuer AG bei > 3 Jahren laenger",
+            "Schriftform + eigenhaendige Unterschrift — kein WhatsApp / E-Mail",
+            "Schlechtwetterzeit 01.12.-31.03.: keine witterungsbedingte Kuendigung",
+            "KSchG pruefen: gilt ab 10 AN und 6 Monaten Betriebszugehoerigkeit",
+            "Schwangerschaft / Elternzeit / Schwerbehinderung: Sonderkuendigungsschutz"
           ],
           "review": "Verlängerte Fristen gelten nur für AG-Kündigung. Bei Streit über Betriebszugehörigkeit oder unterbrochene Zeiten — Rechtsanwalt hinzuziehen."
         },
