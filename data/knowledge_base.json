@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.10",
+    "version": "0.11",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -374,6 +374,41 @@
             "Bei Drittstaatsangehoerigen: Aufenthaltstitel pruefen und kopieren",
             "AN auf tarifliche Ausschlussfristen hinweisen (Unterschrift auf Bogen)",
             "Einstellungsbogen zur Personalakte nehmen"
+          ]
+        },
+        {
+          "id": "onboarding-13",
+          "title": "Mitfuehrungspflicht von Ausweispapieren auf der Baustelle (SchwarzArbG)",
+          "patterns": [
+            "ausweis baustelle",
+            "personalausweis mitfuehren",
+            "pass baustelle",
+            "mitfuehrungspflicht ausweis",
+            "zoll kontrolle baustelle",
+            "schwarzarbeitsgesetz ausweis",
+            "schwarzarbeit kontrolle",
+            "удостоверение личности стройка",
+            "паспорт на стройке",
+            "контроль таможня",
+            "обязанность носить паспорт"
+          ],
+          "keywords": [
+            "ausweis",
+            "mitfuehrungspflicht",
+            "baustelle",
+            "zollverwaltung",
+            "pass",
+            "schwarzarbeit",
+            "ordnungswidrigkeit",
+            "5000 euro",
+            "personalausweis"
+          ],
+          "answer": "*Mitfuehrungspflicht von Ausweispapieren (§ 2a SchwarzArbG)*\n\nAlle gewerblichen Arbeitnehmer im Baugewerbe sind gesetzlich verpflichtet, waehrend der Beschaeftigung jederzeit mitzufuehren:\n- Personalausweis, oder\n- Reisepass, oder\n- Entsprechenden Ausweis- oder Passersatz\n\nDie Pflicht gilt auf dem Betriebsgelaende (Werkstatt, Bauhof, Buero), auf Baustellen und an staendig wechselnden Arbeitsstellen.\n\n*Vorlage:* Auf Verlangen der Behoerden der Zollverwaltung ist der Ausweis vorzulegen.\n\n*Folgen bei Verstoss:*\nOrdnungswidrigkeit des Arbeitnehmers — Busssgeld bis zu 5.000 EUR. Das Busssgeld traegt der Arbeitnehmer, nicht der Arbeitgeber.\n\n*Pflicht des Arbeitgebers:*\n- AN schriftlich auf die Mitfuehrungspflicht hinweisen (Hinweisformular unterschreiben lassen)\n- Kopie des Hinweises zur Personalakte nehmen\n- Bei Kontrolle durch Zoll: Hinweisdokument auf Verlangen vorlegen",
+          "checklist": [
+            "Hinweisformular 'Mitfuehrungspflicht Ausweispapiere' vom AN unterschreiben lassen",
+            "Kopie des unterzeichneten Hinweises zur Personalakte nehmen",
+            "AN muendlich informieren: Ausweis immer bei der Arbeit dabei haben",
+            "Bei Zollkontrolle: Hinweisdokument aus Personalakte vorzeigen koennen"
           ]
         }
       ]
