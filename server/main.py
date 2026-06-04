@@ -12,7 +12,7 @@ load_dotenv()
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL", "")
-KNOWLEDGE_PATH = os.getenv("DATABASE_URL", "./data/knowledge_base.json")
+KNOWLEDGE_PATH = os.getenv("KNOWLEDGE_PATH", "./data/knowledge_base.json")
 WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET", "")
 PERSISTENCE_PATH = os.getenv("PERSISTENCE_PATH", "./data/bot_persistence")
 

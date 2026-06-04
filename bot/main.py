@@ -794,8 +794,9 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
         if not kb_match:
             await update.message.reply_text(_t(context, "not_found"))
             return
-        await update.message.reply_markdown_v2(
+        await update.message.reply_text(
             kb.question_summary(kb_match),
+            parse_mode="Markdown",
             reply_markup=_feedback_keyboard(query, lang),
         )
         return
@@ -805,23 +806,26 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
     thinking_msg = await update.message.reply_text(thinking_text)
 
     profile = _get_profile(context)
+    loop = asyncio.get_running_loop()
     try:
         if kb_match:
-            response = await asyncio.get_event_loop().run_in_executor(
+            response = await loop.run_in_executor(
                 None, lambda: ask_llm(query, lang, kb_entry=kb_match, profile=profile)
             )
         else:
             kb_summary = build_kb_summary(kb.export_data())
-            response = await asyncio.get_event_loop().run_in_executor(
+            response = await loop.run_in_executor(
                 None, lambda: ask_llm(query, lang, kb_summary=kb_summary, profile=profile)
             )
-        await thinking_msg.edit_text(response, reply_markup=_feedback_keyboard(query, lang))
+        await thinking_msg.edit_text(response, parse_mode="Markdown",
+                                     reply_markup=_feedback_keyboard(query, lang))
     except Exception as e:
         logger.error("LLM error: %s", e, exc_info=True)
         await thinking_msg.delete()
         if kb_match:
-            await update.message.reply_markdown_v2(
+            await update.message.reply_text(
                 kb.question_summary(kb_match),
+                parse_mode="Markdown",
                 reply_markup=_feedback_keyboard(query, lang),
             )
         else:
