@@ -1,6 +1,7 @@
 import os
 import asyncio
 import logging
+from typing import Optional
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application, CallbackContext, CommandHandler,
@@ -23,6 +24,26 @@ _GREETINGS = {
 _CAPABILITIES_TRIGGERS = {
     "ru": {"что ты умеешь", "что умеешь", "что ты можешь", "помоги", "как пользоваться", "что делаешь"},
     "de": {"was kannst du", "was machst du", "hilf mir", "wie benutze ich", "wie funktionierst du"},
+}
+
+# Фразы, которые должны перенаправлять на конкретный калькулятор
+_CALC_TRIGGERS = {
+    "bruttonetto": {
+        "ru": ["нетто", "нетто зарплат", "брутто нетто", "зарплата на руки", "сколько получу", "сколько останется",
+               "налог с зарплаты", "подоходный налог", "steuerklasse", "lohnsteuer", "kalkulier", "посчитай зарплату",
+               "посчитаем зарплату", "посчитаем нетто", "калькулятор зарплат", "калькулятор"],
+        "de": ["netto", "brutto netto", "lohnsteuer", "steuerklasse", "nettogehalt", "was bleibt", "rechner gehalt"],
+    },
+    "kuendigung": {
+        "ru": ["срок увольнения", "срок уведомления", "kündigungsfrist", "когда уволиться", "сколько отрабатывать",
+               "отработка", "калькулятор увольнения", "уволить", "уволиться"],
+        "de": ["kündigungsfrist", "wie lange kündigung", "kündigungsrechner", "probezeit kündigung"],
+    },
+    "urlaub": {
+        "ru": ["остаток отпуска", "сколько отпуска", "дней отпуска осталось", "калькулятор отпуска",
+               "resturlaub", "посчитай отпуск"],
+        "de": ["resturlaub", "urlaubsrechner", "wie viel urlaub", "urlaubstage berechnen"],
+    },
 }
 
 STRINGS = {
@@ -80,6 +101,21 @@ STRINGS = {
             "Произошла ошибка при обработке запроса.\n\n"
             "Попробуй переформулировать или обратись в отдел кадров."
         ),
+        "calc_bruttonetto": (
+            "Да, у меня есть калькулятор зарплаты!\n\n"
+            "Введи команду /bruttonetto — я спрошу твой Brutto-Gehalt и Steuerklasse, "
+            "и рассчитаю сколько ты получишь на руки (Netto) по ставкам 2026 года."
+        ),
+        "calc_kuendigung": (
+            "Да, у меня есть калькулятор Kündigungsfrist!\n\n"
+            "Введи команду /kuendigung — я рассчитаю срок уведомления об увольнении "
+            "по § 622 BGB или BRTV в зависимости от стажа."
+        ),
+        "calc_urlaub": (
+            "Да, у меня есть калькулятор отпуска!\n\n"
+            "Введи команду /urlaub — я помогу рассчитать остаток отпуска (Resturlaub) "
+            "с учётом частичной занятости и даты начала работы."
+        ),
     },
     "de": {
         "lang_chosen": "Sprache gewählt: 🇩🇪 Deutsch",
@@ -134,6 +170,21 @@ STRINGS = {
         "llm_error": (
             "Bei der Verarbeitung ist ein Fehler aufgetreten.\n\n"
             "Bitte die Frage anders formulieren oder die HR-Abteilung kontaktieren."
+        ),
+        "calc_bruttonetto": (
+            "Ja, ich habe einen Gehaltsrechner!\n\n"
+            "Nutze den Befehl /bruttonetto — ich frage nach deinem Brutto-Gehalt und "
+            "deiner Steuerklasse und berechne dein Netto nach den Werten von 2026."
+        ),
+        "calc_kuendigung": (
+            "Ja, ich habe einen Kündigungsfrist-Rechner!\n\n"
+            "Nutze den Befehl /kuendigung — ich berechne die Kündigungsfrist nach "
+            "§ 622 BGB oder BRTV je nach Betriebszugehörigkeit."
+        ),
+        "calc_urlaub": (
+            "Ja, ich habe einen Urlaubsrechner!\n\n"
+            "Nutze den Befehl /urlaub — ich berechne den Resturlaub unter "
+            "Berücksichtigung von Teilzeit und Eintrittsdatum."
         ),
     },
 }
@@ -215,6 +266,16 @@ def _is_capabilities_query(text: str, lang: str) -> bool:
     return any(t == c or t.startswith(c) for c in all_triggers)
 
 
+def _detect_calc_trigger(text: str) -> Optional[str]:
+    """Return calculator key ('bruttonetto'/'kuendigung'/'urlaub') if text matches, else None."""
+    t = text.lower()
+    for calc_key, langs in _CALC_TRIGGERS.items():
+        for triggers in langs.values():
+            if any(kw in t for kw in triggers):
+                return calc_key
+    return None
+
+
 async def handle_text(update: Update, context: CallbackContext) -> None:
     kb: KnowledgeBase = context.application.bot_data["knowledge"]
     query = update.message.text.strip()
@@ -228,6 +289,12 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
     # "Что ты умеешь?"
     if _is_capabilities_query(query, lang):
         await update.message.reply_text(_t(context, "capabilities"))
+        return
+
+    # Вопросы про калькуляторы → сразу подсказываем команду
+    calc_key = _detect_calc_trigger(query)
+    if calc_key:
+        await update.message.reply_text(_t(context, f"calc_{calc_key}"))
         return
 
     kb_match = kb.search(query)
