@@ -2088,30 +2088,41 @@
         },
         {
           "id": "salary-2",
-          "title": "Где взять Lohnabrechnung (расчётный листок)?",
+          "title": "Как читать Lohnabrechnung в LK Bauservice?",
           "patterns": [
             "wo ist lohnabrechnung",
             "lohnabrechnung herunterladen",
             "где lohnabrechnung",
             "где gehaltsabrechnung",
+            "как читать lohnabrechnung",
             "расчётный листок",
             "расчетный листок",
             "lohnabrechnung за март",
-            "копия расчётного листка"
+            "копия расчётного листка",
+            "как понять lohnabrechnung",
+            "объясни расчётный листок",
+            "что такое auszahlungsbetrag",
+            "auszahlungsbetrag",
+            "abrechnungs-brutto"
           ],
           "keywords": [
             "lohnabrechnung",
             "gehaltsabrechnung",
             "расчётный листок",
-            "листок"
+            "листок",
+            "auszahlungsbetrag",
+            "abrechnungs"
           ],
-          "answer": "Lohnabrechnung (расчётный листок / Gehaltsabrechnung) выдаётся бухгалтерией LK Bauservice ежемесячно вместе с выплатой зарплаты.\n\n*Где взять:*\n- Обратиться в бухгалтерию лично или по email\n- Копию за любой прошлый месяц запросить у HR или в бухгалтерии\n\n*Что там указано:*\n- Brutto-Gehalt и все удержания (Lohnsteuer, Sozialversicherung)\n- Netto-Auszahlung (сумма на руки)\n- Актуальный Resturlaub\n- Steuerklasse\n\nПри ошибках в начислениях — сообщить в бухгалтерию до конца текущего месяца.",
+          "answer": "Lohnabrechnung (Gehaltsabrechnung) в LK Bauservice создаётся системой *Agenda LOHN* и выдаётся ежемесячно.\n\n*Где взять:* запросить в бухгалтерии или у HR — лично или по email.\n\n*Главные поля документа:*\n\n📋 *Шапка (верхний блок):*\n• *Pers.-Nr.* — твой табельный номер\n• *St.Kl.* — Steuerklasse (налоговый класс, например: 1)\n• *Eintritt* — дата начала работы\n• *Krankenkassenname* — твоя Krankenkasse (например: AOK Niedersachsen)\n\n⏱ *Рабочее время (Statistische Werte):*\n• *Anw.-Std.* — отработанные часы за месяц\n• *Über.-Std.* — сверхурочные часы\n• *Std.-Lohn 1* — твоя часовая ставка (€/час)\n\n🏖️ *Отпуск (Urlaubskonto — таблица слева):*\n• *Akt. Jahr* — отпуск текущего года (накоплено / использовано / остаток)\n• *Resturlaub* — остаток неиспользованных дней отпуска\n\n💶 *Начисления (Informationen / Lohnarten):*\n• *Stundenlohn* — оплата за отработанные часы\n• *Verpflegungsmehraufwand* — суточные (Tagegeld)\n• *Urlaubsentg.* — отпускные\n• *Mehraufwands-Wintergeld (MAWG)* — зимняя надбавка\n\n💰 *Итоги (нижний блок):*\n• *Abrechnungs-Brutto* — всего начислено до вычетов\n• *Gesamt-Brutto mtl.* — налогооблагаемая сумма\n• *Lohnsteuer* — подоходный налог\n• *KV* — взнос в Krankenversicherung\n• *RV* — взнос в Rentenversicherung\n• *AV* — взнос в Arbeitslosenversicherung\n• *PV* — взнос в Pflegeversicherung\n• *Abrechnungs-Netto / Auszahlungsbetrag* — сумма, которую ты получаешь на счёт\n\nПри вопросах или ошибках в начислениях — обратись в бухгалтерию LK Bauservice.",
           "checklist": [
-            "Запросить Lohnabrechnung за нужный месяц в бухгалтерии или у HR",
-            "В Lohnabrechnung указан актуальный Resturlaub — сверяй с ним",
-            "При ошибках — обратиться в бухгалтерию до конца текущего месяца"
+            "Найди поле Auszahlungsbetrag — это сумма, которая придёт на твой счёт",
+            "Найди Resturlaub в таблице Urlaubskonto — это остаток дней отпуска",
+            "Steuerklasse указана в шапке (St.Kl.) — проверь, что она правильная",
+            "Anw.-Std. — проверь количество отработанных часов",
+            "Std.-Lohn 1 — твоя часовая ставка",
+            "При расхождениях — обратиться в бухгалтерию до конца текущего месяца"
           ],
-          "review": ""
+          "review": "Lohnabrechnung в LK Bauservice создаётся в системе Agenda LOHN и включает все данные по BRTV (Verpflegung, MAWG, SOKA-BAU)."
         },
         {
           "id": "salary-3",
@@ -2131,7 +2142,7 @@
             "налог",
             "lohnsteuer"
           ],
-          "answer": "Steuerklasse (налоговый класс) определяет размер удержанной Lohnsteuer.\n\n*Основные классы:*\n- *Klasse I* — холост/не замужем, разведён\n- *Klasse II* — одинокий родитель (Alleinerziehend)\n- *Klasse III* — женат/замужем, супруг без дохода или с классом V\n- *Klasse IV* — оба супруга работают с примерно равным доходом\n- *Klasse V* — второй супруг при классе III у партнёра\n- *Klasse VI* — второе место работы\n\n*Где посмотреть:* в своём Lohnabrechnung — там всегда указана актуальная Steuerklasse.\n\n*Как изменить:* подать заявление через Finanzamt (ELSTER) или через HR.",
+          "answer": "Steuerklasse (налоговый класс) определяет размер удержанной Lohnsteuer.\n\n*Где посмотреть в Lohnabrechnung:*\nВ шапке документа — поле *«St.Kl.»* (рядом с датой рождения и Eintritt).\n\n*Основные классы:*\n• *Klasse I* — холост/не замужем, разведён\n• *Klasse II* — одинокий родитель (Alleinerziehend)\n• *Klasse III* — женат/замужем, супруг без дохода или с классом V\n• *Klasse IV* — оба супруга работают с примерно равным доходом\n• *Klasse V* — второй супруг при классе III у партнёра\n• *Klasse VI* — второе место работы\n\n*Как изменить:* подать заявление через Finanzamt (ELSTER) или сообщить в HR — изменение вступает в силу со следующего месяца.",
           "checklist": [
             "Проверить текущую Steuerklasse в Lohnabrechnung",
             "При смене семейного положения — уведомить HR и Finanzamt",
@@ -2156,7 +2167,7 @@
             "разница",
             "weniger"
           ],
-          "answer": "Зарплата может отличаться от прошлого месяца по нескольким причинам:\n\n*Частые причины:*\n- Меньше отработанных часов (больничный, отпуск)\n- Нет Überstunden-надбавок, которые были в прошлом месяце\n- Изменилась Steuerklasse\n- Удержание Vorschuss (аванса)\n- Ошибка в начислении\n\n*Что делать:*\nСравни два Lohnabrechnung (текущий и прошлый месяц) — там видны все позиции. При ошибке — обратись в бухгалтерию LK Bauservice.",
+          "answer": "Зарплата (Auszahlungsbetrag) может отличаться от прошлого месяца по нескольким причинам.\n\n*Как найти причину:*\nСравни два Lohnabrechnung — посмотри каждую строку в разделе «Informationen».\n\n*Частые причины:*\n• Меньше *Anw.-Std.* (отработанных часов) — больничный или отпуск\n• Не было надбавок (MAWG, Verpflegungsmehraufwand), которые были в прошлом месяце\n• Изменился *Std.-Lohn 1* (часовая ставка)\n• Удержание *Vorschuss* (аванса) — видно в разделе Netto-Abzüge\n• Изменилась *Steuerklasse* (St.Kl. в шапке)\n• Удержание *Winterbau-Umlage AN* или *ZVK*\n\nПри ошибке — обратись в бухгалтерию LK Bauservice.",
           "checklist": [
             "Сравнить Lohnabrechnung за оба месяца",
             "Проверить количество отработанных дней",
