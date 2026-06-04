@@ -10,6 +10,7 @@ from telegram.ext import (
 from bot.knowledge import KnowledgeBase
 from bot.calculators import get_kuendigung_handler, get_urlaub_handler, get_bruttonetto_handler
 from bot.llm import ask_llm, build_kb_summary
+from bot.admin import get_admin_handlers
 
 logger = logging.getLogger(__name__)
 LLM_ENABLED = bool(os.getenv("GROQ_API_KEY"))
@@ -833,10 +834,12 @@ def build_application(token: str, knowledge_path: str) -> Application:
     app = Application.builder().token(token).build()
     app.bot_data["knowledge"] = kb
 
-    # Калькуляторы (ConversationHandler — первыми)
+    # Калькуляторы и admin KB (ConversationHandler — первыми)
     app.add_handler(get_kuendigung_handler())
     app.add_handler(get_urlaub_handler())
     app.add_handler(get_bruttonetto_handler())
+    for h in get_admin_handlers():
+        app.add_handler(h)
 
     # Выбор языка и главное меню (callbacks)
     app.add_handler(CallbackQueryHandler(language_callback, pattern=r"^lang:"))
