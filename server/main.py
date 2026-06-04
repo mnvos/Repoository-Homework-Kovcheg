@@ -14,12 +14,13 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL", "")
 KNOWLEDGE_PATH = os.getenv("DATABASE_URL", "./data/knowledge_base.json")
 WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET", "")
+PERSISTENCE_PATH = os.getenv("PERSISTENCE_PATH", "./data/bot_persistence")
 
 if not TELEGRAM_BOT_TOKEN:
     raise RuntimeError("TELEGRAM_BOT_TOKEN is required in environment variables")
 
 app = FastAPI(title="LK HR Assistant API")
-telegram_app = build_application(TELEGRAM_BOT_TOKEN, KNOWLEDGE_PATH)
+telegram_app = build_application(TELEGRAM_BOT_TOKEN, KNOWLEDGE_PATH, PERSISTENCE_PATH)
 
 templates = Jinja2Templates(directory="templates")
 

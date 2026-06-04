@@ -11,6 +11,7 @@ from bot.knowledge import KnowledgeBase
 from bot.calculators import get_kuendigung_handler, get_urlaub_handler, get_bruttonetto_handler
 from bot.llm import ask_llm, build_kb_summary
 from bot.admin import get_admin_handlers
+from telegram.ext import PicklePersistence
 
 logger = logging.getLogger(__name__)
 LLM_ENABLED = bool(os.getenv("GROQ_API_KEY"))
@@ -829,9 +830,14 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
 
 # ── App builder ───────────────────────────────────────────────────────────────
 
-def build_application(token: str, knowledge_path: str) -> Application:
+def build_application(token: str, knowledge_path: str,
+                      persistence_path: str = "./data/bot_persistence") -> Application:
+    import pathlib
+    pathlib.Path(persistence_path).parent.mkdir(parents=True, exist_ok=True)
+    persistence = PicklePersistence(filepath=persistence_path)
+
     kb = KnowledgeBase(knowledge_path)
-    app = Application.builder().token(token).build()
+    app = Application.builder().token(token).persistence(persistence).build()
     app.bot_data["knowledge"] = kb
 
     # Калькуляторы и admin KB (ConversationHandler — первыми)
