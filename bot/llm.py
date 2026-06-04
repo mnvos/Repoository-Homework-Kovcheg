@@ -1,18 +1,17 @@
 import os
-import json
-import anthropic
+from groq import Groq
 from typing import Optional
 
-_client: Optional[anthropic.Anthropic] = None
+_client: Optional[Groq] = None
 
 
-def _get_client() -> anthropic.Anthropic:
+def _get_client() -> Groq:
     global _client
     if _client is None:
-        api_key = os.getenv("ANTHROPIC_API_KEY")
+        api_key = os.getenv("GROQ_API_KEY")
         if not api_key:
-            raise RuntimeError("ANTHROPIC_API_KEY не задан в переменных окружения")
-        _client = anthropic.Anthropic(api_key=api_key)
+            raise RuntimeError("GROQ_API_KEY не задан в переменных окружения")
+        _client = Groq(api_key=api_key)
     return _client
 
 
@@ -36,11 +35,6 @@ def ask_llm(
     kb_entry: Optional[dict] = None,
     kb_summary: Optional[str] = None,
 ) -> str:
-    """
-    Отправляет вопрос в Claude.
-    kb_entry  — найденная запись из KB (если есть)
-    kb_summary — краткий дамп всей KB (если kb_entry не найден)
-    """
     client = _get_client()
 
     lang_instruction = "Antworte auf Russisch." if lang == "ru" else "Antworte auf Deutsch."
@@ -63,23 +57,23 @@ def ask_llm(
     if context:
         user_message = f"{lang_instruction}\n\nKontext aus der Wissensdatenbank:\n{context}\nFrage: {question}"
 
-    message = client.messages.create(
-        model="claude-haiku-4-5-20251001",
+    response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
         max_tokens=1024,
-        system=SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": user_message}],
+        messages=[
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_message},
+        ],
     )
-    return message.content[0].text
+    return response.choices[0].message.content
 
 
 def build_kb_summary(kb_data: dict) -> str:
-    """Строит краткий текстовый дамп KB для передачи в LLM как контекст."""
     lines = []
     for topic in kb_data.get("topics", []):
         lines.append(f"## {topic.get('title', topic['id'])}")
         for q in topic.get("questions", []):
             lines.append(f"### {q.get('title', q['id'])}")
             answer = q.get("answer", "")
-            # Обрезаем длинные ответы чтобы не раздувать контекст
             lines.append(answer[:400] + ("..." if len(answer) > 400 else ""))
     return "\n".join(lines)

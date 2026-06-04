@@ -9,7 +9,7 @@ from bot.knowledge import KnowledgeBase
 from bot.calculators import get_kuendigung_handler, get_urlaub_handler, get_bruttonetto_handler
 from bot.llm import ask_llm, build_kb_summary
 
-LLM_ENABLED = bool(os.getenv("ANTHROPIC_API_KEY"))
+LLM_ENABLED = bool(os.getenv("GROQ_API_KEY"))
 
 # ── Тексты на двух языках ────────────────────────────────────────────────────
 
