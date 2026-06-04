@@ -564,7 +564,9 @@
             "lohnfortzahlung",
             "krank",
             "6 wochen",
-            "entgfg"
+            "entgfg",
+            "6 недель",
+            "оплата больничного"
           ],
           "answer": "*Entgeltfortzahlung im Krankheitsfall (§ 3 EntgFG)*\n\nDer Arbeitgeber zahlt bei Arbeitsunfähigkeit *bis zu 6 Wochen* das volle Gehalt weiter.\n\n*Voraussetzungen:* Beschäftigung seit mind. 4 Wochen. Keine Selbstverschuldung.\n\n*Pflichten des AN:* Erkrankung unverzüglich melden. Ab 2. Kalendertag: AU-Bescheinigung.\n\n*Nach 6 Wochen:* Krankenkasse zahlt Krankengeld (ca. 70% Brutto, max. 90% Netto) bis zu 78 Wochen innerhalb von 3 Jahren bei gleicher Erkrankung.",
           "checklist": [
@@ -952,7 +954,8 @@
             "entlassung",
             "kündigungsfrist",
             "увольнение",
-            "расторжение"
+            "расторжение",
+            "срок уведомления"
           ],
           "answer": "Увольнение по инициативе LK Bauservice GmbH:\n\n*Форма:* только письменно (§ 623 BGB) — никаких устных или электронных уведомлений\n\n*Сроки — Interne Mitarbeiter:* по § 622 BGB (используй /kuendigung в боте)\n*Сроки — Gewerbliche Mitarbeiter:* по § 11 BRTV\n\n*При Probezeit:* 2 недели (Intern) или 3 рабочих дня (Gewerblich, BRTV)\n\nАвтоматическое окончание договора без Kündigung: при достижении пенсионного возраста (67 лет) или при получении unbefristete Rente wegen voller Erwerbsminderung.",
           "checklist": [
@@ -1043,7 +1046,9 @@
             "außerordentlich",
             "wichtiger grund",
             "немедленно",
-            "грубое нарушение"
+            "грубое нарушение",
+            "немедленное увольнение",
+            "без предупреждения"
           ],
           "answer": "Немедленное расторжение договора (außerordentliche Kündigung) возможно только при наличии wichtiger Grund (§ 626 BGB).\n\nПримеры важных причин по договорам LK Bauservice:\n• Работа под воздействием алкоголя или наркотиков\n• Хищение имущества работодателя\n• Грубое нарушение охраны труда\n• Систематический прогул\n\nСрок: уведомление должно быть направлено в течение 2 недель с момента, когда стало известно об основании.",
           "checklist": [
@@ -1307,7 +1312,11 @@
             "monatsende",
             "probezeit brtv",
             "6 werktage",
-            "12 werktage"
+            "12 werktage",
+            "срок увольнения",
+            "срок расторжения",
+            "строитель увольнение",
+            "куендигунг"
           ],
           "answer": "*Kuendigungsfristen nach BRTV § 11 (gewerbliche AN Baugewerbe)*\n\n*Allgemeine Fristen:*\n- Bis 6 Monate Betriebszugehoerigkeit: *6 Werktage* (AG und AN)\n- Ab 6 Monaten: *12 Werktage* (AG und AN)\nWerktage = Mo-Sa. Sonn- und Feiertage zaehlen nicht. Kein Monatsende erforderlich.\n\n*Verlaengerte Fristen fuer AG (AN bleibt bei 12 Werktagen):*\n- ab 3 Jahren: 1 Monat zum Monatsende\n- ab 5 Jahren: 2 Monate zum Monatsende\n- ab 8 Jahren: 3 Monate zum Monatsende\n- ab 10 Jahren: 4 Monate zum Monatsende\n- ab 12 Jahren: 5 Monate zum Monatsende\n- ab 15 Jahren: 6 Monate zum Monatsende\n- ab 20 Jahren: 7 Monate zum Monatsende\n\n*Probezeit (erste 6 Monate):* 6 Werktage. Keine 2-Wochen-Regelung wie § 622 BGB.\n\n*Schriftform:* Kuendigung zwingend schriftlich + eigenhaendig unterschrieben. Per E-Mail, WhatsApp, SMS oder Telegram: unwirksam.\n\n*Schlechtwetterzeit (01.12. bis 31.03.):* Keine Kuendigung wegen schlechter Witterung. Stattdessen: Saison-Kurzarbeitergeld (S-KUG).\n\n*Beispiele:*\n- 4 Monate dabei → 6 Werktage\n- 1 Jahr dabei → 12 Werktage\n- 7 Jahre: AG kuendigt → 2 Monate zum ME; AN kuendigt → 12 Werktage\n\n*Vor jeder Kuendigung bei LK pruefen:*\nBRTV anwendbar? KSchG-Schutz? Schwerbehinderung? Schwangerschaft? Elternzeit? Bei Unsicherheit: Ruecksprache mit Steuerberater oder Rechtsanwalt.",
           "checklist": [
@@ -1338,7 +1347,12 @@
             "winter",
             "überstunden",
             "zuschlag",
-            "40 stunden"
+            "40 stunden",
+            "рабочее время",
+            "часы",
+            "летнее",
+            "зимнее",
+            "надбавки"
           ],
           "answer": "Regelarbeitszeit nach *§ 3 BRTV* (Durchschnitt: 40 Std./Woche):\n\n*Sommerarbeitszeit (April – November):*\n• Mo–Do: 8,5 Stunden\n• Fr: 7 Stunden\n• Woche: 41 Stunden\n\n*Winterarbeitszeit (Januar–März + Dezember):*\n• Mo–Do: 8 Stunden\n• Fr: 6 Stunden\n• Woche: 38 Stunden\n\n*24. und 31. Dezember:* arbeitsfrei, kein Lohnanspruch.\n\n*Überstundenzuschläge (§ 3 Nr. 6):*\n• Überstunden: +25%\n• Nachtarbeit (20–5 Uhr): +20%\n• Sonn- und Feiertage: +75% (Ostern/Pfingsten/1.Mai/1.Weihnachtstag: +200%)\n• Alle übrigen gesetzlichen Feiertage: +200%\n\nMehrere Zuschläge werden *nebeneinander* gezahlt.",
           "checklist": [
@@ -1367,7 +1381,13 @@
             "ULAK",
             "urlaubsvergütung",
             "14,25%",
-            "urlaubskasse"
+            "urlaubskasse",
+            "отпуск",
+            "отпускных",
+            "дней отпуска",
+            "строитель",
+            "30 дней",
+            "улак"
           ],
           "answer": "Urlaubsregelung für gewerbliche Mitarbeiter nach *§ 8 BRTV*:\n\n*Urlaubsanspruch:* 30 Arbeitstage pro Kalenderjahr (Samstage zählen nicht als Arbeitstage)\n*Schwerbehinderte:* +5 Tage = 35 Arbeitstage\n\n*Berechnung:* Pro 12 Beschäftigungstage = 1 Urlaubstag\n\n*Urlaubsvergütung:* 14,25% des Bruttolohns (BRTV)\n• davon Urlaubsentgelt: 11,4%\n• davon zusätzliches Urlaubsgeld: 25% des Urlaubsentgelts\n\n*Auszahlung:* über *ULAK* (Urlaubs- und Lohnausgleichskasse der Bauwirtschaft), nicht direkt durch Arbeitgeber!\n\n*Kranksein im Urlaub:* durch Attest nachgewiesene Tage zählen nicht als Urlaub → Resturlaub muss nachgewährt werden.\n\n*Resturlaub:* wird ins Folgejahr übertragen.",
           "checklist": [
@@ -1618,7 +1638,9 @@
             "18,49",
             "20,11",
             "werker",
-            "bauhelfer"
+            "bauhelfer",
+            "минимальная зарплата",
+            "минимум"
           ],
           "answer": "*Mindestlohn im Bauhauptgewerbe — LK Bauservice (ab 01.04.2026)*\n\n*Gesetzlicher Mindestlohn (ab 01.01.2026):* 13,90 EUR/Stunde\nAb 01.01.2027: 14,60 EUR/Stunde\n\n*Tarifliche Mindestloehne Bauhauptgewerbe (BRTV / TV Lohn Bau) — bundesweit:*\n- LG 1 Werker / Bauhelfer: *15,86 EUR*\n- Fachwerker: *17,34 EUR*\n- Spezialbau-Facharbeiter: *18,49 EUR*\n- Vorarbeiter / Polier: *20,11 EUR*\n\nDer tarifliche Lohn liegt immer ueber dem gesetzlichen Mindestlohn. Fuer gewerbliche AN im Bauhauptgewerbe sind die Tarif-Loehne massgeblich.\n\n*FAQ:*\nBauhelfer mit 13,90 EUR? Nein — auch Werker fallen unter Tariflohn (mind. 15,86 EUR).\nGilt fuer Buero? Nein — kaufmaennische AN werden nicht nach Bau-Lohngruppen bezahlt.\n\n*Bei jeder Einstellung pruefen:*\nLohngruppe korrekt? Tarifliche Zuschlaege berechnet? Aktuelle Tarife gueltig?",
           "checklist": [
@@ -1872,7 +1894,9 @@
             "gueltigkeit",
             "wiedervorlage",
             "beschaeftigung",
-            "drittstaatsangehoeriger"
+            "drittstaatsangehoeriger",
+            "разрешение на работу",
+            "вид на жительство"
           ],
           "answer": "*Pruefung Beschaeftigungsvoraussetzungen bei auslaendischen AN*\n\nVor und bei Einstellung zwingend pruefen:\n\n1. *Identitaet pruefen* — Reisepass oder Personalausweis einsehen und kopieren\n2. *Aufenthaltstitel pruefen* — Art des Titels und Gueltigkeit dokumentieren\n3. *Arbeitserlaubnis pruefen* — ist Beschaeftigung erlaubt? Einschraenkungen (z.B. bestimmte Branche, Stundenzahl) beachten\n4. *Gueltigkeit dokumentieren* — Ablaufdatum in Personalakte und System eintragen\n5. *Wiedervorlage einrichten* — bei befristetem Aufenthaltstitel: Erinnerung vor Ablauf setzen (mind. 4-6 Wochen vorher)\n\n*EU-Buerger:* Keine gesonderte Arbeitserlaubnis erforderlich — Personalausweis oder Reisepass genuegt.\n\n*Nicht-EU-Buerger (Drittstaatsangehoerige):* Aufenthaltstitel mit Arbeitsgenehmigung zwingend vor Beschaeftigungsbeginn vorlegen. Ohne gueltigen Titel: Beschaeftigung ist verboten — Busssgeld und Strafverfolgung moeglich.\n\n*Erlischt der Aufenthaltstitel waehrend der Beschaeftigung:* AN ist verpflichtet, den AG unverzueglich zu informieren (siehe Arbeitsvertrag § 2).",
           "checklist": [
