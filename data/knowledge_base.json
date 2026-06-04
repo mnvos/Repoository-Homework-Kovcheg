@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.22",
+    "version": "0.23",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -509,7 +509,7 @@
             "больничный",
             "врач"
           ],
-          "answer": "По договорам LK Bauservice сотрудник при болезни обязан:\n\n1. *Сразу* — до начала рабочего времени сообщить своему руководителю или в отдел кадров по телефону или e-mail\n2. *До конца 2-го дня болезни* — предоставить врачебное свидетельство о нетрудоспособности (Attest) с указанием предполагаемой продолжительности\n3. *При продлении* — немедленно сообщить и подать Anschlussattest\n4. Работодатель может *в отдельных случаях* потребовать Attest раньше — с 1-го дня",
+          "answer": "*Krankmeldung — Pflichten des Mitarbeiters (LK Bauservice)*\n\nBei Arbeitsunfaehigkeit unverzueglich (moeglichst vor Arbeitsbeginn) melden beim Vorgesetzten oder der Personalabteilung.\n\n*Mitzuteilen:*\n- Name\n- Beginn der Arbeitsunfaehigkeit\n- Voraussichtliche Dauer\n- Erreichbarkeit fuer Rueckfragen\n\n*Meldeweg:* Telefonisch, per SMS oder WhatsApp — sofern betrieblich zulaessig und rechtzeitig.\n\n*AU-Bescheinigung:* Bis Ende des 2. Krankheitstages (LK Bauservice). AG kann im Einzelfall auch ab dem 1. Tag verlangen.\n\n*Bei Verlaengerung:* Unverzueglich informieren und Anschlussattest nachreichen.",
           "checklist": [
             "Убедиться, что сотрудник позвонил/написал до начала рабочего дня",
             "Зафиксировать дату начала болезни",
@@ -605,6 +605,41 @@
             "Больничный передать до конца 2-го дня нетрудоспособности",
             "При продлении больничного: немедленно уведомить и передать продление",
             "Плановые личные встречи — только в нерабочее время"
+          ]
+        },
+        {
+          "id": "sick_leave-5",
+          "title": "eAU-Prozess und HR-Aufgaben bei Krankmeldung — LK Bauservice",
+          "patterns": [
+            "eau prozess hr",
+            "eau abrufen",
+            "krankmeldung hr aufgaben",
+            "eau krankenkasse abruf",
+            "privatversichert krankmeldung",
+            "auslaendischer arzt au",
+            "eau nicht vorhanden",
+            "eau checkliste personalabteilung",
+            "процесс больничный HR",
+            "электронный больничный процесс"
+          ],
+          "keywords": [
+            "eau",
+            "krankenkasse abruf",
+            "privatversichert",
+            "auslaendischer arzt",
+            "lohnprogramm",
+            "fehlzeiten",
+            "wiedervorlage langzeiterkrankung"
+          ],
+          "answer": "*eAU-Prozess und Aufgaben der Personalabteilung*\n\n*eAU (gesetzlich Versicherte):*\nMitarbeiter gibt keine Papierbescheinigung mehr ab. HR ruft AU-Daten elektronisch bei der Krankenkasse ab — sobald Arzt die AU festgestellt und gemeldet hat.\n\n*HR-Checkliste bei Krankmeldung:*\n1. Krankmeldung dokumentieren\n2. Vorgesetzten informieren\n3. Arbeitsunfaehigkeit im Lohnprogramm erfassen\n4. eAU-Abruf bei der Krankenkasse veranlassen\n5. Rueckmeldung der Krankenkasse pruefen\n6. Fehlzeiten dokumentieren\n7. Lohnabrechnung informieren\n8. Bei Langzeiterkrankung: Wiedervorlage einrichten\n\n*Spezialfaelle:*\n- Keine eAU abrufbar: Mitarbeiter auffordern, Nachweis in Papierform vorzulegen\n- Privatversicherte: erhalten weiterhin Papierbescheinigung — muss HR vorgelegt werden\n- Auslaendischer Arzt: AU aus dem Ausland kann anerkannt werden, sofern AU ausreichend nachgewiesen; Einzelfallpruefung erforderlich\n\n*Haeufige Fragen:*\nWhatsApp-Krankmeldung OK? Ja, wenn betrieblich zulaessig und rechtzeitig.\nPapierbescheinigung noetig? Bei gesetzlich Versicherten nein — eAU reicht.\nKeine eAU? Mitarbeiter kann zur Vorlage eines Nachweises aufgefordert werden.\nEntgeltfortzahlung endet? Nach 6 Wochen fuer dieselbe Erkrankung.",
+          "checklist": [
+            "Krankmeldung dokumentieren und Vorgesetzten informieren",
+            "Arbeitsunfaehigkeit im Lohnprogramm erfassen",
+            "eAU bei Krankenkasse abrufen (gesetzlich Versicherte)",
+            "Privatversicherte: Papierbescheinigung einfordern",
+            "Keine eAU? Mitarbeiter zur Vorlage auffordern",
+            "AU aus Ausland: Einzelfallpruefung durchfuehren",
+            "Bei Langzeiterkrankung (> 6 Wochen): Wiedervorlage einrichten"
           ]
         }
       ]
