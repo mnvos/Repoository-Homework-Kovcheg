@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.27",
+    "version": "0.28",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -2051,6 +2051,309 @@
             "Kein Arbeitsbeginn vor vollstaendiger Dokumentation",
             "AN informieren: Aenderungen im Aufenthaltsstatus sofort melden"
           ]
+        }
+      ]
+    },
+    {
+      "id": "salary",
+      "title": "Зарплата, Lohnabrechnung, Steuerklasse",
+      "questions": [
+        {
+          "id": "salary-1",
+          "title": "Когда выплачивается зарплата в LK Bauservice?",
+          "patterns": [
+            "wann gehalt",
+            "zahltag",
+            "когда зарплата",
+            "когда будет зарплата",
+            "когда выплата",
+            "дата выплаты зарплаты",
+            "число зарплаты"
+          ],
+          "keywords": [
+            "zahltag",
+            "gehalt",
+            "lohn",
+            "зарплата",
+            "выплата",
+            "число"
+          ],
+          "answer": "Зарплата в LK Bauservice выплачивается *не позднее 10-го числа следующего месяца* (например, за апрель — до 10 мая).\n\nВыплата поступает на банковский счёт, указанный в Personalfragebogen.\n\nЕсли 10-е число приходится на выходной — выплата в ближайший рабочий день.\n\nПри задержке — обратиться в бухгалтерию или HR.",
+          "checklist": [
+            "Убедиться, что реквизиты банковского счёта в Baulohn актуальны",
+            "При задержке — обратиться в бухгалтерию LK Bauservice",
+            "Зарплата за текущий месяц — до 10-го числа следующего месяца"
+          ],
+          "review": ""
+        },
+        {
+          "id": "salary-2",
+          "title": "Где взять Lohnabrechnung (расчётный листок)?",
+          "patterns": [
+            "wo ist lohnabrechnung",
+            "lohnabrechnung herunterladen",
+            "где lohnabrechnung",
+            "где gehaltsabrechnung",
+            "расчётный листок",
+            "расчетный листок",
+            "lohnabrechnung за март",
+            "копия расчётного листка"
+          ],
+          "keywords": [
+            "lohnabrechnung",
+            "gehaltsabrechnung",
+            "расчётный листок",
+            "листок"
+          ],
+          "answer": "Lohnabrechnung (расчётный листок / Gehaltsabrechnung) выдаётся бухгалтерией LK Bauservice ежемесячно вместе с выплатой зарплаты.\n\n*Где взять:*\n- Обратиться в бухгалтерию лично или по email\n- Копию за любой прошлый месяц запросить у HR или в бухгалтерии\n\n*Что там указано:*\n- Brutto-Gehalt и все удержания (Lohnsteuer, Sozialversicherung)\n- Netto-Auszahlung (сумма на руки)\n- Актуальный Resturlaub\n- Steuerklasse\n\nПри ошибках в начислениях — сообщить в бухгалтерию до конца текущего месяца.",
+          "checklist": [
+            "Запросить Lohnabrechnung за нужный месяц в бухгалтерии или у HR",
+            "В Lohnabrechnung указан актуальный Resturlaub — сверяй с ним",
+            "При ошибках — обратиться в бухгалтерию до конца текущего месяца"
+          ],
+          "review": ""
+        },
+        {
+          "id": "salary-3",
+          "title": "Какая у меня Steuerklasse (налоговый класс)?",
+          "patterns": [
+            "steuerklasse",
+            "welche steuerklasse",
+            "налоговая категория",
+            "налоговый класс",
+            "моя steuerklasse",
+            "какая у меня налоговая категория"
+          ],
+          "keywords": [
+            "steuerklasse",
+            "steuer",
+            "налоговая",
+            "налог",
+            "lohnsteuer"
+          ],
+          "answer": "Steuerklasse (налоговый класс) определяет размер удержанной Lohnsteuer.\n\n*Основные классы:*\n- *Klasse I* — холост/не замужем, разведён\n- *Klasse II* — одинокий родитель (Alleinerziehend)\n- *Klasse III* — женат/замужем, супруг без дохода или с классом V\n- *Klasse IV* — оба супруга работают с примерно равным доходом\n- *Klasse V* — второй супруг при классе III у партнёра\n- *Klasse VI* — второе место работы\n\n*Где посмотреть:* в своём Lohnabrechnung — там всегда указана актуальная Steuerklasse.\n\n*Как изменить:* подать заявление через Finanzamt (ELSTER) или через HR.",
+          "checklist": [
+            "Проверить текущую Steuerklasse в Lohnabrechnung",
+            "При смене семейного положения — уведомить HR и Finanzamt",
+            "Изменение вступает в силу со следующего месяца"
+          ],
+          "review": "При неверном классе — переплата налогов. Излишек можно вернуть через Steuererklärung."
+        },
+        {
+          "id": "salary-4",
+          "title": "Почему зарплата меньше, чем в прошлом месяце?",
+          "patterns": [
+            "warum weniger gehalt",
+            "почему меньше зарплата",
+            "зарплата уменьшилась",
+            "зарплата меньше чем в прошлом месяце",
+            "урезали зарплату",
+            "меньше денег пришло"
+          ],
+          "keywords": [
+            "меньше",
+            "уменьшилась",
+            "разница",
+            "weniger"
+          ],
+          "answer": "Зарплата может отличаться от прошлого месяца по нескольким причинам:\n\n*Частые причины:*\n- Меньше отработанных часов (больничный, отпуск)\n- Нет Überstunden-надбавок, которые были в прошлом месяце\n- Изменилась Steuerklasse\n- Удержание Vorschuss (аванса)\n- Ошибка в начислении\n\n*Что делать:*\nСравни два Lohnabrechnung (текущий и прошлый месяц) — там видны все позиции. При ошибке — обратись в бухгалтерию LK Bauservice.",
+          "checklist": [
+            "Сравнить Lohnabrechnung за оба месяца",
+            "Проверить количество отработанных дней",
+            "Проверить наличие удержаний (Vorschuss, Pfändung)",
+            "При ошибке — обратиться в бухгалтерию до конца месяца"
+          ],
+          "review": ""
+        },
+        {
+          "id": "salary-5",
+          "title": "Vorschuss (аванс) — как получить и сколько осталось",
+          "patterns": [
+            "vorschuss",
+            "аванс",
+            "сколько осталось аванса",
+            "хочу аванс",
+            "можно получить аванс",
+            "vorschuss beantragen"
+          ],
+          "keywords": [
+            "vorschuss",
+            "аванс",
+            "abschlag"
+          ],
+          "answer": "Vorschuss (аванс) — выплата части зарплаты до расчётного дня.\n\nВ LK Bauservice Vorschuss выдаётся по согласованию с руководством и бухгалтерией.\n\n*Как запросить:*\n- Обратиться лично к HR или руководителю\n- Запрос подать письменно (email)\n\n*Сколько осталось:*\nОстаток виден в Lohnabrechnung в разделе Abzüge. Точную сумму уточнить в бухгалтерии.",
+          "checklist": [
+            "Подать запрос на Vorschuss письменно в HR или руководителю",
+            "Остаток удержаний виден в Lohnabrechnung (раздел Abzüge)",
+            "Vorschuss удерживается из ближайшей зарплаты"
+          ],
+          "review": ""
+        }
+      ]
+    },
+    {
+      "id": "documents",
+      "title": "Документы сотрудника — запросы и справки",
+      "questions": [
+        {
+          "id": "documents-1",
+          "title": "Arbeitsbescheinigung для Jobcenter или Agentur für Arbeit",
+          "patterns": [
+            "arbeitsbescheinigung",
+            "bescheinigung jobcenter",
+            "справка для jobcenter",
+            "справка о работе",
+            "meldung arbeitsamt"
+          ],
+          "keywords": [
+            "arbeitsbescheinigung",
+            "jobcenter",
+            "arbeitsamt",
+            "bescheinigung",
+            "справка"
+          ],
+          "answer": "Arbeitsbescheinigung — официальная справка о трудовых отношениях для Jobcenter или Agentur für Arbeit (нужна при увольнении для Arbeitslosengeld).\n\n*Как получить:*\n- Обратиться в HR LK Bauservice письменно (лично или email)\n- Указать цель (Jobcenter, Agentur für Arbeit)\n- Срок: 3–5 рабочих дней\n\n*Работодатель обязан выдать* по запросу — § 312 SGB III.",
+          "checklist": [
+            "Запросить в HR письменно",
+            "Указать назначение (Jobcenter, Agentur für Arbeit)",
+            "Проверить данные в справке перед подачей"
+          ],
+          "review": "Работодатель обязан выдать Arbeitsbescheinigung в разумные сроки (§ 312 SGB III)."
+        },
+        {
+          "id": "documents-2",
+          "title": "Urlaubsbescheinigung — справка об использованном отпуске",
+          "patterns": [
+            "urlaubsbescheinigung",
+            "справка об отпуске",
+            "urlaubsnachweis",
+            "подтверждение отпуска"
+          ],
+          "keywords": [
+            "urlaubsbescheinigung",
+            "urlaubsnachweis",
+            "справка об отпуске"
+          ],
+          "answer": "Urlaubsbescheinigung подтверждает использованные и оставшиеся дни отпуска. Нужна при смене работодателя.\n\n*Работодатель обязан выдать при увольнении* (§ 6 BUrlG).\n\n*Как получить:*\n- Запросить в HR письменно\n- При увольнении выдаётся автоматически вместе с Arbeitszeugnis",
+          "checklist": [
+            "Запросить Urlaubsbescheinigung в HR при смене работы",
+            "При увольнении — проверить, что справка выдана"
+          ],
+          "review": ""
+        },
+        {
+          "id": "documents-3",
+          "title": "Копия трудового договора (Arbeitsvertrag)",
+          "patterns": [
+            "kopie arbeitsvertrag",
+            "мне нужна копия трудового договора",
+            "копия договора",
+            "дубликат договора",
+            "потерял договор"
+          ],
+          "keywords": [
+            "kopie",
+            "arbeitsvertrag",
+            "копия",
+            "договор",
+            "дубликат"
+          ],
+          "answer": "Если тебе нужна копия трудового договора — обратись в HR LK Bauservice.\n\n*Как запросить:*\n- Лично в офисе или письменно по email\n- Укажи своё полное имя и дату начала работы\n\nСотрудник имеет право получить копию своего договора в любое время. Срок: 3–5 рабочих дней.",
+          "checklist": [
+            "Обратиться в HR с письменным запросом",
+            "Указать ФИО и дату начала работы",
+            "Сохранить копию договора в надёжном месте"
+          ],
+          "review": ""
+        },
+        {
+          "id": "documents-4",
+          "title": "Справка о доходах (Einkommensbescheinigung)",
+          "patterns": [
+            "einkommensbescheinigung",
+            "verdienstbescheinigung",
+            "справка о доходах",
+            "справка для банка",
+            "справка для визы",
+            "подтверждение дохода"
+          ],
+          "keywords": [
+            "einkommensbescheinigung",
+            "einkommen",
+            "доход",
+            "справка"
+          ],
+          "answer": "Einkommensbescheinigung (справка о доходах) нужна для банка, визы или аренды жилья.\n\n*Варианты:*\n1. *Lohnabrechnung за последние 3 месяца* — принимается большинством банков\n2. *Официальная справка* — запросить в HR письменно, указав цель и адресата\n\nВ большинстве случаев достаточно 3 последних Lohnabrechnung.",
+          "checklist": [
+            "Запросить копии последних 3 Lohnabrechnung в бухгалтерии",
+            "Если нужна официальная справка — обратиться в HR письменно",
+            "Указать цель (банк, аренда, виза)"
+          ],
+          "review": ""
+        }
+      ]
+    },
+    {
+      "id": "kindergeld",
+      "title": "Kindergeld и семейные пособия",
+      "questions": [
+        {
+          "id": "kindergeld-1",
+          "title": "Как получить Kindergeld?",
+          "patterns": [
+            "kindergeld",
+            "детское пособие",
+            "kindergeld beantragen",
+            "как получить kindergeld",
+            "kindergeld antrag"
+          ],
+          "keywords": [
+            "kindergeld",
+            "детское пособие",
+            "familienkasse",
+            "kind"
+          ],
+          "answer": "Kindergeld (детское пособие) — ежемесячная государственная выплата на каждого ребёнка.\n\n*Размер с 2025 года:* 255 EUR в месяц на каждого ребёнка.\n\n*Кто может получить:*\n- Все, кто проживает и работает в Германии (в т.ч. граждане ЕС)\n- Граждане не-ЕС — при наличии соответствующего Aufenthaltstitel\n\n*Как оформить:*\n1. Подать Antrag auf Kindergeld в Familienkasse der Agentur für Arbeit\n2. Приложить свидетельство о рождении ребёнка\n3. Иностранным гражданам — копию Aufenthaltstitel\n\n*Важно:* Kindergeld выплачивает государство через Familienkasse — не работодатель. HR LK Bauservice выдаёт нужные справки по запросу.",
+          "checklist": [
+            "Подать заявление в Familienkasse (Agentur für Arbeit)",
+            "Приложить свидетельство о рождении ребёнка",
+            "Иностранным гражданам — приложить Aufenthaltstitel",
+            "При необходимости запросить Einkommensbescheinigung в HR LK Bauservice"
+          ],
+          "review": "Kindergeld платит государство (Familienkasse). При вопросах — Familienkasse или Steuerberater."
+        }
+      ]
+    },
+    {
+      "id": "zoll",
+      "title": "Проверка Zoll на строительной площадке",
+      "questions": [
+        {
+          "id": "zoll-1",
+          "title": "Что делать, если меня остановил Zoll на стройке?",
+          "patterns": [
+            "zoll kontrolle",
+            "zollkontrolle baustelle",
+            "что делать если остановил zoll",
+            "проверка zoll",
+            "таможня на стройке",
+            "был zoll",
+            "zoll hat mich angehalten"
+          ],
+          "keywords": [
+            "zoll",
+            "kontrolle",
+            "таможня",
+            "проверка"
+          ],
+          "answer": "Zoll (Hauptzollamt) проводит плановые проверки на стройках — это нормально. Сохраняй спокойствие.\n\n*Что предъявить:*\n- Паспорт (Personalausweis или загранпаспорт)\n- Aufenthaltstitel / Arbeitserlaubnis (если не гражданин ЕС)\n- Sozialversicherungsausweis\n\n*Твои права:*\n- Ты не обязан отвечать на вопросы о своей зарплате\n- Немедленно сообщи о проверке руководителю объекта и в HR\n\n*Важно:* не уходи с места проверки — это расценивается как нарушение.",
+          "checklist": [
+            "Сохранять спокойствие и сотрудничать с инспекторами",
+            "Предъявить паспорт, Sozialversicherungsausweis, Aufenthaltstitel (если нет ЕС-паспорта)",
+            "Немедленно сообщить руководителю объекта",
+            "Связаться с HR LK Bauservice"
+          ],
+          "review": "Работодатель несёт ответственность за законность трудоустройства. Все документы в порядке — проверка не создаёт проблем."
         }
       ]
     }

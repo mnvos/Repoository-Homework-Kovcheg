@@ -216,6 +216,189 @@ def _lang_keyboard() -> InlineKeyboardMarkup:
     ]])
 
 
+def _main_menu_keyboard(lang: str) -> InlineKeyboardMarkup:
+    if lang == "ru":
+        return InlineKeyboardMarkup([
+            [InlineKeyboardButton("💰 Моя зарплата",      callback_data="menu:salary"),
+             InlineKeyboardButton("🏖️ Мой отпуск",        callback_data="menu:vacation")],
+            [InlineKeyboardButton("🤒 Я заболел",          callback_data="menu:sick"),
+             InlineKeyboardButton("⏰ Мои часы",           callback_data="menu:hours")],
+            [InlineKeyboardButton("📄 Мои документы",      callback_data="menu:docs"),
+             InlineKeyboardButton("👷 Aufenthaltstitel",   callback_data="menu:aufenthalt")],
+            [InlineKeyboardButton("🏗️ Трудовое право",     callback_data="menu:labor"),
+             InlineKeyboardButton("📞 Связаться с HR",     callback_data="menu:hr")],
+        ])
+    else:
+        return InlineKeyboardMarkup([
+            [InlineKeyboardButton("💰 Mein Gehalt",        callback_data="menu:salary"),
+             InlineKeyboardButton("🏖️ Mein Urlaub",        callback_data="menu:vacation")],
+            [InlineKeyboardButton("🤒 Ich bin krank",      callback_data="menu:sick"),
+             InlineKeyboardButton("⏰ Meine Stunden",      callback_data="menu:hours")],
+            [InlineKeyboardButton("📄 Meine Dokumente",    callback_data="menu:docs"),
+             InlineKeyboardButton("👷 Aufenthaltstitel",   callback_data="menu:aufenthalt")],
+            [InlineKeyboardButton("🏗️ Arbeitsrecht",       callback_data="menu:labor"),
+             InlineKeyboardButton("📞 HR kontaktieren",    callback_data="menu:hr")],
+        ])
+
+
+# Ответы главного меню
+_MENU_RESPONSES = {
+    "salary": {
+        "ru": (
+            "💰 *Моя зарплата*\n\n"
+            "Выбери тему или задай вопрос свободным текстом:\n\n"
+            "• *Когда зарплата?* — напиши «когда будет зарплата»\n"
+            "• *Почему меньше?* — напиши «почему зарплата меньше»\n"
+            "• *Где Lohnabrechnung?* — напиши «где lohnabrechnung»\n"
+            "• *Steuerklasse?* — напиши «какая у меня steuerklasse»\n"
+            "• *Vorschuss?* — напиши «хочу аванс»\n"
+            "• *Расчёт нетто* — /bruttonetto"
+        ),
+        "de": (
+            "💰 *Mein Gehalt*\n\n"
+            "Wähle ein Thema oder stell eine Frage:\n\n"
+            "• *Wann kommt das Gehalt?* — schreib «wann gehalt»\n"
+            "• *Warum weniger?* — schreib «warum weniger gehalt»\n"
+            "• *Lohnabrechnung?* — schreib «wo ist lohnabrechnung»\n"
+            "• *Steuerklasse?* — schreib «welche steuerklasse»\n"
+            "• *Vorschuss?* — schreib «vorschuss beantragen»\n"
+            "• *Netto berechnen* — /bruttonetto"
+        ),
+    },
+    "vacation": {
+        "ru": (
+            "🏖️ *Мой отпуск*\n\n"
+            "• *Остаток дней* — /urlaub (калькулятор)\n"
+            "• *Сколько положено?* — напиши «сколько дней отпуска»\n"
+            "• *Как подать заявку?* — напиши «как взять отпуск»\n"
+            "• *SOKA-BAU?* — напиши «soka bau отпуск»\n\n"
+            "📄 Актуальный Resturlaub всегда в твоём *Lohnabrechnung*."
+        ),
+        "de": (
+            "🏖️ *Mein Urlaub*\n\n"
+            "• *Resturlaub berechnen* — /urlaub (Rechner)\n"
+            "• *Urlaubsanspruch?* — schreib «urlaubsanspruch»\n"
+            "• *Urlaub beantragen?* — schreib «urlaubsantrag»\n"
+            "• *SOKA-BAU?* — schreib «soka bau urlaub»\n\n"
+            "📄 Den aktuellen Resturlaub findest du in deiner *Lohnabrechnung*."
+        ),
+    },
+    "sick": {
+        "ru": (
+            "🤒 *Я заболел — что делать?*\n\n"
+            "1. *Сразу сообщи* руководителю о болезни — до начала рабочего дня\n"
+            "2. *С 1-го дня болезни* — оформи Krankmeldung у врача\n"
+            "3. *До конца 2-го дня болезни* — врач обязан отправить eAU (электронную Krankmeldung) напрямую в Krankenkasse и работодателю\n"
+            "4. Если болезнь продолжается — сообщай руководителю каждый день\n\n"
+            "❓ Подробнее — напиши «krankmeldung» или «больничный»"
+        ),
+        "de": (
+            "🤒 *Ich bin krank — was tun?*\n\n"
+            "1. *Sofort* den Vorgesetzten informieren — vor Arbeitsbeginn\n"
+            "2. *Ab dem 1. Krankheitstag* — Krankmeldung beim Arzt holen\n"
+            "3. *Bis Ende des 2. Krankheitstages* — der Arzt sendet die eAU direkt an Krankenkasse und Arbeitgeber\n"
+            "4. Bei Verlängerung — täglich den Vorgesetzten informieren\n\n"
+            "❓ Mehr Infos — schreib «krankmeldung» oder «krank»"
+        ),
+    },
+    "hours": {
+        "ru": (
+            "⏰ *Мои рабочие часы (BRTV)*\n\n"
+            "Для сотрудников стройки (Gewerbliche) по BRTV:\n\n"
+            "• *Летний период* (Sommer): 41 час в неделю\n"
+            "• *Зимний период* (Winter): 38 часов в неделю\n"
+            "• *Überstunden* — 10% включены в зарплату по умолчанию\n"
+            "• *Zuschläge* за работу в воскресенье, праздники и ночью\n\n"
+            "❓ Подробнее — напиши «рабочее время» или «arbeitszeit»"
+        ),
+        "de": (
+            "⏰ *Meine Arbeitsstunden (BRTV)*\n\n"
+            "Für gewerbliche Mitarbeiter nach BRTV:\n\n"
+            "• *Sommerperiode*: 41 Stunden/Woche\n"
+            "• *Winterperiode*: 38 Stunden/Woche\n"
+            "• *Überstunden* — 10% sind im Lohn pauschal eingeschlossen\n"
+            "• *Zuschläge* für Sonn-, Feiertags- und Nachtarbeit\n\n"
+            "❓ Mehr Infos — schreib «arbeitszeit» oder «überstunden»"
+        ),
+    },
+    "docs": {
+        "ru": (
+            "📄 *Мои документы*\n\n"
+            "Какой документ тебе нужен?\n\n"
+            "• *Lohnabrechnung* — напиши «где lohnabrechnung»\n"
+            "• *Kopie Arbeitsvertrag* — напиши «копия договора»\n"
+            "• *Arbeitsbescheinigung* (для Jobcenter) — напиши «arbeitsbescheinigung»\n"
+            "• *Urlaubsbescheinigung* — напиши «urlaubsbescheinigung»\n"
+            "• *Справка о доходах* — напиши «справка о доходах»\n\n"
+            "Все запросы — через HR LK Bauservice (лично или email)"
+        ),
+        "de": (
+            "📄 *Meine Dokumente*\n\n"
+            "Welches Dokument brauchst du?\n\n"
+            "• *Lohnabrechnung* — schreib «wo ist lohnabrechnung»\n"
+            "• *Kopie Arbeitsvertrag* — schreib «kopie arbeitsvertrag»\n"
+            "• *Arbeitsbescheinigung* (Jobcenter) — schreib «arbeitsbescheinigung»\n"
+            "• *Urlaubsbescheinigung* — schreib «urlaubsbescheinigung»\n"
+            "• *Einkommensbescheinigung* — schreib «einkommensbescheinigung»\n\n"
+            "Alle Anfragen — über HR LK Bauservice (persönlich oder per E-Mail)"
+        ),
+    },
+    "aufenthalt": {
+        "ru": (
+            "👷 *Aufenthaltstitel — вид на жительство*\n\n"
+            "Напиши свой вопрос, например:\n\n"
+            "• «документы иностранца»\n"
+            "• «aufenthaltserlaubnis»\n"
+            "• «работа без ЕС паспорта»\n"
+            "• «что делать если остановил zoll»\n\n"
+            "❓ Или задай вопрос свободным текстом"
+        ),
+        "de": (
+            "👷 *Aufenthaltstitel*\n\n"
+            "Stell deine Frage, zum Beispiel:\n\n"
+            "• «aufenthaltserlaubnis»\n"
+            "• «arbeitserlaubnis nicht-EU»\n"
+            "• «was tun bei zollkontrolle»\n\n"
+            "❓ Oder stell eine Frage im Freitext"
+        ),
+    },
+    "labor": {
+        "ru": (
+            "🏗️ *Вопрос по трудовому праву*\n\n"
+            "Задай вопрос текстом — отвечу на основе BRTV, BGB и документов LK Bauservice.\n\n"
+            "Примеры:\n"
+            "• «Какой срок увольнения?» → /kuendigung\n"
+            "• «Что такое Ausschlussfrist?»\n"
+            "• «Mindestlohn на стройке»\n"
+            "• «Kündigungsschutz при беременности»"
+        ),
+        "de": (
+            "🏗️ *Frage zum Arbeitsrecht*\n\n"
+            "Stell deine Frage — ich antworte auf Basis von BRTV, BGB und LK Bauservice Dokumenten.\n\n"
+            "Beispiele:\n"
+            "• «Kündigungsfrist?» → /kuendigung\n"
+            "• «Was ist Ausschlussfrist?»\n"
+            "• «Mindestlohn Bau»\n"
+            "• «Kündigungsschutz bei Schwangerschaft»"
+        ),
+    },
+    "hr": {
+        "ru": (
+            "📞 *Связаться с HR LK Bauservice*\n\n"
+            "🏢 *Адрес:* Peiner Straße 237, 38229 Salzgitter\n\n"
+            "По вопросам оформления, документов и зарплаты обращайся напрямую в офис или к своему руководителю.\n\n"
+            "Этот бот не заменяет личное общение с HR — он помогает с общими вопросами."
+        ),
+        "de": (
+            "📞 *HR LK Bauservice kontaktieren*\n\n"
+            "🏢 *Adresse:* Peiner Straße 237, 38229 Salzgitter\n\n"
+            "Bei Fragen zu Verträgen, Dokumenten und Gehalt direkt ins Büro oder zum Vorgesetzten.\n\n"
+            "Dieser Bot ersetzt nicht das persönliche Gespräch mit HR — er hilft bei allgemeinen Fragen."
+        ),
+    },
+}
+
+
 # ── Handlers ─────────────────────────────────────────────────────────────────
 
 async def start(update: Update, context: CallbackContext) -> None:
@@ -239,6 +422,26 @@ async def language_callback(update: Update, context: CallbackContext) -> None:
     context.user_data["lang"] = lang
     await query.edit_message_text(STRINGS[lang]["lang_chosen"])
     await query.message.reply_text(STRINGS[lang]["welcome"], parse_mode="Markdown")
+    await query.message.reply_text(
+        "Выбери раздел / Wähle einen Bereich:" if lang == "ru" else "Wähle einen Bereich:",
+        reply_markup=_main_menu_keyboard(lang),
+    )
+
+
+async def menu_command(update: Update, context: CallbackContext) -> None:
+    lang = _lang(context)
+    prompt = "Выбери раздел:" if lang == "ru" else "Wähle einen Bereich:"
+    await update.message.reply_text(prompt, reply_markup=_main_menu_keyboard(lang))
+
+
+async def menu_callback(update: Update, context: CallbackContext) -> None:
+    query = update.callback_query
+    await query.answer()
+    lang = _lang(context)
+    key = query.data.split(":")[1]
+    response = _MENU_RESPONSES.get(key, {}).get(lang, "")
+    if response:
+        await query.message.reply_text(response, parse_mode="Markdown")
 
 
 async def help_command(update: Update, context: CallbackContext) -> None:
@@ -284,6 +487,10 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
     # Приветствия
     if _is_greeting(query, lang):
         await update.message.reply_text(_t(context, "greeting"))
+        await update.message.reply_text(
+            "Выбери раздел:" if lang == "ru" else "Wähle einen Bereich:",
+            reply_markup=_main_menu_keyboard(lang),
+        )
         return
 
     # "Что ты умеешь?"
@@ -343,11 +550,13 @@ def build_application(token: str, knowledge_path: str) -> Application:
     app.add_handler(get_urlaub_handler())
     app.add_handler(get_bruttonetto_handler())
 
-    # Выбор языка
+    # Выбор языка и главное меню (callbacks)
     app.add_handler(CallbackQueryHandler(language_callback, pattern=r"^lang:"))
+    app.add_handler(CallbackQueryHandler(menu_callback, pattern=r"^menu:"))
 
     # Команды
     app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("menu", menu_command))
     app.add_handler(CommandHandler("language", language_command))
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(CommandHandler("topics", topics_command))
