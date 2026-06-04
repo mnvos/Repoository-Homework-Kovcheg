@@ -1,4 +1,5 @@
 import os
+import asyncio
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application, CallbackContext, CommandHandler,
@@ -6,6 +7,9 @@ from telegram.ext import (
 )
 from bot.knowledge import KnowledgeBase
 from bot.calculators import get_kuendigung_handler, get_urlaub_handler, get_bruttonetto_handler
+from bot.llm import ask_llm, build_kb_summary
+
+LLM_ENABLED = bool(os.getenv("ANTHROPIC_API_KEY"))
 
 # ── Тексты на двух языках ────────────────────────────────────────────────────
 
@@ -132,11 +136,42 @@ async def topics_command(update: Update, context: CallbackContext) -> None:
 
 async def handle_text(update: Update, context: CallbackContext) -> None:
     kb: KnowledgeBase = context.application.bot_data["knowledge"]
-    question = kb.search(update.message.text.strip())
-    if not question:
-        await update.message.reply_text(_t(context, "not_found"))
+    query = update.message.text.strip()
+    lang = _lang(context)
+    kb_match = kb.search(query)
+
+    if not LLM_ENABLED:
+        # Режим без LLM — только KB
+        if not kb_match:
+            await update.message.reply_text(_t(context, "not_found"))
+            return
+        await update.message.reply_markdown_v2(kb.question_summary(kb_match))
         return
-    await update.message.reply_markdown_v2(kb.question_summary(question))
+
+    # Режим с LLM
+    thinking_text = "⏳ Обрабатываю запрос..." if lang == "ru" else "⏳ Verarbeite Anfrage..."
+    thinking_msg = await update.message.reply_text(thinking_text)
+
+    try:
+        if kb_match:
+            # Нашли в KB — LLM переформулирует/дополняет ответ
+            response = await asyncio.get_event_loop().run_in_executor(
+                None, lambda: ask_llm(query, lang, kb_entry=kb_match)
+            )
+        else:
+            # Не нашли — LLM отвечает по всей KB как контексту
+            kb_summary = build_kb_summary(kb.export_data())
+            response = await asyncio.get_event_loop().run_in_executor(
+                None, lambda: ask_llm(query, lang, kb_summary=kb_summary)
+            )
+        await thinking_msg.edit_text(response)
+    except Exception as e:
+        # Fallback на KB если LLM недоступен
+        await thinking_msg.delete()
+        if kb_match:
+            await update.message.reply_markdown_v2(kb.question_summary(kb_match))
+        else:
+            await update.message.reply_text(_t(context, "not_found"))
 
 
 # ── App builder ───────────────────────────────────────────────────────────────
