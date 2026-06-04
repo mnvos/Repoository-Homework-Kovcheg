@@ -141,8 +141,8 @@ STRINGS = {
 
 def _lang(context: CallbackContext, text: str = "") -> str:
     stored = context.user_data.get("lang", "de")
-    # Auto-detect Russian by Cyrillic characters in the message
     if text and any("Ѐ" <= ch <= "ӿ" for ch in text):
+        context.user_data["lang"] = "ru"
         return "ru"
     return stored
 

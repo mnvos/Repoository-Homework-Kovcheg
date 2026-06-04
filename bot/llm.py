@@ -48,14 +48,18 @@ def ask_llm(
         checklist = kb_entry.get("checklist", [])
         if checklist:
             context += "Checkliste:\n" + "\n".join(f"- {c}" for c in checklist) + "\n"
-    elif kb_summary:
-        context = f"Wissensdatenbank (Zusammenfassung):\n{kb_summary}\n"
-    else:
-        context = ""
-
-    user_message = f"{lang_instruction}\n\nFrage: {question}"
-    if context:
         user_message = f"{lang_instruction}\n\nKontext aus der Wissensdatenbank:\n{context}\nFrage: {question}"
+    elif kb_summary:
+        # Compact overview when no direct match found
+        user_message = (
+            f"{lang_instruction}\n\n"
+            f"Die Wissensdatenbank enthält folgende Themen (Kurzübersicht):\n{kb_summary}\n\n"
+            f"Frage: {question}\n\n"
+            f"Wenn die Antwort nicht eindeutig aus den obigen Themen hervorgeht, "
+            f"weise den Nutzer auf /topics oder die HR-Abteilung hin."
+        )
+    else:
+        user_message = f"{lang_instruction}\n\nFrage: {question}"
 
     response = client.chat.completions.create(
         model="llama-3.1-8b-instant",
@@ -68,12 +72,18 @@ def ask_llm(
     return response.choices[0].message.content
 
 
-def build_kb_summary(kb_data: dict) -> str:
+def build_kb_summary(kb_data: dict, max_entries: int = 10) -> str:
+    """Build a compact KB summary — at most max_entries questions, 200 chars each."""
     lines = []
+    count = 0
     for topic in kb_data.get("topics", []):
-        lines.append(f"## {topic.get('title', topic['id'])}")
         for q in topic.get("questions", []):
-            lines.append(f"### {q.get('title', q['id'])}")
+            if count >= max_entries:
+                break
+            title = q.get("title", q["id"])
             answer = q.get("answer", "")
-            lines.append(answer[:400] + ("..." if len(answer) > 400 else ""))
+            lines.append(f"- {title}: {answer[:200]}")
+            count += 1
+        if count >= max_entries:
+            break
     return "\n".join(lines)
