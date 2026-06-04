@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.19",
+    "version": "0.20",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -447,6 +447,41 @@
             "Nicht-EU-Buerger: Aufenthaltstitel pruefen und kopieren (Pflicht)",
             "Qualifikationsnachweise / Fuehrerschein pruefen falls stellenrelevant",
             "ULAK-Nummer erfassen falls vorhanden (gewerbliche AN)"
+          ]
+        },
+        {
+          "id": "onboarding-15",
+          "title": "Arbeitsvertrag-Checkliste — Unterzeichnung und Personalakte",
+          "patterns": [
+            "arbeitsvertrag checkliste",
+            "vertrag unterschreiben einstellung",
+            "personalakte anlegen",
+            "arbeitsvertrag kopie",
+            "lohnbuchhaltung anmelden",
+            "einstellung abschluss checkliste",
+            "vertragsdaten pruefen",
+            "чеклист трудовой договор",
+            "личное дело завести",
+            "подписать трудовой договор"
+          ],
+          "keywords": [
+            "arbeitsvertrag",
+            "checkliste",
+            "personalakte",
+            "lohnbuchhaltung",
+            "unterschrift",
+            "datenschutz",
+            "einstellungsbogen",
+            "unterweisung"
+          ],
+          "answer": "*Arbeitsvertrag-Checkliste bei Neueinstellung — LK Bauservice*\n\nFolgende Schritte sind bei jeder Einstellung abzuschliessen:\n\n1. Arbeitsvertrag erstellen und Vertragsdaten pruefen\n2. Mitarbeiter unterschreibt:\n   - Arbeitsvertrag\n   - Datenschutz- / Geheimhaltungsvereinbarung\n   - Unterweisung (Sicherheitsunterweisung)\n   - Einstellungsbogen (§ 2 BRTV bei gewerblichen AN)\n   - Hinweis Befreiung von der Rentenversicherungspflicht (bei Minijob)\n3. Arbeitgeber unterschreibt dieselben Dokumente\n4. Anmeldeinformationen sofort an die Lohnbuchhalterin weitergeben\n5. Kopie des Arbeitsvertrags an den Mitarbeiter aushaendigen\n6. Personalakte anlegen mit allen unterzeichneten Dokumenten",
+          "checklist": [
+            "Arbeitsvertrag erstellt und Vertragsdaten (Name, Datum, Lohn, Lohngruppe) geprueft",
+            "Alle 5 Dokumente vom AN unterschreiben lassen (AV, Datenschutz, Unterweisung, Einstellungsbogen, RV-Befreiung)",
+            "Alle 5 Dokumente vom AG (LK Bauservice) unterschreiben",
+            "Anmeldedaten sofort an Lohnbuchhalterin uebergeben",
+            "Kopie Arbeitsvertrag an Mitarbeiter aushaendigen",
+            "Personalakte anlegen und alle Originale einlegen"
           ]
         }
       ]
