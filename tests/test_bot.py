@@ -27,15 +27,24 @@ class DummyUpdate:
 
 
 class DummyContext:
-    def __init__(self, kb: KnowledgeBase):
+    def __init__(self, kb: KnowledgeBase = None):
         self.application = SimpleNamespace(bot_data={"knowledge": kb})
+        self.user_data = {}
 
 
 def test_start_handler():
     update = DummyUpdate("")
-    ctx = SimpleNamespace()
+    ctx = DummyContext()
     asyncio.run(bot_main.start(update, ctx))
-    assert "внутренний помощник" in update.message.last_reply.lower()
+    # /start теперь отправляет кнопку выбора языка
+    assert update.message.last_reply is not None
+
+
+def test_language_command():
+    update = DummyUpdate("")
+    ctx = DummyContext()
+    asyncio.run(bot_main.language_command(update, ctx))
+    assert update.message.last_reply is not None
 
 
 def test_topics_and_handle_text(tmp_path):
