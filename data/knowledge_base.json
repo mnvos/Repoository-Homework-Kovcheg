@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.15",
+    "version": "0.16",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -749,6 +749,41 @@
             "Kuendigungsschutz beachten: gilt ab Bekanntgabe bis 4 Monate nach Geburt",
             "AG-Zuschuss berechnen und mit Gehaltsabrechnung auszahlen",
             "Krankenversicherung der AN ueber Mutterschaftsgeld informieren lassen"
+          ]
+        },
+        {
+          "id": "vacation-7",
+          "title": "Schwangerschaftsmeldung — HR-Prozess und Pflichtschritte",
+          "patterns": [
+            "schwangerschaft gemeldet prozess",
+            "schwangere mitarbeiterin was tun",
+            "schwangerschaft hr schritte",
+            "mutterschutz checkliste arbeitgeber",
+            "aufsichtsbehoerde schwangerschaft",
+            "gefaehrdungsbeurteilung schwanger",
+            "беременность сотрудница что делать",
+            "беременность оформление работодатель",
+            "шаги при беременности сотрудника",
+            "уведомить надзорный орган беременность"
+          ],
+          "keywords": [
+            "schwangerschaft",
+            "mutterschutz",
+            "gefaehrdungsbeurteilung",
+            "aufsichtsbehoerde",
+            "entbindungstermin",
+            "beschaeftigungsverbot",
+            "lohnbuchhaltung"
+          ],
+          "answer": "*Schwangerschaftsmeldung — Pflichtschritte fuer HR (LK Bauservice)*\n\nSobald eine Mitarbeiterin die Schwangerschaft mitteilt, sind folgende Schritte erforderlich:\n\n1. Schwangerschaft und voraussichtlichen Geburtstermin dokumentieren\n2. Gefaehrdungsbeurteilung pruefen / aktualisieren und Schutzmassnahmen festlegen\n3. Zustaendige Aufsichtsbehoerde informieren (in Niedersachsen: Gewerbeaufsichtsamt)\n4. Mutterschutzvorschriften umsetzen: Arbeitszeiten, Taetigkeiten, Beschaeftigungsverbote\n5. Lohnbuchhaltung informieren — Mutterschutzfristen und Entgeltabrechnung vorbereiten\n\n*Erforderliche Unterlagen:*\n- Schriftliche Mitteilung der Mitarbeiterin ueber die Schwangerschaft\n- Aerztliche Bescheinigung / Hebammenbestaetigung mit voraussichtlichem Entbindungstermin\n- Dokumentierte Gefaehrdungsbeurteilung\n- Bestaetigung der Meldung an die Aufsichtsbehoerde\n\nVertraulichkeit: Information ueber Schwangerschaft ist vertraulich — nur an Personen weitergeben, die sie fuer ihre Arbeit benoetigen.",
+          "checklist": [
+            "Schwangerschaft + Geburtstermin schriftlich dokumentieren",
+            "Gefaehrdungsbeurteilung aktualisieren und Schutzmassnahmen festhalten",
+            "Gewerbeaufsichtsamt Niedersachsen informieren",
+            "Lohnbuchhaltung ueber Mutterschutzfristen informieren",
+            "Beschaeftigungsverbote und Arbeitszeitregelungen sofort umsetzen",
+            "Unterlagen zur Personalakte: Mitteilung, ET-Bescheinigung, Gefaehrdungsbeurteilung",
+            "Vertraulichkeit wahren — kein Weitergabe ohne Notwendigkeit"
           ]
         }
       ]
