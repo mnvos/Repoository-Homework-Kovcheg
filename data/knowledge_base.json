@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.23",
+    "version": "0.24",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -1592,21 +1592,42 @@
         },
         {
           "id": "baulohn-2",
-          "title": "Mindestlohn 2026",
+          "title": "Mindestlohn im Bauhauptgewerbe — tarifliche Loehne LG 1-4 (ab 01.04.2026)",
           "patterns": [
             "mindestlohn",
-            "минимальная зарплата",
-            "gesetzlicher mindestlohn",
+            "mindestlohn bau",
+            "tariflohn baugewerbe",
+            "lohngruppe mindestlohn",
+            "bauhelfer stundenlohn",
+            "минимальная зарплата строительство",
+            "тарифная ставка строители",
             "13,90",
-            "14,60"
+            "15,86",
+            "17,34",
+            "mindestlohn 2026"
           ],
           "keywords": [
             "mindestlohn",
+            "tariflohn",
+            "lohngruppe",
+            "stundenlohn",
+            "bauhauptgewerbe",
             "13,90",
-            "14,60",
-            "stundenlohn"
+            "15,86",
+            "17,34",
+            "18,49",
+            "20,11",
+            "werker",
+            "bauhelfer"
           ],
-          "answer": "*Gesetzlicher Mindestlohn (MiLoG)*\n\nAktuell: *13,90 EUR brutto/Stunde*\nAb 01.01.2027: *14,60 EUR brutto/Stunde*\n\nFuer gewerbliche AN im Baugewerbe gilt der tarifliche Mindestlohn (BRTV/VTV) und liegt i.d.R. darueber.\n\nUnterschreitung: Ordnungswidrigkeit, Busssgeld bis 500.000 EUR."
+          "answer": "*Mindestlohn im Bauhauptgewerbe — LK Bauservice (ab 01.04.2026)*\n\n*Gesetzlicher Mindestlohn (ab 01.01.2026):* 13,90 EUR/Stunde\nAb 01.01.2027: 14,60 EUR/Stunde\n\n*Tarifliche Mindestloehne Bauhauptgewerbe (BRTV / TV Lohn Bau) — bundesweit:*\n- LG 1 Werker / Bauhelfer: *15,86 EUR*\n- Fachwerker: *17,34 EUR*\n- Spezialbau-Facharbeiter: *18,49 EUR*\n- Vorarbeiter / Polier: *20,11 EUR*\n\nDer tarifliche Lohn liegt immer ueber dem gesetzlichen Mindestlohn. Fuer gewerbliche AN im Bauhauptgewerbe sind die Tarif-Loehne massgeblich.\n\n*FAQ:*\nBauhelfer mit 13,90 EUR? Nein — auch Werker fallen unter Tariflohn (mind. 15,86 EUR).\nGilt fuer Buero? Nein — kaufmaennische AN werden nicht nach Bau-Lohngruppen bezahlt.\n\n*Bei jeder Einstellung pruefen:*\nLohngruppe korrekt? Tarifliche Zuschlaege berechnet? Aktuelle Tarife gueltig?",
+          "checklist": [
+            "Lohngruppe nach TV Lohn Bau festlegen (LG 1 bis LG 6)",
+            "Vereinbarten Stundenlohn mit Tariflohn vergleichen",
+            "Tarifliche Zuschlaege berechnen (Ueberstunden, Nacht, Sonn-/Feiertag)",
+            "Tarif-Aenderungen regelmaessig pruefen (TV Lohn Bau wird periodisch angepasst)",
+            "Kein Bauhelfer unter 15,86 EUR/Stunde beschaeftigen"
+          ]
         }
       ]
     },
