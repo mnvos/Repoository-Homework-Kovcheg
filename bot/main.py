@@ -48,7 +48,7 @@ _CALC_TRIGGERS = {
 
 STRINGS = {
     "ru": {
-        "lang_chosen": "Выбран язык: 🇷🇺 Русский",
+        "lang_chosen": "Выбран язык: Русский",
         "welcome": (
             "Привет! Я внутренний помощник *LK HR Assistant*.\n\n"
             "Помогу с вопросами по оформлению, больничным, отпускам и другим HR-процессам.\n\n"
@@ -212,7 +212,7 @@ def _t(context: CallbackContext, key: str) -> str:
 
 def _lang_keyboard() -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup([[
-        InlineKeyboardButton("🇷🇺 Русский", callback_data="lang:ru"),
+        InlineKeyboardButton("RU Русский", callback_data="lang:ru"),
         InlineKeyboardButton("🇩🇪 Deutsch", callback_data="lang:de"),
     ]])
 
