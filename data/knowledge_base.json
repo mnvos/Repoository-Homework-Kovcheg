@@ -10,6 +10,40 @@
       "title": "Оформление сотрудников",
       "questions": [
         {
+          "id": "onboarding-0",
+          "title": "Общая информация о компании LK Bauservice GmbH",
+          "patterns": [
+            "wer ist geschäftsführer",
+            "wer leitet die firma",
+            "geschäftsführer",
+            "direktor",
+            "chef",
+            "кто директор",
+            "кто руководитель",
+            "кто владелец",
+            "кто начальник",
+            "кто шеф",
+            "руководство компании",
+            "о компании",
+            "адрес компании"
+          ],
+          "keywords": [
+            "geschäftsführer",
+            "директор",
+            "руководитель",
+            "laszlo",
+            "kosztevics",
+            "lk bauservice",
+            "firma",
+            "компания",
+            "адрес",
+            "salzgitter"
+          ],
+          "answer": "L.K. Bauservice GmbH — строительная компания в Нижней Саксонии.\n\n*Geschäftsführer (директор):* Laszlo Kosztevics\n\n*Адрес:* Peiner Straße 237, 38229 Salzgitter\n\n*Деятельность:* строительство, отделочные работы, услуги на объектах Niedersachsen и прилегающих регионов.",
+          "checklist": [],
+          "review": ""
+        },
+        {
           "id": "onboarding-1",
           "title": "Какие виды договоров используются в LK Bauservice?",
           "patterns": [
