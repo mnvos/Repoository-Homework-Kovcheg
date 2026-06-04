@@ -448,9 +448,76 @@ async def help_command(update: Update, context: CallbackContext) -> None:
     await update.message.reply_text(_t(context, "help"), parse_mode="Markdown")
 
 
+def _topics_keyboard(kb: KnowledgeBase) -> InlineKeyboardMarkup:
+    buttons = []
+    for topic in kb.list_topics():
+        buttons.append([InlineKeyboardButton(topic["title"], callback_data=f"topic:{topic['id']}")])
+    return InlineKeyboardMarkup(buttons)
+
+
+def _questions_keyboard(topic: dict) -> InlineKeyboardMarkup:
+    buttons = []
+    for q in topic.get("questions", []):
+        title = q.get("title", q["id"])
+        # Telegram callback_data limit is 64 bytes
+        buttons.append([InlineKeyboardButton(title[:60], callback_data=f"qid:{q['id']}")])
+    buttons.append([InlineKeyboardButton("◀️ Назад к темам", callback_data="topics:back")])
+    return InlineKeyboardMarkup(buttons)
+
+
 async def topics_command(update: Update, context: CallbackContext) -> None:
     kb: KnowledgeBase = context.application.bot_data["knowledge"]
-    await update.message.reply_text(_t(context, "topics_header") + kb.topic_titles())
+    lang = _lang(context)
+    header = "Выбери тему:" if lang == "ru" else "Wähle ein Thema:"
+    await update.message.reply_text(header, reply_markup=_topics_keyboard(kb))
+
+
+async def topics_callback(update: Update, context: CallbackContext) -> None:
+    query = update.callback_query
+    await query.answer()
+    kb: KnowledgeBase = context.application.bot_data["knowledge"]
+    lang = _lang(context)
+
+    if query.data == "topics:back":
+        header = "Выбери тему:" if lang == "ru" else "Wähle ein Thema:"
+        await query.edit_message_text(header, reply_markup=_topics_keyboard(kb))
+        return
+
+    if query.data.startswith("topic:"):
+        topic_id = query.data.split(":", 1)[1]
+        topic = kb.get_topic(topic_id)
+        if not topic:
+            return
+        header = f"📂 *{topic['title']}*\n\nВыбери вопрос:" if lang == "ru" else f"📂 *{topic['title']}*\n\nWähle eine Frage:"
+        await query.edit_message_text(header, parse_mode="Markdown", reply_markup=_questions_keyboard(topic))
+        return
+
+    if query.data.startswith("qid:"):
+        qid = query.data.split(":", 1)[1]
+        q = kb.get_question_by_id(qid)
+        if not q:
+            return
+        # Build answer text from KB entry
+        lines = [f"*{q.get('title', '')}*\n"]
+        if q.get("answer"):
+            lines.append(q["answer"])
+        checklist = q.get("checklist", [])
+        if checklist:
+            lines.append("\n*Чек-лист:*" if lang == "ru" else "\n*Checkliste:*")
+            lines.extend(f"✅ {c}" for c in checklist)
+        review = q.get("review", "")
+        if review:
+            lines.append(f"\n⚠️ _{review}_")
+        text = "\n".join(lines)
+        # Telegram max message length
+        if len(text) > 4000:
+            text = text[:3997] + "..."
+        topic_id = qid.rsplit("-", 1)[0]
+        back_btn = InlineKeyboardMarkup([[
+            InlineKeyboardButton("◀️ Назад к вопросам", callback_data=f"topic:{topic_id}"),
+            InlineKeyboardButton("🏠 Темы", callback_data="topics:back"),
+        ]])
+        await query.edit_message_text(text, parse_mode="Markdown", reply_markup=back_btn)
 
 
 def _is_greeting(text: str, lang: str) -> bool:
@@ -553,6 +620,7 @@ def build_application(token: str, knowledge_path: str) -> Application:
     # Выбор языка и главное меню (callbacks)
     app.add_handler(CallbackQueryHandler(language_callback, pattern=r"^lang:"))
     app.add_handler(CallbackQueryHandler(menu_callback, pattern=r"^menu:"))
+    app.add_handler(CallbackQueryHandler(topics_callback, pattern=r"^(topic:|qid:|topics:back)"))
 
     # Команды
     app.add_handler(CommandHandler("start", start))

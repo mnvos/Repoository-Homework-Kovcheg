@@ -76,7 +76,8 @@ def test_topics_and_handle_text(tmp_path):
     upd_topics = DummyUpdate("")
     ctx = DummyContext(kb)
     asyncio.run(bot_main.topics_command(upd_topics, ctx))
-    assert "бол" in upd_topics.message.last_reply.lower() or "темы" in upd_topics.message.last_reply.lower()
+    # topics_command now sends an interactive keyboard; text is just a header prompt
+    assert upd_topics.message.last_reply is not None
 
     upd_q = DummyUpdate("Что делать с больничным?")
     asyncio.run(bot_main.handle_text(upd_q, ctx))

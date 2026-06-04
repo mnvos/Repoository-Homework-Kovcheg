@@ -152,6 +152,19 @@ class KnowledgeBase:
         items = [f"- {topic['title']}" for topic in topics]
         return "\n".join(items) if items else "Темы не найдены."
 
+    def get_topic(self, topic_id: str) -> Optional[Dict[str, Any]]:
+        for topic in self.list_topics():
+            if topic.get("id") == topic_id:
+                return topic
+        return None
+
+    def get_question_by_id(self, question_id: str) -> Optional[Dict[str, Any]]:
+        for topic in self.list_topics():
+            for q in topic.get("questions", []):
+                if q.get("id") == question_id:
+                    return q
+        return None
+
     def search(self, query: str) -> Optional[Dict[str, Any]]:
         # Normalize query
         query_text = re.sub(r"[^а-яa-z0-9 ]+", " ", query.lower())
