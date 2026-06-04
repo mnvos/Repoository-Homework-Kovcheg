@@ -139,8 +139,12 @@ STRINGS = {
 }
 
 
-def _lang(context: CallbackContext) -> str:
-    return context.user_data.get("lang", "de")
+def _lang(context: CallbackContext, text: str = "") -> str:
+    stored = context.user_data.get("lang", "de")
+    # Auto-detect Russian by Cyrillic characters in the message
+    if text and any("Ѐ" <= ch <= "ӿ" for ch in text):
+        return "ru"
+    return stored
 
 
 def _t(context: CallbackContext, key: str) -> str:
@@ -207,7 +211,7 @@ def _is_capabilities_query(text: str, lang: str) -> bool:
 async def handle_text(update: Update, context: CallbackContext) -> None:
     kb: KnowledgeBase = context.application.bot_data["knowledge"]
     query = update.message.text.strip()
-    lang = _lang(context)
+    lang = _lang(context, query)
 
     # Приветствия
     if _is_greeting(query, lang):
