@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.12",
+    "version": "0.13",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -1443,6 +1443,41 @@
             "Personalakten: Zugriffsrechte beschraenken",
             "Keine Diagnosen aufbewahren",
             "Bis 31.12.2026: Befreiungsantrag fuer Entgeltunterlagen pruefen"
+          ]
+        },
+        {
+          "id": "dsgvo-2",
+          "title": "Datenschutz- und Geheimhaltungsvereinbarung — Zusatzvertrag LK Bauservice",
+          "patterns": [
+            "datenschutzvereinbarung",
+            "geheimhaltung",
+            "verschwiegenheit arbeitsvertrag",
+            "geschaeftsgeheimnisse",
+            "schweigepflicht mitarbeiter",
+            "zusatzvertrag datenschutz",
+            "конфиденциальность сотрудник",
+            "соглашение о неразглашении",
+            "защита коммерческой тайны",
+            "мониторинг работы",
+            "наблюдение за сотрудником"
+          ],
+          "keywords": [
+            "datenschutz",
+            "geheimhaltung",
+            "verschwiegenheit",
+            "geschaeftsgeheimnis",
+            "geschwiegenheitspflicht",
+            "monitoring",
+            "ueberwachung",
+            "geshgehg"
+          ],
+          "answer": "*Datenschutz- und Geheimhaltungsvereinbarung (Zusatzvertrag LK Bauservice)*\n\n*1. Allgemeine Verschwiegenheit (GeschGehG):*\nAN verpflichtet sich zur Geheimhaltung aller Betriebs- und Geschaeftsgeheimnisse waehrend und nach dem Arbeitsverhaeltnis. Gilt nicht fuer allgemein zugaengliche Informationen.\n\n*2. Besondere Geheimhaltungspflichten:*\n- Gehaltshoehe, Ueberstunden, Urlaubstage, Gratifikationen: nicht gegenueber Dritten\n- Interne Organisationsstrukturen: nur mit Erlaubnis der Geschaeftsleitung\n- Vertragspartner, Preise, Preisnachlaesse: vertraulich\n\n*3. Auskunft gegenueber Behoerden:*\nNur schriftlich, mit konkreter Behoerde, Aktenzeichen und Rechtsgrundlage. Telefonische Auskunft grundsaetzlich verboten — immer schriftliches Ersuchen anfordern.\n\n*4. Geheimhaltung nach Vertragsende:*\nGilt weiterhin fuer: Kundenlisten, Vertraege, Mitarbeitergehaelter, Organisationsstrukturen, Preise.\n\n*5. Ueberwachung der Arbeitsleistung:*\nAG darf Servernutzung ueberwachen (Programme, Dauer, Intensitaet). Direkte Ueberwachung des AN-Rechners: nicht erlaubt.\nPrivate Nutzung (E-Mail, surfen, Software) waehrend der Arbeitszeit: nur mit schriftlicher AG-Zustimmung.\n\n*Rechtsfolgen bei Verstoss:* nach GeschGehG Abschnitt 2 + Schadensersatz vorbehalten.",
+          "checklist": [
+            "Zusatzvertrag Datenschutz / Geheimhaltung bei Einstellung unterschreiben lassen",
+            "Kopie zur Personalakte nehmen",
+            "AN auf Verbot telefonischer Behoerdenauskunft hinweisen",
+            "Geheimhaltungspflicht gilt auch nach Vertragsende — im Offboarding erinnern",
+            "Private Servernutzung nur mit schriftlicher Genehmigung erlauben"
           ]
         }
       ]
