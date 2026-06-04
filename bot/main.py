@@ -581,28 +581,66 @@ async def help_command(update: Update, context: CallbackContext) -> None:
     await update.message.reply_text(_t(context, "help"), parse_mode="Markdown")
 
 
-def _topics_keyboard(kb: KnowledgeBase) -> InlineKeyboardMarkup:
-    buttons = []
-    for topic in kb.list_topics():
-        buttons.append([InlineKeyboardButton(topic["title"], callback_data=f"topic:{topic['id']}")])
-    return InlineKeyboardMarkup(buttons)
+# ── /topics — 5 групп ────────────────────────────────────────────────────────
+
+_TOPIC_GROUPS = [
+    {
+        "id": "grp_salary",
+        "title": {"ru": "💰 Зарплата и выплаты",        "de": "💰 Gehalt & Zahlungen"},
+        "topic_ids": ["salary", "baulohn", "lohnabrechnung_erklaerung"],
+    },
+    {
+        "id": "grp_docs",
+        "title": {"ru": "📄 Оформление и документы",     "de": "📄 Einstellung & Dokumente"},
+        "topic_ids": ["onboarding", "documents", "auslaender", "dsgvo", "referral"],
+    },
+    {
+        "id": "grp_time",
+        "title": {"ru": "🏖️ Отпуск и рабочее время",    "de": "🏖️ Urlaub & Arbeitszeit"},
+        "topic_ids": ["vacation", "brtv", "soka_bau", "zvk_tarifrente"],
+    },
+    {
+        "id": "grp_health",
+        "title": {"ru": "🤒 Больничный и страховки",     "de": "🤒 Krankmeldung & Versicherung"},
+        "topic_ids": ["sick_leave", "krankenkassen", "bg_bau", "accidents"],
+    },
+    {
+        "id": "grp_law",
+        "title": {"ru": "⚖️ Право, семья и стройка",    "de": "⚖️ Recht, Familie & Bau"},
+        "topic_ids": ["termination", "agg", "ausbildungsverguetung",
+                      "zoll", "kindergeld", "familie_soziales"],
+    },
+]
 
 
-def _questions_keyboard(topic: dict) -> InlineKeyboardMarkup:
+def _groups_keyboard(lang: str) -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton(g["title"][lang], callback_data=f"tgrp:{g['id']}")]
+        for g in _TOPIC_GROUPS
+    ])
+
+
+def _group_questions_keyboard(kb: KnowledgeBase, group_id: str, lang: str) -> InlineKeyboardMarkup:
+    group = next((g for g in _TOPIC_GROUPS if g["id"] == group_id), None)
+    if not group:
+        return InlineKeyboardMarkup([])
     buttons = []
-    for q in topic.get("questions", []):
-        title = q.get("title", q["id"])
-        # Telegram callback_data limit is 64 bytes
-        buttons.append([InlineKeyboardButton(title[:60], callback_data=f"qid:{q['id']}")])
-    buttons.append([InlineKeyboardButton("◀️ Назад к темам", callback_data="topics:back")])
+    for tid in group["topic_ids"]:
+        topic = kb.get_topic(tid)
+        if not topic:
+            continue
+        for q in topic.get("questions", []):
+            title = q.get("title", q["id"])
+            buttons.append([InlineKeyboardButton(title[:60], callback_data=f"qid:{q['id']}")])
+    back_label = "◀️ Назад к разделам" if lang == "ru" else "◀️ Zurück zu Gruppen"
+    buttons.append([InlineKeyboardButton(back_label, callback_data="topics:back")])
     return InlineKeyboardMarkup(buttons)
 
 
 async def topics_command(update: Update, context: CallbackContext) -> None:
-    kb: KnowledgeBase = context.application.bot_data["knowledge"]
     lang = _lang(context)
-    header = "Выбери тему:" if lang == "ru" else "Wähle ein Thema:"
-    await update.message.reply_text(header, reply_markup=_topics_keyboard(kb))
+    header = "Выбери раздел:" if lang == "ru" else "Wähle einen Bereich:"
+    await update.message.reply_text(header, reply_markup=_groups_keyboard(lang))
 
 
 async def topics_callback(update: Update, context: CallbackContext) -> None:
@@ -611,26 +649,32 @@ async def topics_callback(update: Update, context: CallbackContext) -> None:
     kb: KnowledgeBase = context.application.bot_data["knowledge"]
     lang = _lang(context)
 
+    # Назад к группам
     if query.data == "topics:back":
-        header = "Выбери тему:" if lang == "ru" else "Wähle ein Thema:"
-        await query.edit_message_text(header, reply_markup=_topics_keyboard(kb))
+        header = "Выбери раздел:" if lang == "ru" else "Wähle einen Bereich:"
+        await query.edit_message_text(header, reply_markup=_groups_keyboard(lang))
         return
 
-    if query.data.startswith("topic:"):
-        topic_id = query.data.split(":", 1)[1]
-        topic = kb.get_topic(topic_id)
-        if not topic:
+    # Клик на группу → список всех вопросов группы
+    if query.data.startswith("tgrp:"):
+        group_id = query.data.split(":", 1)[1]
+        group = next((g for g in _TOPIC_GROUPS if g["id"] == group_id), None)
+        if not group:
             return
-        header = f"📂 *{topic['title']}*\n\nВыбери вопрос:" if lang == "ru" else f"📂 *{topic['title']}*\n\nWähle eine Frage:"
-        await query.edit_message_text(header, parse_mode="Markdown", reply_markup=_questions_keyboard(topic))
+        header = f"*{group['title'][lang]}*\n\n"
+        header += "Выбери вопрос:" if lang == "ru" else "Wähle eine Frage:"
+        await query.edit_message_text(
+            header, parse_mode="Markdown",
+            reply_markup=_group_questions_keyboard(kb, group_id, lang),
+        )
         return
 
+    # Клик на вопрос → ответ
     if query.data.startswith("qid:"):
         qid = query.data.split(":", 1)[1]
         q = kb.get_question_by_id(qid)
         if not q:
             return
-        # Build answer text from KB entry
         lines = [f"*{q.get('title', '')}*\n"]
         if q.get("answer"):
             lines.append(q["answer"])
@@ -642,15 +686,25 @@ async def topics_callback(update: Update, context: CallbackContext) -> None:
         if review:
             lines.append(f"\n⚠️ _{review}_")
         text = "\n".join(lines)
-        # Telegram max message length
         if len(text) > 4000:
             text = text[:3997] + "..."
-        topic_id = qid.rsplit("-", 1)[0]
-        back_btn = InlineKeyboardMarkup([[
-            InlineKeyboardButton("◀️ Назад к вопросам", callback_data=f"topic:{topic_id}"),
-            InlineKeyboardButton("🏠 Темы", callback_data="topics:back"),
-        ]])
-        await query.edit_message_text(text, parse_mode="Markdown", reply_markup=back_btn)
+        # Найти группу вопроса для кнопки "назад"
+        parent_group = next(
+            (g["id"] for g in _TOPIC_GROUPS
+             if any(qid.startswith(tid) or
+                    any(qq.get("id") == qid
+                        for qq in (kb.get_topic(tid) or {}).get("questions", []))
+                    for tid in g["topic_ids"])),
+            None,
+        )
+        back_row = []
+        if parent_group:
+            back_label = "◀️ Назад к вопросам" if lang == "ru" else "◀️ Zurück zu Fragen"
+            back_row.append(InlineKeyboardButton(back_label, callback_data=f"tgrp:{parent_group}"))
+        back_row.append(InlineKeyboardButton("🏠 Разделы" if lang == "ru" else "🏠 Gruppen",
+                                             callback_data="topics:back"))
+        await query.edit_message_text(text, parse_mode="Markdown",
+                                      reply_markup=InlineKeyboardMarkup([back_row]))
 
 
 def _is_greeting(text: str, lang: str) -> bool:
@@ -787,7 +841,7 @@ def build_application(token: str, knowledge_path: str) -> Application:
     # Выбор языка и главное меню (callbacks)
     app.add_handler(CallbackQueryHandler(language_callback, pattern=r"^lang:"))
     app.add_handler(CallbackQueryHandler(menu_callback, pattern=r"^menu:"))
-    app.add_handler(CallbackQueryHandler(topics_callback, pattern=r"^(topic:|qid:|topics:back)"))
+    app.add_handler(CallbackQueryHandler(topics_callback, pattern=r"^(tgrp:|qid:|topics:back)"))
     app.add_handler(CallbackQueryHandler(profile_callback, pattern=r"^profile:"))
     app.add_handler(CallbackQueryHandler(feedback_callback, pattern=r"^fb:"))
 
