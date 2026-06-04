@@ -385,16 +385,24 @@ _MENU_RESPONSES = {
     },
     "hr": {
         "ru": (
-            "📞 *Связаться с HR LK Bauservice*\n\n"
-            "🏢 *Адрес:* Peiner Straße 237, 38229 Salzgitter\n\n"
-            "По вопросам оформления, документов и зарплаты обращайся напрямую в офис или к своему руководителю.\n\n"
-            "Этот бот не заменяет личное общение с HR — он помогает с общими вопросами."
+            "📞 *Контакты отдела кадров LK Bauservice*\n\n"
+            "🏢 Peiner Straße 237, 38229 Salzgitter\n\n"
+            "👩‍💼 *Яна* — Руководитель отдела персонала\n"
+            "📱 [+49 151 7062 4923](tel:+4915170624923)\n"
+            "✉️ y\\.tsopa@lk\\-bauservice\\.de\n\n"
+            "👩‍💼 *Любовь* — Администратор кадрового учёта\n"
+            "📱 [+49 160 9844 5830](tel:+4916098445830)\n"
+            "✉️ personal2@lk\\-bauservice\\.de"
         ),
         "de": (
-            "📞 *HR LK Bauservice kontaktieren*\n\n"
-            "🏢 *Adresse:* Peiner Straße 237, 38229 Salzgitter\n\n"
-            "Bei Fragen zu Verträgen, Dokumenten und Gehalt direkt ins Büro oder zum Vorgesetzten.\n\n"
-            "Dieser Bot ersetzt nicht das persönliche Gespräch mit HR — er hilft bei allgemeinen Fragen."
+            "📞 *HR-Kontakte LK Bauservice*\n\n"
+            "🏢 Peiner Straße 237, 38229 Salzgitter\n\n"
+            "👩‍💼 *Jana* — Leiterin Personalwesen\n"
+            "📱 [+49 151 7062 4923](tel:+4915170624923)\n"
+            "✉️ y\\.tsopa@lk\\-bauservice\\.de\n\n"
+            "👩‍💼 *Lyubov* — Sachbearbeiterin Personalverwaltung\n"
+            "📱 [+49 160 9844 5830](tel:+4916098445830)\n"
+            "✉️ personal2@lk\\-bauservice\\.de"
         ),
     },
 }
