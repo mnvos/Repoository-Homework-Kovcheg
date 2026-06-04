@@ -679,6 +679,34 @@ def _detect_calc_trigger(text: str) -> Optional[str]:
     return None
 
 
+def _feedback_keyboard(question: str, lang: str) -> InlineKeyboardMarkup:
+    # Encode question snippet in callback (max 64 bytes total)
+    snippet = question[:20].replace(":", "").replace("|", "")
+    return InlineKeyboardMarkup([[
+        InlineKeyboardButton("👍", callback_data=f"fb:up:{snippet}"),
+        InlineKeyboardButton("👎", callback_data=f"fb:down:{snippet}"),
+    ]])
+
+
+async def feedback_callback(update: Update, context: CallbackContext) -> None:
+    query = update.callback_query
+    await query.answer()
+    parts = query.data.split(":", 2)   # fb : up/down : snippet
+    vote = parts[1]
+    question_snippet = parts[2] if len(parts) > 2 else ""
+    lang = _lang(context)
+
+    if vote == "up":
+        logger.info("FEEDBACK +1 | user=%s | q=%r", query.from_user.id, question_snippet)
+        thanks = "👍 Спасибо, рад помочь!" if lang == "ru" else "👍 Danke, gerne!"
+    else:
+        logger.info("FEEDBACK -1 | user=%s | q=%r", query.from_user.id, question_snippet)
+        thanks = "👎 Понял, постараюсь лучше. Обратись в HR если нужна точная информация." if lang == "ru" else "👎 Verstanden. Bitte wende dich an HR für genaue Informationen."
+
+    await query.edit_message_reply_markup(reply_markup=None)
+    await query.message.reply_text(thanks)
+
+
 async def handle_text(update: Update, context: CallbackContext) -> None:
     kb: KnowledgeBase = context.application.bot_data["knowledge"]
     query = update.message.text.strip()
@@ -707,11 +735,13 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
     kb_match = kb.search(query)
 
     if not LLM_ENABLED:
-        # Режим без LLM — только KB
         if not kb_match:
             await update.message.reply_text(_t(context, "not_found"))
             return
-        await update.message.reply_markdown_v2(kb.question_summary(kb_match))
+        await update.message.reply_markdown_v2(
+            kb.question_summary(kb_match),
+            reply_markup=_feedback_keyboard(query, lang),
+        )
         return
 
     # Режим с LLM
@@ -729,12 +759,15 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
             response = await asyncio.get_event_loop().run_in_executor(
                 None, lambda: ask_llm(query, lang, kb_summary=kb_summary, profile=profile)
             )
-        await thinking_msg.edit_text(response)
+        await thinking_msg.edit_text(response, reply_markup=_feedback_keyboard(query, lang))
     except Exception as e:
         logger.error("LLM error: %s", e, exc_info=True)
         await thinking_msg.delete()
         if kb_match:
-            await update.message.reply_markdown_v2(kb.question_summary(kb_match))
+            await update.message.reply_markdown_v2(
+                kb.question_summary(kb_match),
+                reply_markup=_feedback_keyboard(query, lang),
+            )
         else:
             await update.message.reply_text(_t(context, "llm_error"))
 
@@ -756,6 +789,7 @@ def build_application(token: str, knowledge_path: str) -> Application:
     app.add_handler(CallbackQueryHandler(menu_callback, pattern=r"^menu:"))
     app.add_handler(CallbackQueryHandler(topics_callback, pattern=r"^(topic:|qid:|topics:back)"))
     app.add_handler(CallbackQueryHandler(profile_callback, pattern=r"^profile:"))
+    app.add_handler(CallbackQueryHandler(feedback_callback, pattern=r"^fb:"))
 
     # Команды
     app.add_handler(CommandHandler("start", start))
