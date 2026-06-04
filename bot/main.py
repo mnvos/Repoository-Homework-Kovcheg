@@ -796,7 +796,6 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
             return
         await update.message.reply_text(
             kb.question_summary(kb_match),
-            parse_mode="Markdown",
             reply_markup=_feedback_keyboard(query, lang),
         )
         return
@@ -817,15 +816,13 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
             response = await loop.run_in_executor(
                 None, lambda: ask_llm(query, lang, kb_summary=kb_summary, profile=profile)
             )
-        await thinking_msg.edit_text(response, parse_mode="Markdown",
-                                     reply_markup=_feedback_keyboard(query, lang))
+        await thinking_msg.edit_text(response, reply_markup=_feedback_keyboard(query, lang))
     except Exception as e:
         logger.error("LLM error: %s", e, exc_info=True)
         await thinking_msg.delete()
         if kb_match:
             await update.message.reply_text(
                 kb.question_summary(kb_match),
-                parse_mode="Markdown",
                 reply_markup=_feedback_keyboard(query, lang),
             )
         else:

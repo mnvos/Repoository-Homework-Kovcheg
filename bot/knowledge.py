@@ -225,11 +225,11 @@ class KnowledgeBase:
         checklist = question.get("checklist", [])
         warning = question.get("review", "")
 
-        text = f"*{title}*\n\n{answer}"
+        text = f"📌 {title}\n\n{answer}"
         if checklist:
-            text += "\n\n*Чек-лист:*\n"
+            text += "\n\nЧек-лист:\n"
             for item in checklist:
-                text += f"- {item}\n"
+                text += f"✅ {item}\n"
         if warning:
             text += f"\n⚠️ {warning}"
         return text
