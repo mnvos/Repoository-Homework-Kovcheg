@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.26",
+    "version": "0.27",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -1954,6 +1954,41 @@
             "Krankenkassenwahl bestaetigen",
             "Kein Aufenthaltstitel, keine Arbeitserlaubnis erforderlich",
             "Einstellung wie bei deutschem AN durchfuehren"
+          ]
+        },
+        {
+          "id": "auslaender-4",
+          "title": "Beschaeftigung von Nicht-EU-Buergern — Pflichtpruefung vor Arbeitsaufnahme",
+          "patterns": [
+            "nicht-eu buerger einstellung",
+            "drittstaatsangehoeriger beschaeftigung",
+            "nicht eu arbeitserlaubnis",
+            "drittland mitarbeiter dokumente",
+            "nicht eu aufenthaltstitel bau",
+            "beschaeftigung ohne arbeitserlaubnis",
+            "граждане не ес трудоустройство",
+            "гражданин третьей страны оформление",
+            "не гражданин ес разрешение на работу",
+            "drittstaaten bau"
+          ],
+          "keywords": [
+            "nicht-eu",
+            "drittstaatsangehoeriger",
+            "arbeitserlaubnis",
+            "aufenthaltstitel",
+            "drittland",
+            "reisepass",
+            "beschaeftigung verboten"
+          ],
+          "answer": "*Beschaeftigung von Nicht-EU-Buergern (Drittstaatsangehoerige) — LK Bauservice*\n\n*Vor Arbeitsaufnahme zwingend pruefen:*\n- Reisepass vorhanden und gueltig\n- Aufenthaltstitel vorhanden und gueltig\n- Arbeitserlaubnis vorhanden\n- Beschaeftigung im Baugewerbe erlaubt (Nebenbestimmungen pruefen)\n- Befristung dokumentiert\n- Wiedervorlage vor Ablauf eingerichtet\n\n*Personalakte — erforderliche Dokumente:*\n- Reisepasskopie\n- Aufenthaltstitelkopie\n- Arbeitserlaubniskopie\n- Aktuelle Anschrift\n- Steuer-ID\n- Sozialversicherungsnummer\n- Krankenkassenzugehoerigkeit\n\nBeschaeftigung ohne gueltige Arbeitserlaubnis ist unzulaessig. Mitarbeiter darf erst eingesetzt werden, wenn ALLE Voraussetzungen erfuellt und dokumentiert sind.",
+          "checklist": [
+            "Reisepass einsehen und kopieren",
+            "Aufenthaltstitel pruefen: gueltig, Baugewerbe erlaubt, Nebenbestimmungen",
+            "Arbeitserlaubnis pruefen und kopieren",
+            "Alle Dokumente in Personalakte",
+            "Ablaufdaten dokumentieren und Wiedervorlage setzen",
+            "Kein Arbeitsbeginn vor vollstaendiger Dokumentation",
+            "AN informieren: Aenderungen im Aufenthaltsstatus sofort melden"
           ]
         }
       ]
