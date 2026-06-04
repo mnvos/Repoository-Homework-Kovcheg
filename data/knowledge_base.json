@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.28",
+    "version": "0.29",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -2383,6 +2383,301 @@
             "Связаться с HR LK Bauservice"
           ],
           "review": "Работодатель несёт ответственность за законность трудоустройства. Все документы в порядке — проверка не создаёт проблем."
+        }
+      ]
+    },
+    {
+      "id": "lohnabrechnung_erklaerung",
+      "title": "Lohnabrechnung — что означает каждая строка",
+      "questions": [
+        {
+          "id": "lohn-erkl-1",
+          "title": "Abrechnungs-Brutto и Auszahlungsbetrag — в чём разница?",
+          "patterns": [
+            "разница брутто нетто",
+            "итоговая сумма",
+            "что получу на руки",
+            "почему брутто больше нетто",
+            "что такое брутто",
+            "abrechnungsbrutto",
+            "сколько я получу на руки",
+            "auszahlungsbetrag",
+            "итого зарплата",
+            "abrechnungs-brutto",
+            "почему меньше нетто"
+          ],
+          "keywords": [
+            "abrechnungsbrutto",
+            "auszahlungsbetrag",
+            "брутто",
+            "нетто",
+            "итого",
+            "на руки"
+          ],
+          "answer": "*Abrechnungs-Brutto* — это всё, что тебе начислено за месяц до любых вычетов.\nВключает: зарплату, суточные, надбавки, отпускные и другие выплаты.\n\n*Auszahlungsbetrag* — это сумма, которая реально приходит на твой банковский счёт.\n\nРазница между ними — это налоги и социальные взносы:\n• Lohnsteuer (подоходный налог)\n• KV — Krankenversicherung (медицинская страховка)\n• RV — Rentenversicherung (пенсионная страховка)\n• AV — Arbeitslosenversicherung (страховка от безработицы)\n• PV — Pflegeversicherung (страховка по уходу)\n\nПример: Brutto 2.455 € → после всех вычетов → Auszahlungsbetrag 1.866 €",
+          "checklist": [],
+          "review": ""
+        },
+        {
+          "id": "lohn-erkl-2",
+          "title": "Lohnsteuer, SolZ, KiSt — что это такое?",
+          "patterns": [
+            "lohnsteuer",
+            "solidaritätszuschlag",
+            "solz",
+            "kirchensteuer",
+            "подоходный налог",
+            "что такое lohnsteuer",
+            "kirchensteuer что это",
+            "soli",
+            "церковный налог"
+          ],
+          "keywords": [
+            "lohnsteuer",
+            "solz",
+            "kirchensteuer",
+            "налог",
+            "steuer"
+          ],
+          "answer": "Три вида налогов, которые удерживаются из зарплаты:\n\n• *Lohnsteuer* — подоходный налог. Основной налог на зарплату. Размер зависит от твоей Steuerklasse и суммы заработка.\n\n• *SolZ (Solidaritätszuschlag)* — «налог солидарности». Небольшая надбавка к Lohnsteuer. С 2021 года большинство сотрудников его не платят — только если Lohnsteuer выше определённого порога.\n\n• *KiSt (Kirchensteuer)* — церковный налог. Платят только члены официальных церквей (католической, протестантской). Если ты не член церкви — эта строка пустая или равна нулю.",
+          "checklist": [],
+          "review": "Если видишь Kirchensteuer, но ты не член церкви — сообщи в HR, возможно ошибка в данных."
+        },
+        {
+          "id": "lohn-erkl-3",
+          "title": "KV, RV, AV, PV — социальные взносы",
+          "patterns": [
+            "kv rv av pv",
+            "krankenversicherung abzug",
+            "sozialversicherung",
+            "социальные взносы",
+            "что такое kv",
+            "что такое rv",
+            "страховые взносы",
+            "sozialabgaben"
+          ],
+          "keywords": [
+            "kv",
+            "rv",
+            "av",
+            "pv",
+            "krankenversicherung",
+            "rentenversicherung",
+            "sozialversicherung",
+            "взносы"
+          ],
+          "answer": "Четыре обязательных социальных взноса (Sozialversicherung) — платишь ты и работодатель поровну:\n\n• *KV — Krankenversicherung* (медицинская страховка)\n  Оплачивает врачей, больницы, лекарства. В LK Bauservice чаще всего AOK Niedersachsen.\n\n• *RV — Rentenversicherung* (пенсионная страховка)\n  Идёт на твою будущую пенсию (Rente).\n\n• *AV — Arbeitslosenversicherung* (страховка от безработицы)\n  Если потеряешь работу — получишь Arbeitslosengeld.\n\n• *PV — Pflegeversicherung* (страховка по уходу)\n  Оплачивает уход при болезни или в старости.\n\nВсе четыре взноса видны в Lohnabrechnung в разделе «SV-rechtl. Abzüge».",
+          "checklist": [],
+          "review": ""
+        },
+        {
+          "id": "lohn-erkl-4",
+          "title": "Verpflegungsmehraufwand (суточные) — что это и почему не облагается налогом?",
+          "patterns": [
+            "verpflegungsmehraufwand",
+            "verpflegung",
+            "tagegeld",
+            "суточные",
+            "что такое verpflegung",
+            "0228",
+            "28 евро суточные"
+          ],
+          "keywords": [
+            "verpflegungsmehraufwand",
+            "verpflegung",
+            "tagegeld",
+            "суточные",
+            "0228"
+          ],
+          "answer": "*Verpflegungsmehraufwand* — это суточные (Tagegeld) за работу вне постоянного места жительства.\n\nВ Lohnabrechnung LK Bauservice это строка *0228* — обычно 28 € в день.\n\nПочему эта сумма не уменьшает зарплату на налоги?\nПотому что суточные — это *компенсация расходов* (питание в командировке), а не зарплата. Государство разрешает выплачивать их без налогов и взносов до установленного лимита (28 €/день для поездок дольше 8 часов).\n\nВ Lohnabrechnung в столбцах St и SV стоит *F* (frei = освобождено) — значит налог не удерживается.",
+          "checklist": [],
+          "review": "Если суточные превышают норму — сумма сверх лимита облагается налогом."
+        },
+        {
+          "id": "lohn-erkl-5",
+          "title": "MAWG (Mehraufwands-Wintergeld) — зимняя надбавка",
+          "patterns": [
+            "mawg",
+            "mehraufwands-wintergeld",
+            "wintergeld",
+            "зимняя надбавка",
+            "winterbau",
+            "что такое mawg"
+          ],
+          "keywords": [
+            "mawg",
+            "wintergeld",
+            "winterbau",
+            "зимняя надбавка"
+          ],
+          "answer": "*MAWG — Mehraufwands-Wintergeld* — это зимняя надбавка для рабочих на стройке.\n\nВыплачивается в зимний сезон (обычно декабрь–март) как компенсация дополнительных расходов при работе в холодное время года.\n\nРазмер: *1 € за каждый отработанный час* в зимний период.\n\nЭта выплата *не облагается налогом и взносами* (в столбцах St и SV стоит F = frei).\n\nФинансируется совместно работодателем и через Winterbeschäftigungs-Umlage (WBAN).",
+          "checklist": [],
+          "review": ""
+        },
+        {
+          "id": "lohn-erkl-6",
+          "title": "WBAN (Winterbau-Umlage AN) — что удерживается из зарплаты зимой?",
+          "patterns": [
+            "wban",
+            "winterbau-umlage",
+            "winterumlage",
+            "что такое wban",
+            "зимний взнос",
+            "umlage winter"
+          ],
+          "keywords": [
+            "wban",
+            "winterbau-umlage",
+            "winterumlage",
+            "umlage"
+          ],
+          "answer": "*WBAN — Winterbau-Umlage AN* — это взнос сотрудника в фонд зимнего строительства.\n\nИз этого фонда финансируются:\n• Saison-Kurzarbeitergeld (пособие при остановке работ зимой)\n• Часть Mehraufwands-Wintergeld (MAWG)\n\nВзнос небольшой — видно в Lohnabrechnung как удержание (Netto-Abzug).\n\nЭто обязательный взнос для всех Gewerbliche Mitarbeiter в строительстве — регулируется BRTV и SokaSiG.",
+          "checklist": [],
+          "review": ""
+        },
+        {
+          "id": "lohn-erkl-7",
+          "title": "ZVK / SOKA-BAU — что это за взносы в Lohnabrechnung?",
+          "patterns": [
+            "0466",
+            "soka bau abzug",
+            "zvk",
+            "ulak счет",
+            "beitrag zvk",
+            "zvk soka",
+            "что такое soka",
+            "soka-bau",
+            "что такое zvk",
+            "0465",
+            "zusatzversorgungskasse"
+          ],
+          "keywords": [
+            "zvk",
+            "soka",
+            "zusatzversorgung",
+            "ulak",
+            "0465",
+            "0466",
+            "строительная касса"
+          ],
+          "answer": "В Lohnabrechnung Gewerbliche Mitarbeiter есть две строки по ZVK/SOKA-BAU:\n\n• *0465 — Beitrag Zusatzvers. (ZVK)* — твой взнос в ZVK (Zusatzversorgungskasse — дополнительная пенсия строителей). Это небольшой ежемесячный взнос из твоей зарплаты.\n\n• *0466 — Überw. ZVK AG (SOKA-BAU)* — взнос работодателя в SOKA-BAU. Это отчисление платит LK Bauservice — не ты. Включает отпускные накопления на твоём ULAK-счёте.\n\nSOKA-BAU — это фонд социального обеспечения строительной отрасли. Он хранит твои отпускные и выплачивает их при уходе в отпуск или смене работодателя.",
+          "checklist": [],
+          "review": "Остаток на ULAK-счёте (отпускные) — виден в таблице Urlaubskonto в Lohnabrechnung."
+        },
+        {
+          "id": "lohn-erkl-8",
+          "title": "Sachbezug bis 50 € — что это за выплата?",
+          "patterns": [
+            "sachbezug",
+            "1005",
+            "1004",
+            "sachbezug 50 euro",
+            "что такое sachbezug",
+            "бонус 50 евро",
+            "карта edenred"
+          ],
+          "keywords": [
+            "sachbezug",
+            "1005",
+            "1004",
+            "50 euro",
+            "sachleistung"
+          ],
+          "answer": "*Sachbezug allg. bis 50 €* — это неденежная льгота (натуральное вознаграждение) стоимостью до 50 € в месяц.\n\nВ LK Bauservice это может быть:\n• Карта (например, Edenred, Ticket Plus) для оплаты покупок\n• Другие товары или услуги по согласованию\n\nПочему это выгодно?\nДо 50 € в месяц Sachbezug *не облагается налогом и взносами* (§ 8 Abs. 2 EStG). То есть ты получаешь 50 € без вычетов — как если бы тебе подняли зарплату примерно на 90 € brutto.\n\nВ Lohnabrechnung виден как начисление (+50 €) и одновременно удержание (−50 €) — потому что стоимость уже учтена в натуральной форме.",
+          "checklist": [],
+          "review": ""
+        },
+        {
+          "id": "lohn-erkl-9",
+          "title": "Werkzeuggeld — компенсация за инструмент",
+          "patterns": [
+            "werkzeuggeld",
+            "0197",
+            "компенсация инструмент",
+            "что такое werkzeuggeld",
+            "деньги за инструменты"
+          ],
+          "keywords": [
+            "werkzeuggeld",
+            "0197",
+            "werkzeug",
+            "инструмент"
+          ],
+          "answer": "*Werkzeuggeld* (строка 0197) — это ежемесячная компенсация за использование собственного инструмента на работе.\n\nВыплачивается строителям, которые работают своим инструментом. Сумма фиксированная — прописана в договоре или тарифном соглашении BRTV.\n\nЭто *налогооблагаемая* выплата (в столбцах St/SV стоит J = ja).",
+          "checklist": [],
+          "review": ""
+        },
+        {
+          "id": "lohn-erkl-10",
+          "title": "Barzuschuss Internet (Internetpauschale) — что это?",
+          "patterns": [
+            "barzuschuss internet",
+            "internetpauschale",
+            "0243",
+            "интернет субсидия",
+            "что такое internetpauschale"
+          ],
+          "keywords": [
+            "barzuschuss",
+            "internet",
+            "internetpauschale",
+            "0243"
+          ],
+          "answer": "*Barzuschuss Internet* (строка 0243) — это денежный вклад работодателя на оплату домашнего интернета сотрудника.\n\nВыплачивается с *паушальным (фиксированным) налогом 25%* — работодатель платит налог сам, а сотрудник получает сумму без вычетов из своей зарплаты.\n\nВ столбце St стоит *P* (pauschale Versteuerung) — паушальный налог.\n\nЭто дополнительная льгота, особенно актуальная при работе из дома (HomeOffice).",
+          "checklist": [],
+          "review": ""
+        },
+        {
+          "id": "lohn-erkl-11",
+          "title": "Anw.-Std., Über.-Std., Std.-Lohn — рабочее время в Lohnabrechnung",
+          "patterns": [
+            "отработанные часы",
+            "stundenlohn lohnabrechnung",
+            "часовая ставка",
+            "0001 stundenlohn",
+            "std-lohn",
+            "стундэнлон",
+            "überstunden lohnabrechnung",
+            "anw-std",
+            "anwesenheitsstunden",
+            "часовая ставка lohnabrechnung"
+          ],
+          "keywords": [
+            "anwesenheitsstunden",
+            "uberstunden",
+            "stundenlohn",
+            "часы",
+            "ставка",
+            "0001"
+          ],
+          "answer": "В блоке «Statistische Werte» (правый верхний блок) Lohnabrechnung:\n\n• *Anw.-Std.* (Anwesenheitsstunden) — сколько часов ты фактически отработал в этом месяце\n\n• *Über.-Std.* (Überstunden) — сверхурочные часы\n\n• *Std.-Lohn 1* — твоя часовая ставка (€ за час)\n\nВ строке *0001 Stundenlohn* видно: часы × ставка = начисленная сумма.\n\nПример: 120 часов × 12,85 € = 1.542 €\n\nЕсли Anw.-Std. меньше обычного — значит были больничный, отпуск или неоплачиваемые дни. Это объясняет, почему зарплата ниже.",
+          "checklist": [
+            "Сверь Anw.-Std. с реально отработанными часами",
+            "Если не совпадает — обратись в бухгалтерию"
+          ],
+          "review": ""
+        },
+        {
+          "id": "lohn-erkl-12",
+          "title": "St* и SV* — что означают буквы в таблице начислений?",
+          "patterns": [
+            "st sv gb spalte",
+            "буквы в lohnabrechnung",
+            "что значит l f j p s e",
+            "lohnart spalten",
+            "st sv gb lohnabrechnung"
+          ],
+          "keywords": [
+            "st*",
+            "sv*",
+            "gb*",
+            "laufender bezug",
+            "einmalbezug",
+            "frei"
+          ],
+          "answer": "В таблице начислений (Informationen) есть три служебных столбца:\n\n*St* — как облагается налогом (Lohnsteuer):\n• *L* = laufender Bezug — обычная зарплата, стандартный налог\n• *S* = sonstiger Bezug — особый вид выплаты\n• *F* = frei — налог не удерживается (например суточные, Sachbezug)\n• *P* = pauschale Versteuerung — фиксированный налог платит работодатель\n• *E* = Einmalbezug — разовая выплата\n\n*SV* — облагается ли взносами (Sozialversicherung):\n• *L* = да, как обычная зарплата\n• *F* = frei — взносы не удерживаются\n• *E* = Einmalbezug\n\n*GB* — входит ли в Gesamt-Brutto:\n• *J* = ja (да)\n• *N* = nein (нет)\n\nЕсли St = F и SV = F — выплата без налогов и взносов (выгодно для тебя).",
+          "checklist": [],
+          "review": ""
         }
       ]
     }
