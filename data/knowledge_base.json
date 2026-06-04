@@ -686,34 +686,52 @@
       "questions": [
         {
           "id": "vacation-1",
-          "title": "Urlaubsanspruch и Betriebsurlaub в LK Bauservice",
+          "title": "Urlaubsanspruch и Resturlaub — Gewerbliche vs. Kaufmännische Mitarbeiter",
           "patterns": [
             "urlaubsanspruch",
             "jahresurlaub",
             "betriebsurlaub",
             "отпуск дни",
             "количество дней отпуска",
-            "сколько дней отпуска"
+            "сколько дней отпуска",
+            "resturlaub",
+            "wo steht resturlaub",
+            "где resturlaub",
+            "urlaubskonto",
+            "ulak",
+            "soka urlaub",
+            "сколько отпуска осталось",
+            "остаток отпуска",
+            "когда можно взять весь отпуск",
+            "отпуск пропорционально"
           ],
           "keywords": [
             "urlaubstage",
+            "urlaubskonto",
+            "ulak",
+            "пропорционально",
             "betriebsurlaub",
-            "werktage",
-            "urlaubsanspruch",
+            "остаток",
             "отпуск",
-            "дни"
+            "kaufmännisch",
+            "gewerblich",
+            "werktage",
+            "resturlaub",
+            "дни",
+            "urlaubsanspruch",
+            "soka"
           ],
-          "answer": "Количество дней отпуска указано в индивидуальном трудовом договоре (§ 5).\n\n*Важно:* LK Bauservice вправе объявить Betriebsurlaub — принудительный отпуск по решению работодателя. Он засчитывается в личный Urlaubsanspruch сотрудника.\n\nМинимальный законный отпуск: 24 Werktage (6-Tage-Woche) или 20 Arbeitstage (5-Tage-Woche) — по BUrlG.",
+          "answer": "В LK Bauservice правила отпуска и отображение Resturlaub отличаются для двух категорий сотрудников.\n\n─────────────────────────\n👷 *Gewerbliche Mitarbeiter* (рабочие на стройке)\n─────────────────────────\n• Отпуск управляется через *ULAK (SOKA-BAU)* — специальный отраслевой фонд\n• Resturlaub виден в *таблице Urlaubskonto* (нижний левый блок Lohnabrechnung)\n• Там показаны: накоплено / использовано / остаток по каждому году\n• Отпускные выплачивает не LK Bauservice напрямую, а ULAK\n• Тарифный отпуск по BRTV: *30 дней в год*\n\n─────────────────────────\n🗂 *Kaufmännische Mitarbeiter* (административные сотрудники)\n─────────────────────────\n• Resturlaub указан в *верхнем правом блоке* Lohnabrechnung\n• Рассчитывается *пропорционально* количеству отработанных месяцев в году\n\n*Правило про июль:*\n• *До июля* (первые 6 месяцев) — сотрудник может взять только пропорциональную часть отпуска (1/12 за каждый отработанный месяц)\n• *После июля* — сотрудник имеет право взять *весь годовой отпуск* целиком\n\nЭто правило закреплено в § 4 BUrlG.\n\n❓ Точный остаток — в своём Lohnabrechnung или уточни в HR.",
           "checklist": [
-            "Уточнить дни отпуска в договоре сотрудника",
-            "Проверить остаток в своей Gehaltsabrechnung (расчётный листок) — там всегда указан текущий Resturlaub",
-            "Если данные в Gehaltsabrechnung непонятны — обратиться в HR или бухгалтерию",
-            "Дополнительно можно рассчитать остаток через /urlaub в этом боте",
-            "Betriebsurlaub объявлять заблаговременно письменно",
-            "Перенос отпуска на следующий год — только до 31.03 (§ 7 BUrlG)",
-            "Для Gewerbliche — дополнительно SOKA-Bau Urlaubskasse"
+            "Определи свою категорию: Gewerbliche или Kaufmännische Mitarbeiter",
+            "Gewerbliche: смотри таблицу Urlaubskonto (нижний левый блок) в Lohnabrechnung",
+            "Kaufmännische: смотри Resturlaub в верхнем правом блоке Lohnabrechnung",
+            "До июля — только пропорциональный отпуск (Kaufmännische)",
+            "После июля — можно взять весь годовой отпуск (Kaufmännische)",
+            "Для расчёта остатка — используй /urlaub в этом боте",
+            "Вопросы по ULAK/SOKA-BAU — обратись в HR"
           ],
-          "review": "Актуальный остаток отпуска всегда отражён в Gehaltsabrechnung — сотрудник может проверить сам. Для gewerbliche Mitarbeiter отпускные выплачивает SOKA-Bau (Urlaubskasse), не напрямую работодатель. Уточните у Steuerberater."
+          "review": "Gewerbliche: отпуск через ULAK (SOKA-BAU), Urlaubskonto в Lohnabrechnung. Kaufmännische: пропорциональный расчёт, полный отпуск доступен после июля (§ 4 BUrlG)."
         },
         {
           "id": "vacation-2",
