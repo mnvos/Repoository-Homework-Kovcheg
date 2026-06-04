@@ -190,12 +190,18 @@ async def topics_command(update: Update, context: CallbackContext) -> None:
 
 def _is_greeting(text: str, lang: str) -> bool:
     t = text.lower().strip()
-    return t in _GREETINGS.get(lang, set()) or any(t == g for g in _GREETINGS.get("de" if lang == "ru" else "ru", set()))
+    all_greetings: set = set()
+    for g in _GREETINGS.values():
+        all_greetings.update(g)
+    return t in all_greetings
 
 
 def _is_capabilities_query(text: str, lang: str) -> bool:
     t = text.lower().strip()
-    return any(t == c or t.startswith(c) for c in _CAPABILITIES_TRIGGERS.get(lang, set()))
+    all_triggers: set = set()
+    for triggers in _CAPABILITIES_TRIGGERS.values():
+        all_triggers.update(triggers)
+    return any(t == c or t.startswith(c) for c in all_triggers)
 
 
 async def handle_text(update: Update, context: CallbackContext) -> None:
@@ -244,7 +250,8 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
         if kb_match:
             await update.message.reply_markdown_v2(kb.question_summary(kb_match))
         else:
-            await update.message.reply_text(_t(context, "llm_error"))
+            err_msg = f"{_t(context, 'llm_error')}\n\n[debug] {type(e).__name__}: {str(e)[:200]}"
+            await update.message.reply_text(err_msg)
 
 
 # ── App builder ───────────────────────────────────────────────────────────────
