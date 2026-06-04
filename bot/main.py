@@ -788,7 +788,16 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
         await update.message.reply_text(_t(context, f"calc_{calc_key}"))
         return
 
-    kb_match = kb.search(query)
+    # Если запрос слишком короткий и есть контекст последнего ответа — добавляем его
+    effective_query = query
+    if len(query.split()) <= 2 and context.user_data.get("last_topic"):
+        effective_query = f"{context.user_data['last_topic']} — {query}"
+
+    kb_match = kb.search(effective_query) or kb.search(query)
+
+    # Сохраняем тему если нашли в KB
+    if kb_match:
+        context.user_data["last_topic"] = kb_match.get("title", query)
 
     if not LLM_ENABLED:
         if not kb_match:
@@ -809,12 +818,12 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
     try:
         if kb_match:
             response = await loop.run_in_executor(
-                None, lambda: ask_llm(query, lang, kb_entry=kb_match, profile=profile)
+                None, lambda: ask_llm(effective_query, lang, kb_entry=kb_match, profile=profile)
             )
         else:
             kb_summary = build_kb_summary(kb.export_data())
             response = await loop.run_in_executor(
-                None, lambda: ask_llm(query, lang, kb_summary=kb_summary, profile=profile)
+                None, lambda: ask_llm(effective_query, lang, kb_summary=kb_summary, profile=profile)
             )
         await thinking_msg.edit_text(response, reply_markup=_feedback_keyboard(query, lang))
     except Exception as e:
