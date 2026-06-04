@@ -122,16 +122,33 @@ async def kb_import(payload: Dict[str, Any], admin: None = Depends(require_admin
 
 @app.on_event("startup")
 async def startup_event() -> None:
-    if WEBHOOK_URL:
-        await telegram_app.initialize()
+    await telegram_app.initialize()
+    try:
         await telegram_app.start()
+    except Exception as exc:
+        import logging
+        logging.getLogger(__name__).warning("telegram_app.start() failed (non-fatal): %s", exc)
+    if WEBHOOK_URL:
         await telegram_app.bot.set_webhook(WEBHOOK_URL)
 
 
 @app.on_event("shutdown")
 async def shutdown_event() -> None:
-    await telegram_app.stop()
+    try:
+        await telegram_app.stop()
+    except Exception:
+        pass
     await telegram_app.shutdown()
+
+
+@app.post("/set_webhook")
+async def set_webhook_endpoint() -> dict:
+    """Manually re-register the Telegram webhook."""
+    if not WEBHOOK_URL:
+        raise HTTPException(status_code=400, detail="WEBHOOK_URL not configured")
+    await telegram_app.bot.set_webhook(WEBHOOK_URL)
+    info = await telegram_app.bot.get_webhook_info()
+    return {"ok": True, "url": info.url, "pending": info.pending_update_count}
         
         
 
@@ -153,9 +170,15 @@ async def telegram_webhook(request: Request, x_telegram_bot_api_secret_token: Op
 
 @app.get("/health")
 async def health_check() -> dict:
+    try:
+        info = await telegram_app.bot.get_webhook_info()
+        webhook_registered = info.url
+    except Exception:
+        webhook_registered = "error"
     return {
         "status": "ok",
-        "webhook": WEBHOOK_URL,
+        "webhook_env": WEBHOOK_URL,
+        "webhook_registered": webhook_registered,
         "knowledge_path": KNOWLEDGE_PATH,
     }
 
