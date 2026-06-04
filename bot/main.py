@@ -1,5 +1,6 @@
 import os
 import asyncio
+import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
     Application, CallbackContext, CommandHandler,
@@ -9,9 +10,20 @@ from bot.knowledge import KnowledgeBase
 from bot.calculators import get_kuendigung_handler, get_urlaub_handler, get_bruttonetto_handler
 from bot.llm import ask_llm, build_kb_summary
 
+logger = logging.getLogger(__name__)
 LLM_ENABLED = bool(os.getenv("GROQ_API_KEY"))
 
 # ── Тексты на двух языках ────────────────────────────────────────────────────
+
+_GREETINGS = {
+    "ru": {"привет", "здравствуй", "здравствуйте", "хай", "hi", "hello", "добрый день", "добрый вечер", "добрый утро"},
+    "de": {"hallo", "hi", "guten tag", "guten morgen", "guten abend", "hey", "servus", "moin"},
+}
+
+_CAPABILITIES_TRIGGERS = {
+    "ru": {"что ты умеешь", "что умеешь", "что ты можешь", "помоги", "как пользоваться", "что делаешь"},
+    "de": {"was kannst du", "was machst du", "hilf mir", "wie benutze ich", "wie funktionierst du"},
+}
 
 STRINGS = {
     "ru": {
@@ -47,6 +59,27 @@ STRINGS = {
             "Попробуй сформулировать иначе или обратись в отдел кадров.\n\n"
             "Калькуляторы: /kuendigung /urlaub /bruttonetto"
         ),
+        "greeting": (
+            "Привет! Я внутренний HR-помощник LK Bauservice.\n\n"
+            "Задай вопрос по теме: оформление, больничный, отпуск, увольнение, BRTV, SOKA-BAU и др.\n\n"
+            "Или воспользуйся: /topics /kuendigung /urlaub /bruttonetto"
+        ),
+        "capabilities": (
+            "Я отвечаю на HR-вопросы сотрудников LK Bauservice:\n\n"
+            "• Оформление на работу\n"
+            "• Больничный (Krankmeldung)\n"
+            "• Отпуск (Urlaub, SOKA-BAU)\n"
+            "• Увольнение (Kündigung, Aufhebungsvertrag)\n"
+            "• Тарифный договор BRTV\n"
+            "• Иностранные сотрудники\n"
+            "• AGG, DSGVO, Mindestlohn\n\n"
+            "Калькуляторы: /kuendigung /urlaub /bruttonetto\n"
+            "Темы: /topics"
+        ),
+        "llm_error": (
+            "Произошла ошибка при обработке запроса.\n\n"
+            "Попробуй переформулировать или обратись в отдел кадров."
+        ),
     },
     "de": {
         "lang_chosen": "Sprache gewählt: 🇩🇪 Deutsch",
@@ -80,6 +113,27 @@ STRINGS = {
             "Ich konnte keine passende Antwort finden.\n\n"
             "Bitte die Frage anders formulieren oder die HR-Abteilung kontaktieren.\n\n"
             "Rechner: /kuendigung /urlaub /bruttonetto"
+        ),
+        "greeting": (
+            "Hallo! Ich bin der interne HR-Assistent der LK Bauservice.\n\n"
+            "Stell eine Frage zu: Einstellung, Krankmeldung, Urlaub, Kündigung, BRTV, SOKA-BAU usw.\n\n"
+            "Oder nutze: /topics /kuendigung /urlaub /bruttonetto"
+        ),
+        "capabilities": (
+            "Ich beantworte HR-Fragen der LK Bauservice Mitarbeiter:\n\n"
+            "• Einstellung / Onboarding\n"
+            "• Krankmeldung (Krankheit, eAU)\n"
+            "• Urlaub (SOKA-BAU, Resturlaub)\n"
+            "• Kündigung / Aufhebungsvertrag\n"
+            "• Tarifvertrag BRTV\n"
+            "• Ausländische Mitarbeiter\n"
+            "• AGG, DSGVO, Mindestlohn\n\n"
+            "Rechner: /kuendigung /urlaub /bruttonetto\n"
+            "Themen: /topics"
+        ),
+        "llm_error": (
+            "Bei der Verarbeitung ist ein Fehler aufgetreten.\n\n"
+            "Bitte die Frage anders formulieren oder die HR-Abteilung kontaktieren."
         ),
     },
 }
@@ -134,10 +188,31 @@ async def topics_command(update: Update, context: CallbackContext) -> None:
     await update.message.reply_text(_t(context, "topics_header") + kb.topic_titles())
 
 
+def _is_greeting(text: str, lang: str) -> bool:
+    t = text.lower().strip()
+    return t in _GREETINGS.get(lang, set()) or any(t == g for g in _GREETINGS.get("de" if lang == "ru" else "ru", set()))
+
+
+def _is_capabilities_query(text: str, lang: str) -> bool:
+    t = text.lower().strip()
+    return any(t == c or t.startswith(c) for c in _CAPABILITIES_TRIGGERS.get(lang, set()))
+
+
 async def handle_text(update: Update, context: CallbackContext) -> None:
     kb: KnowledgeBase = context.application.bot_data["knowledge"]
     query = update.message.text.strip()
     lang = _lang(context)
+
+    # Приветствия
+    if _is_greeting(query, lang):
+        await update.message.reply_text(_t(context, "greeting"))
+        return
+
+    # "Что ты умеешь?"
+    if _is_capabilities_query(query, lang):
+        await update.message.reply_text(_t(context, "capabilities"))
+        return
+
     kb_match = kb.search(query)
 
     if not LLM_ENABLED:
@@ -154,24 +229,22 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
 
     try:
         if kb_match:
-            # Нашли в KB — LLM переформулирует/дополняет ответ
             response = await asyncio.get_event_loop().run_in_executor(
                 None, lambda: ask_llm(query, lang, kb_entry=kb_match)
             )
         else:
-            # Не нашли — LLM отвечает по всей KB как контексту
             kb_summary = build_kb_summary(kb.export_data())
             response = await asyncio.get_event_loop().run_in_executor(
                 None, lambda: ask_llm(query, lang, kb_summary=kb_summary)
             )
         await thinking_msg.edit_text(response)
     except Exception as e:
-        # Fallback на KB если LLM недоступен
+        logger.error("LLM error: %s", e, exc_info=True)
         await thinking_msg.delete()
         if kb_match:
             await update.message.reply_markdown_v2(kb.question_summary(kb_match))
         else:
-            await update.message.reply_text(_t(context, "not_found"))
+            await update.message.reply_text(_t(context, "llm_error"))
 
 
 # ── App builder ───────────────────────────────────────────────────────────────
