@@ -11,7 +11,7 @@ from bot.knowledge import KnowledgeBase
 from bot.calculators import get_kuendigung_handler, get_urlaub_handler, get_bruttonetto_handler
 from bot.llm import ask_llm, build_kb_summary
 from bot.admin import get_admin_handlers
-from telegram.ext import PicklePersistence
+from telegram.ext import PicklePersistence, PersistenceInput
 
 logger = logging.getLogger(__name__)
 LLM_ENABLED = bool(os.getenv("GROQ_API_KEY"))
@@ -838,7 +838,10 @@ def build_application(token: str, knowledge_path: str,
                       persistence_path: str = "./data/bot_persistence") -> Application:
     import pathlib
     pathlib.Path(persistence_path).parent.mkdir(parents=True, exist_ok=True)
-    persistence = PicklePersistence(filepath=persistence_path)
+    persistence = PicklePersistence(
+        filepath=persistence_path,
+        store_data=PersistenceInput(bot_data=False),
+    )
 
     kb = KnowledgeBase(knowledge_path)
     app = Application.builder().token(token).persistence(persistence).build()
