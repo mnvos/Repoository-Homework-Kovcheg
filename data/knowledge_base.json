@@ -1,7 +1,7 @@
 {
   "meta": {
     "project": "LK HR Assistant",
-    "version": "0.18",
+    "version": "0.19",
     "updated": "2026-06-04"
   },
   "topics": [
@@ -1704,6 +1704,49 @@
             "Убедиться, что кандидат не был в базе LK последние 6 месяцев",
             "Рекомендации принимаются с 01.01.2026",
             "Отслеживать статус выплат в ежемесячном отчёте HR в корпоративном чате"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "auslaender",
+      "title": "Auslaendische Mitarbeiter — Aufenthaltstitel, Arbeitserlaubnis",
+      "questions": [
+        {
+          "id": "auslaender-1",
+          "title": "Pruefung Beschaeftigungsvoraussetzungen — Aufenthaltstitel und Arbeitserlaubnis",
+          "patterns": [
+            "aufenthaltstitel pruefen",
+            "arbeitserlaubnis pruefen",
+            "auslaender einstellung",
+            "nicht-eu buerger beschaeftigung",
+            "aufenthaltstitel gueltigkeit",
+            "wiedervorlage aufenthaltstitel",
+            "beschaeftigungsvoraussetzungen",
+            "проверка вида на жительство",
+            "разрешение на работу проверить",
+            "иностранный сотрудник оформление",
+            "срок действия внж"
+          ],
+          "keywords": [
+            "aufenthaltstitel",
+            "arbeitserlaubnis",
+            "auslaender",
+            "nicht-eu",
+            "gueltigkeit",
+            "wiedervorlage",
+            "beschaeftigung",
+            "drittstaatsangehoeriger"
+          ],
+          "answer": "*Pruefung Beschaeftigungsvoraussetzungen bei auslaendischen AN*\n\nVor und bei Einstellung zwingend pruefen:\n\n1. *Identitaet pruefen* — Reisepass oder Personalausweis einsehen und kopieren\n2. *Aufenthaltstitel pruefen* — Art des Titels und Gueltigkeit dokumentieren\n3. *Arbeitserlaubnis pruefen* — ist Beschaeftigung erlaubt? Einschraenkungen (z.B. bestimmte Branche, Stundenzahl) beachten\n4. *Gueltigkeit dokumentieren* — Ablaufdatum in Personalakte und System eintragen\n5. *Wiedervorlage einrichten* — bei befristetem Aufenthaltstitel: Erinnerung vor Ablauf setzen (mind. 4-6 Wochen vorher)\n\n*EU-Buerger:* Keine gesonderte Arbeitserlaubnis erforderlich — Personalausweis oder Reisepass genuegt.\n\n*Nicht-EU-Buerger (Drittstaatsangehoerige):* Aufenthaltstitel mit Arbeitsgenehmigung zwingend vor Beschaeftigungsbeginn vorlegen. Ohne gueltigen Titel: Beschaeftigung ist verboten — Busssgeld und Strafverfolgung moeglich.\n\n*Erlischt der Aufenthaltstitel waehrend der Beschaeftigung:* AN ist verpflichtet, den AG unverzueglich zu informieren (siehe Arbeitsvertrag § 2).",
+          "checklist": [
+            "Reisepass / Ausweis kopieren und zu Personalakte nehmen",
+            "Aufenthaltstitel pruefen: Art, Gueltigkeit, Arbeitsgenehmigung",
+            "Gueltigkeit im System dokumentieren",
+            "Wiedervorlage bei befristeten Titeln einrichten (4-6 Wochen vor Ablauf)",
+            "EU-Buerger: kein Sonderdokument noetig — Ausweis genuegt",
+            "Nicht-EU: ohne gueltigen Titel keine Beschaeftigung starten",
+            "AN auf Meldepflicht bei Aenderung des Aufenthaltsstatus hinweisen"
           ]
         }
       ]
