@@ -10,7 +10,7 @@ def test_export_and_import_protection(tmp_path, monkeypatch):
     monkeypatch.setenv("ADMIN_API_KEY", "secretkey")
     kb_file = tmp_path / "kb.json"
     kb_file.write_text(json.dumps({"meta": {}, "topics": []}))
-    monkeypatch.setenv("DATABASE_URL", str(kb_file))
+    monkeypatch.setenv("KNOWLEDGE_PATH", str(kb_file))
 
     # Import server after env set
     import server.main as server_main

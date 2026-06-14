@@ -28,6 +28,16 @@ _CAPABILITIES_TRIGGERS = {
     "de": {"was kannst du", "was machst du", "hilf mir", "wie benutze ich", "wie funktionierst du"},
 }
 
+# Короткие фразы-уточнения — относятся к ПРЕДЫДУЩЕЙ теме, а не новый вопрос.
+# Любая другая короткая фраза («Рабочая виза», «zoll») — самостоятельный
+# вопрос и НЕ должна склеиваться с last_topic (баг с «склейкой контекста»).
+_FOLLOWUP_TRIGGERS = {
+    "ru": {"подробнее", "поподробнее", "а сколько", "а как", "а что", "а почему",
+           "ещё", "еще", "и что", "продолжи", "дальше", "а если"},
+    "de": {"mehr", "genauer", "und wieviel", "und wie", "und was", "und warum",
+           "weiter", "mehr infos", "und wenn"},
+}
+
 # Фразы, которые должны перенаправлять на конкретный калькулятор
 _CALC_TRIGGERS = {
     "bruttonetto": {
@@ -220,193 +230,42 @@ def _lang_keyboard() -> InlineKeyboardMarkup:
 
 
 def _main_menu_keyboard(lang: str) -> InlineKeyboardMarkup:
-    if lang == "ru":
-        return InlineKeyboardMarkup([
-            [InlineKeyboardButton("💰 Моя зарплата",      callback_data="menu:salary"),
-             InlineKeyboardButton("🏖️ Мой отпуск",        callback_data="menu:vacation")],
-            [InlineKeyboardButton("🤒 Я заболел",          callback_data="menu:sick"),
-             InlineKeyboardButton("⏰ Мои часы",           callback_data="menu:hours")],
-            [InlineKeyboardButton("📄 Мои документы",      callback_data="menu:docs"),
-             InlineKeyboardButton("👷 Aufenthaltstitel",   callback_data="menu:aufenthalt")],
-            [InlineKeyboardButton("🏗️ Трудовое право",     callback_data="menu:labor"),
-             InlineKeyboardButton("📞 Связаться с HR",     callback_data="menu:hr")],
-        ])
-    else:
-        return InlineKeyboardMarkup([
-            [InlineKeyboardButton("💰 Mein Gehalt",        callback_data="menu:salary"),
-             InlineKeyboardButton("🏖️ Mein Urlaub",        callback_data="menu:vacation")],
-            [InlineKeyboardButton("🤒 Ich bin krank",      callback_data="menu:sick"),
-             InlineKeyboardButton("⏰ Meine Stunden",      callback_data="menu:hours")],
-            [InlineKeyboardButton("📄 Meine Dokumente",    callback_data="menu:docs"),
-             InlineKeyboardButton("👷 Aufenthaltstitel",   callback_data="menu:aufenthalt")],
-            [InlineKeyboardButton("🏗️ Arbeitsrecht",       callback_data="menu:labor"),
-             InlineKeyboardButton("📞 HR kontaktieren",    callback_data="menu:hr")],
-        ])
+    rows = []
+    pair = []
+    for g in _TOPIC_GROUPS:
+        pair.append(InlineKeyboardButton(g["title"][lang], callback_data=f"tgrp:{g['id']}"))
+        if len(pair) == 2:
+            rows.append(pair)
+            pair = []
+    if pair:
+        rows.append(pair)
+    hr_label = "📞 Связаться с HR" if lang == "ru" else "📞 HR kontaktieren"
+    rows.append([InlineKeyboardButton(hr_label, callback_data="menu:hr")])
+    return InlineKeyboardMarkup(rows)
 
 
-# Ответы главного меню
-_MENU_RESPONSES = {
-    "salary": {
-        "ru": (
-            "💰 *Моя зарплата*\n\n"
-            "Выбери тему или задай вопрос свободным текстом:\n\n"
-            "• *Когда зарплата?* — напиши «когда будет зарплата»\n"
-            "• *Почему меньше?* — напиши «почему зарплата меньше»\n"
-            "• *Где Lohnabrechnung?* — напиши «где lohnabrechnung»\n"
-            "• *Steuerklasse?* — напиши «какая у меня steuerklasse»\n"
-            "• *Vorschuss?* — напиши «хочу аванс»\n"
-            "• *Расчёт нетто* — /bruttonetto"
-        ),
-        "de": (
-            "💰 *Mein Gehalt*\n\n"
-            "Wähle ein Thema oder stell eine Frage:\n\n"
-            "• *Wann kommt das Gehalt?* — schreib «wann gehalt»\n"
-            "• *Warum weniger?* — schreib «warum weniger gehalt»\n"
-            "• *Lohnabrechnung?* — schreib «wo ist lohnabrechnung»\n"
-            "• *Steuerklasse?* — schreib «welche steuerklasse»\n"
-            "• *Vorschuss?* — schreib «vorschuss beantragen»\n"
-            "• *Netto berechnen* — /bruttonetto"
-        ),
-    },
-    "vacation": {
-        "ru": (
-            "🏖️ *Мой отпуск*\n\n"
-            "• *Остаток дней* — /urlaub (калькулятор)\n"
-            "• *Сколько положено?* — напиши «сколько дней отпуска»\n"
-            "• *Как подать заявку?* — напиши «как взять отпуск»\n"
-            "• *SOKA-BAU?* — напиши «soka bau отпуск»\n\n"
-            "📄 Актуальный Resturlaub всегда в твоём *Lohnabrechnung*."
-        ),
-        "de": (
-            "🏖️ *Mein Urlaub*\n\n"
-            "• *Resturlaub berechnen* — /urlaub (Rechner)\n"
-            "• *Urlaubsanspruch?* — schreib «urlaubsanspruch»\n"
-            "• *Urlaub beantragen?* — schreib «urlaubsantrag»\n"
-            "• *SOKA-BAU?* — schreib «soka bau urlaub»\n\n"
-            "📄 Den aktuellen Resturlaub findest du in deiner *Lohnabrechnung*."
-        ),
-    },
-    "sick": {
-        "ru": (
-            "🤒 *Я заболел — что делать?*\n\n"
-            "1. *Сразу сообщи* руководителю о болезни — до начала рабочего дня\n"
-            "2. *С 1-го дня болезни* — оформи Krankmeldung у врача\n"
-            "3. *До конца 2-го дня болезни* — врач обязан отправить eAU (электронную Krankmeldung) напрямую в Krankenkasse и работодателю\n"
-            "4. Если болезнь продолжается — сообщай руководителю каждый день\n\n"
-            "❓ Подробнее — напиши «krankmeldung» или «больничный»"
-        ),
-        "de": (
-            "🤒 *Ich bin krank — was tun?*\n\n"
-            "1. *Sofort* den Vorgesetzten informieren — vor Arbeitsbeginn\n"
-            "2. *Ab dem 1. Krankheitstag* — Krankmeldung beim Arzt holen\n"
-            "3. *Bis Ende des 2. Krankheitstages* — der Arzt sendet die eAU direkt an Krankenkasse und Arbeitgeber\n"
-            "4. Bei Verlängerung — täglich den Vorgesetzten informieren\n\n"
-            "❓ Mehr Infos — schreib «krankmeldung» oder «krank»"
-        ),
-    },
-    "hours": {
-        "ru": (
-            "⏰ *Мои рабочие часы (BRTV)*\n\n"
-            "Для сотрудников стройки (Gewerbliche) по BRTV:\n\n"
-            "• *Летний период* (Sommer): 41 час в неделю\n"
-            "• *Зимний период* (Winter): 38 часов в неделю\n"
-            "• *Überstunden* — 10% включены в зарплату по умолчанию\n"
-            "• *Zuschläge* за работу в воскресенье, праздники и ночью\n\n"
-            "❓ Подробнее — напиши «рабочее время» или «arbeitszeit»"
-        ),
-        "de": (
-            "⏰ *Meine Arbeitsstunden (BRTV)*\n\n"
-            "Für gewerbliche Mitarbeiter nach BRTV:\n\n"
-            "• *Sommerperiode*: 41 Stunden/Woche\n"
-            "• *Winterperiode*: 38 Stunden/Woche\n"
-            "• *Überstunden* — 10% sind im Lohn pauschal eingeschlossen\n"
-            "• *Zuschläge* für Sonn-, Feiertags- und Nachtarbeit\n\n"
-            "❓ Mehr Infos — schreib «arbeitszeit» oder «überstunden»"
-        ),
-    },
-    "docs": {
-        "ru": (
-            "📄 *Мои документы*\n\n"
-            "Какой документ тебе нужен?\n\n"
-            "• *Lohnabrechnung* — напиши «где lohnabrechnung»\n"
-            "• *Kopie Arbeitsvertrag* — напиши «копия договора»\n"
-            "• *Arbeitsbescheinigung* (для Jobcenter) — напиши «arbeitsbescheinigung»\n"
-            "• *Urlaubsbescheinigung* — напиши «urlaubsbescheinigung»\n"
-            "• *Справка о доходах* — напиши «справка о доходах»\n\n"
-            "Все запросы — через HR LK Bauservice (лично или email)"
-        ),
-        "de": (
-            "📄 *Meine Dokumente*\n\n"
-            "Welches Dokument brauchst du?\n\n"
-            "• *Lohnabrechnung* — schreib «wo ist lohnabrechnung»\n"
-            "• *Kopie Arbeitsvertrag* — schreib «kopie arbeitsvertrag»\n"
-            "• *Arbeitsbescheinigung* (Jobcenter) — schreib «arbeitsbescheinigung»\n"
-            "• *Urlaubsbescheinigung* — schreib «urlaubsbescheinigung»\n"
-            "• *Einkommensbescheinigung* — schreib «einkommensbescheinigung»\n\n"
-            "Alle Anfragen — über HR LK Bauservice (persönlich oder per E-Mail)"
-        ),
-    },
-    "aufenthalt": {
-        "ru": (
-            "👷 *Aufenthaltstitel — вид на жительство*\n\n"
-            "Напиши свой вопрос, например:\n\n"
-            "• «документы иностранца»\n"
-            "• «aufenthaltserlaubnis»\n"
-            "• «работа без ЕС паспорта»\n"
-            "• «что делать если остановил zoll»\n\n"
-            "❓ Или задай вопрос свободным текстом"
-        ),
-        "de": (
-            "👷 *Aufenthaltstitel*\n\n"
-            "Stell deine Frage, zum Beispiel:\n\n"
-            "• «aufenthaltserlaubnis»\n"
-            "• «arbeitserlaubnis nicht-EU»\n"
-            "• «was tun bei zollkontrolle»\n\n"
-            "❓ Oder stell eine Frage im Freitext"
-        ),
-    },
-    "labor": {
-        "ru": (
-            "🏗️ *Вопрос по трудовому праву*\n\n"
-            "Задай вопрос текстом — отвечу на основе BRTV, BGB и документов LK Bauservice.\n\n"
-            "Примеры:\n"
-            "• «Какой срок увольнения?» → /kuendigung\n"
-            "• «Что такое Ausschlussfrist?»\n"
-            "• «Mindestlohn на стройке»\n"
-            "• «Kündigungsschutz при беременности»"
-        ),
-        "de": (
-            "🏗️ *Frage zum Arbeitsrecht*\n\n"
-            "Stell deine Frage — ich antworte auf Basis von BRTV, BGB und LK Bauservice Dokumenten.\n\n"
-            "Beispiele:\n"
-            "• «Kündigungsfrist?» → /kuendigung\n"
-            "• «Was ist Ausschlussfrist?»\n"
-            "• «Mindestlohn Bau»\n"
-            "• «Kündigungsschutz bei Schwangerschaft»"
-        ),
-    },
-    "hr": {
-        "ru": (
-            "📞 *Контакты отдела кадров LK Bauservice*\n\n"
-            "🏢 Peiner Straße 237, 38229 Salzgitter\n\n"
-            "👩‍💼 *Яна* — Руководитель отдела персонала\n"
-            "📱 [+49 151 7062 4923](tel:+4915170624923)\n"
-            "✉️ y\\.tsopa@lk\\-bauservice\\.de\n\n"
-            "👩‍💼 *Любовь* — Администратор кадрового учёта\n"
-            "📱 [+49 160 9844 5830](tel:+4916098445830)\n"
-            "✉️ personal2@lk\\-bauservice\\.de"
-        ),
-        "de": (
-            "📞 *HR-Kontakte LK Bauservice*\n\n"
-            "🏢 Peiner Straße 237, 38229 Salzgitter\n\n"
-            "👩‍💼 *Jana* — Leiterin Personalwesen\n"
-            "📱 [+49 151 7062 4923](tel:+4915170624923)\n"
-            "✉️ y\\.tsopa@lk\\-bauservice\\.de\n\n"
-            "👩‍💼 *Lyubov* — Sachbearbeiterin Personalverwaltung\n"
-            "📱 [+49 160 9844 5830](tel:+4916098445830)\n"
-            "✉️ personal2@lk\\-bauservice\\.de"
-        ),
-    },
+# Контакты HR (используется кнопкой "Связаться с HR")
+_HR_CONTACT_RESPONSE = {
+    "ru": (
+        "📞 *Контакты отдела кадров LK Bauservice*\n\n"
+        "🏢 Peiner Straße 237, 38229 Salzgitter\n\n"
+        "👩‍💼 *Яна* — Руководитель отдела персонала\n"
+        "📱 [+49 151 7062 4923](tel:+4915170624923)\n"
+        "✉️ y\\.tsopa@lk\\-bauservice\\.de\n\n"
+        "👩‍💼 *Любовь* — Администратор кадрового учёта\n"
+        "📱 [+49 160 9844 5830](tel:+4916098445830)\n"
+        "✉️ personal2@lk\\-bauservice\\.de"
+    ),
+    "de": (
+        "📞 *HR-Kontakte LK Bauservice*\n\n"
+        "🏢 Peiner Straße 237, 38229 Salzgitter\n\n"
+        "👩‍💼 *Jana* — Leiterin Personalwesen\n"
+        "📱 [+49 151 7062 4923](tel:+4915170624923)\n"
+        "✉️ y\\.tsopa@lk\\-bauservice\\.de\n\n"
+        "👩‍💼 *Lyubov* — Sachbearbeiterin Personalverwaltung\n"
+        "📱 [+49 160 9844 5830](tel:+4916098445830)\n"
+        "✉️ personal2@lk\\-bauservice\\.de"
+    ),
 }
 
 
@@ -574,9 +433,55 @@ async def menu_callback(update: Update, context: CallbackContext) -> None:
     await query.answer()
     lang = _lang(context)
     key = query.data.split(":")[1]
-    response = _MENU_RESPONSES.get(key, {}).get(lang, "")
-    if response:
-        await query.message.reply_text(response, parse_mode="Markdown")
+    if key == "hr":
+        response = _HR_CONTACT_RESPONSE.get(lang, "")
+        if response:
+            await query.message.reply_text(response, parse_mode="Markdown")
+
+
+async def ask_free_callback(update: Update, context: CallbackContext) -> None:
+    """Кнопка «Задать свой вопрос» — сбрасывает контекст темы и просит ввести текст."""
+    query = update.callback_query
+    await query.answer()
+    lang = _lang(context)
+    # Сброс контекста предыдущей темы — критично, чтобы свободный вопрос
+    # не «склеивался» с темой предыдущего меню (см. баг last_topic)
+    context.user_data.pop("last_topic", None)
+    context.user_data.pop("current_group", None)
+    text = (
+        "❓ Напиши свой вопрос — отвечу на основе базы знаний LK Bauservice." if lang == "ru"
+        else "❓ Schreib deine Frage — ich antworte auf Basis der LK Bauservice Wissensdatenbank."
+    )
+    await query.message.reply_text(text)
+
+
+async def forms_callback(update: Update, context: CallbackContext) -> None:
+    """Кнопка шаблона документа — отправляет DOCX-бланк как вложение."""
+    query = update.callback_query
+    await query.answer()
+    lang = _lang(context)
+    form_key = query.data.split(":", 1)[1]
+    tpl = _FORM_TEMPLATES.get(form_key)
+    if not tpl:
+        return
+
+    file_path = tpl["file"]
+    if not os.path.exists(file_path):
+        logging.warning("Form template not found: %s (cwd=%s)", file_path, os.getcwd())
+        text = (
+            "⚠️ Файл шаблона временно недоступен. Обратись в отдел кадров." if lang == "ru"
+            else "⚠️ Die Vorlage ist momentan nicht verfügbar. Bitte an die Personalabteilung wenden."
+        )
+        await query.message.reply_text(text)
+        return
+
+    caption = tpl["caption"].get(lang, "")
+    with open(file_path, "rb") as f:
+        await query.message.reply_document(
+            document=f,
+            filename=tpl["filename"],
+            caption=caption,
+        )
 
 
 async def help_command(update: Update, context: CallbackContext) -> None:
@@ -590,29 +495,98 @@ _TOPIC_GROUPS = [
         "id": "grp_salary",
         "title": {"ru": "💰 Зарплата и выплаты",        "de": "💰 Gehalt & Zahlungen"},
         "topic_ids": ["salary", "baulohn", "lohnabrechnung_erklaerung"],
+        "calculator": "bruttonetto",
+    },
+    {
+        "id": "grp_vacation",
+        "title": {"ru": "🏖️ Отпуск",                    "de": "🏖️ Urlaub"},
+        "topic_ids": ["vacation", "soka_bau"],
+        "calculator": "urlaub",
+    },
+    {
+        "id": "grp_sick",
+        "title": {"ru": "🤒 Больничный и страховки",    "de": "🤒 Krankmeldung & Versicherung"},
+        "topic_ids": ["sick_leave", "krankenkassen"],
+    },
+    {
+        "id": "grp_hours",
+        "title": {"ru": "⏰ Рабочее время (BRTV)",      "de": "⏰ Arbeitszeit (BRTV)"},
+        "topic_ids": ["brtv"],
     },
     {
         "id": "grp_docs",
-        "title": {"ru": "📄 Оформление и документы",     "de": "📄 Einstellung & Dokumente"},
-        "topic_ids": ["onboarding", "documents", "auslaender", "dsgvo", "referral"],
+        "title": {"ru": "📄 Документы",                 "de": "📄 Dokumente"},
+        "topic_ids": ["documents"],
     },
     {
-        "id": "grp_time",
-        "title": {"ru": "🏖️ Отпуск и рабочее время",    "de": "🏖️ Urlaub & Arbeitszeit"},
-        "topic_ids": ["vacation", "brtv", "soka_bau", "zvk_tarifrente"],
+        "id": "grp_onboarding",
+        "title": {"ru": "📝 Оформление",                "de": "📝 Einstellung"},
+        "topic_ids": ["onboarding"],
     },
     {
-        "id": "grp_health",
-        "title": {"ru": "🤒 Больничный и страховки",     "de": "🤒 Krankmeldung & Versicherung"},
-        "topic_ids": ["sick_leave", "krankenkassen", "bg_bau", "accidents"],
+        "id": "grp_auslaender",
+        "title": {"ru": "👷 Aufenthaltstitel",          "de": "👷 Aufenthaltstitel"},
+        "topic_ids": ["auslaender", "zoll"],
+    },
+    {
+        "id": "grp_familie",
+        "title": {"ru": "👶 Семья",                     "de": "👶 Familie"},
+        "topic_ids": ["kindergeld", "familie_soziales"],
     },
     {
         "id": "grp_law",
-        "title": {"ru": "⚖️ Право, семья и стройка",    "de": "⚖️ Recht, Familie & Bau"},
+        "title": {"ru": "🏗️ Трудовое право",            "de": "🏗️ Arbeitsrecht"},
         "topic_ids": ["termination", "agg", "ausbildungsverguetung",
-                      "zoll", "kindergeld", "familie_soziales"],
+                      "zvk_tarifrente", "dsgvo", "accidents", "bg_bau"],
+        "calculator": "kuendigung",
+    },
+    {
+        "id": "grp_referral",
+        "title": {"ru": "🎁 Приведи друга",             "de": "🎁 Mitarbeiter empfehlen"},
+        "topic_ids": ["referral"],
+    },
+    {
+        "id": "grp_forms",
+        "title": {"ru": "📋 Формуляры",                 "de": "📋 Formulare"},
+        "topic_ids": [],
+        "forms": ["urlaubsantrag", "kuendigungsschreiben"],
     },
 ]
+
+
+# Подпись и подсказка для кнопок калькуляторов внутри подменю групп
+_CALC_BUTTON_LABELS = {
+    "bruttonetto": {"ru": "🧮 Калькулятор Brutto-Netto", "de": "🧮 Brutto-Netto-Rechner"},
+    "urlaub":      {"ru": "🧮 Калькулятор отпуска",      "de": "🧮 Urlaubsrechner"},
+    "kuendigung":  {"ru": "🧮 Калькулятор увольнения",   "de": "🧮 Kündigungsfrist-Rechner"},
+}
+
+
+# Скачиваемые шаблоны документов (DOCX), отправляются как вложение
+_FORM_TEMPLATES = {
+    "urlaubsantrag": {
+        "file": "data/templates/urlaubsantrag.docx",
+        "filename": "Urlaubsantrag.docx",
+        "title": {"ru": "📋 Заявление на отпуск (Urlaubsantrag)",
+                  "de": "📋 Urlaubsantrag"},
+        "caption": {
+            "ru": "Заполни поля от руки или в Word и передай в отдел кадров.",
+            "de": "Bitte die Felder handschriftlich oder in Word ausfüllen und an die Personalabteilung weiterleiten.",
+        },
+    },
+    "kuendigungsschreiben": {
+        "file": "data/templates/kuendigungsschreiben.docx",
+        "filename": "Kuendigungsschreiben.docx",
+        "title": {"ru": "📋 Заявление об увольнении (Kündigungsschreiben)",
+                  "de": "📋 Kündigungsschreiben"},
+        "caption": {
+            "ru": "Заявление об увольнении по собственному желанию. Заполни поля и передай в отдел кадров. "
+                  "Перед подачей рекомендуем уточнить срок увольнения — /kuendigung.",
+            "de": "Eigenkündigung zum nächstmöglichen Termin. Bitte Felder ausfüllen und an die "
+                  "Personalabteilung weiterleiten. Kündigungsfrist vorher prüfen — /kuendigung.",
+        },
+    },
+}
 
 
 def _groups_keyboard(lang: str) -> InlineKeyboardMarkup:
@@ -634,6 +608,25 @@ def _group_questions_keyboard(kb: KnowledgeBase, group_id: str, lang: str) -> In
         for q in topic.get("questions", []):
             title = q.get("title", q["id"])
             buttons.append([InlineKeyboardButton(title[:60], callback_data=f"qid:{q['id']}")])
+
+    # Кнопки скачиваемых шаблонов (DOCX)
+    for form_key in group.get("forms", []):
+        tpl = _FORM_TEMPLATES.get(form_key)
+        if not tpl:
+            continue
+        label = tpl["title"].get(lang, form_key)
+        buttons.append([InlineKeyboardButton(label[:60], callback_data=f"form:{form_key}")])
+
+    # Кнопка калькулятора, если у группы есть привязанный расчёт
+    calc_key = group.get("calculator")
+    if calc_key:
+        calc_label = _CALC_BUTTON_LABELS.get(calc_key, {}).get(lang, calc_key)
+        buttons.append([InlineKeyboardButton(calc_label, callback_data=f"calc:{calc_key}")])
+
+    # «Задать свой вопрос» — если нужного вопроса нет в списке
+    ask_label = "❓ Задать свой вопрос" if lang == "ru" else "❓ Eigene Frage stellen"
+    buttons.append([InlineKeyboardButton(ask_label, callback_data="ask_free")])
+
     back_label = "◀️ Назад к разделам" if lang == "ru" else "◀️ Zurück zu Gruppen"
     buttons.append([InlineKeyboardButton(back_label, callback_data="topics:back")])
     return InlineKeyboardMarkup(buttons)
@@ -653,6 +646,7 @@ async def topics_callback(update: Update, context: CallbackContext) -> None:
 
     # Назад к группам
     if query.data == "topics:back":
+        context.user_data.pop("current_group", None)
         header = "Выбери раздел:" if lang == "ru" else "Wähle einen Bereich:"
         await query.edit_message_text(header, reply_markup=_groups_keyboard(lang))
         return
@@ -663,8 +657,15 @@ async def topics_callback(update: Update, context: CallbackContext) -> None:
         group = next((g for g in _TOPIC_GROUPS if g["id"] == group_id), None)
         if not group:
             return
+        # Запоминаем текущую группу — используется для кнопки "назад" у ответа
+        # и сбрасываем last_topic, чтобы не «склеивать» с предыдущей темой
+        context.user_data["current_group"] = group_id
+        context.user_data.pop("last_topic", None)
         header = f"*{group['title'][lang]}*\n\n"
-        header += "Выбери вопрос:" if lang == "ru" else "Wähle eine Frage:"
+        if not group["topic_ids"] and group.get("forms"):
+            header += "Выбери документ:" if lang == "ru" else "Wähle ein Dokument:"
+        else:
+            header += "Выбери вопрос:" if lang == "ru" else "Wähle eine Frage:"
         await query.edit_message_text(
             header, parse_mode="Markdown",
             reply_markup=_group_questions_keyboard(kb, group_id, lang),
@@ -677,6 +678,11 @@ async def topics_callback(update: Update, context: CallbackContext) -> None:
         q = kb.get_question_by_id(qid)
         if not q:
             return
+
+        # Запоминаем тему — чтобы «подробнее»/«а сколько» после клика по кнопке
+        # тоже могли уточнить именно этот вопрос (см. _FOLLOWUP_TRIGGERS).
+        context.user_data["last_topic"] = q.get("title", qid)
+
         lines = [f"*{q.get('title', '')}*\n"]
         if q.get("answer"):
             lines.append(q["answer"])
@@ -690,15 +696,9 @@ async def topics_callback(update: Update, context: CallbackContext) -> None:
         text = "\n".join(lines)
         if len(text) > 4000:
             text = text[:3997] + "..."
-        # Найти группу вопроса для кнопки "назад"
-        parent_group = next(
-            (g["id"] for g in _TOPIC_GROUPS
-             if any(qid.startswith(tid) or
-                    any(qq.get("id") == qid
-                        for qq in (kb.get_topic(tid) or {}).get("questions", []))
-                    for tid in g["topic_ids"])),
-            None,
-        )
+
+        # Группа, из которой пришли — для кнопки "назад"
+        parent_group = context.user_data.get("current_group")
         back_row = []
         if parent_group:
             back_label = "◀️ Назад к вопросам" if lang == "ru" else "◀️ Zurück zu Fragen"
@@ -721,6 +721,16 @@ def _is_capabilities_query(text: str, lang: str) -> bool:
     t = text.lower().strip()
     all_triggers: set = set()
     for triggers in _CAPABILITIES_TRIGGERS.values():
+        all_triggers.update(triggers)
+    return any(t == c or t.startswith(c) for c in all_triggers)
+
+
+def _is_followup_query(text: str) -> bool:
+    """True, если текст — короткое уточнение к предыдущему ответу
+    («подробнее», «а сколько»), а не самостоятельный новый вопрос."""
+    t = text.lower().strip()
+    all_triggers: set = set()
+    for triggers in _FOLLOWUP_TRIGGERS.values():
         all_triggers.update(triggers)
     return any(t == c or t.startswith(c) for c in all_triggers)
 
@@ -788,12 +798,18 @@ async def handle_text(update: Update, context: CallbackContext) -> None:
         await update.message.reply_text(_t(context, f"calc_{calc_key}"))
         return
 
-    # Если запрос слишком короткий и есть контекст последнего ответа — добавляем его
-    effective_query = query
-    if len(query.split()) <= 2 and context.user_data.get("last_topic"):
-        effective_query = f"{context.user_data['last_topic']} — {query}"
+    # Сначала ищем по чистому запросу — короткий запрос («Рабочая виза») может быть
+    # самостоятельным вопросом, и склейка с прошлой темой не должна перебивать его.
+    kb_match = kb.search(query)
 
-    kb_match = kb.search(effective_query) or kb.search(query)
+    # Склейку с темой последнего ответа применяем ТОЛЬКО для закрытого списка
+    # фраз-уточнений («подробнее», «а сколько») — а не для любой короткой фразы,
+    # иначе самостоятельные короткие вопросы («Рабочая виза», «zoll») будут
+    # «склеиваться» с предыдущей темой и давать неверный ответ.
+    effective_query = query
+    if not kb_match and _is_followup_query(query) and context.user_data.get("last_topic"):
+        effective_query = f"{context.user_data['last_topic']} — {query}"
+        kb_match = kb.search(effective_query)
 
     # Сохраняем тему если нашли в KB
     if kb_match:
@@ -864,6 +880,8 @@ def build_application(token: str, knowledge_path: str,
     app.add_handler(CallbackQueryHandler(language_callback, pattern=r"^lang:"))
     app.add_handler(CallbackQueryHandler(menu_callback, pattern=r"^menu:"))
     app.add_handler(CallbackQueryHandler(topics_callback, pattern=r"^(tgrp:|qid:|topics:back)"))
+    app.add_handler(CallbackQueryHandler(ask_free_callback, pattern=r"^ask_free$"))
+    app.add_handler(CallbackQueryHandler(forms_callback, pattern=r"^form:"))
     app.add_handler(CallbackQueryHandler(profile_callback, pattern=r"^profile:"))
     app.add_handler(CallbackQueryHandler(feedback_callback, pattern=r"^fb:"))
 
