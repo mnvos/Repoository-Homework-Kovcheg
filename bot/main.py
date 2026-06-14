@@ -506,7 +506,7 @@ _TOPIC_GROUPS = [
     {
         "id": "grp_sick",
         "title": {"ru": "🤒 Больничный и страховки",    "de": "🤒 Krankmeldung & Versicherung"},
-        "topic_ids": ["sick_leave", "krankenkassen"],
+        "topic_ids": ["sick_leave"],
     },
     {
         "id": "grp_hours",
@@ -524,9 +524,9 @@ _TOPIC_GROUPS = [
         "topic_ids": ["onboarding"],
     },
     {
-        "id": "grp_auslaender",
-        "title": {"ru": "👷 Aufenthaltstitel",          "de": "👷 Aufenthaltstitel"},
-        "topic_ids": ["auslaender", "zoll"],
+        "id": "grp_zoll",
+        "title": {"ru": "🛂 Проверки на стройке",       "de": "🛂 Kontrollen auf der Baustelle"},
+        "topic_ids": ["zoll"],
     },
     {
         "id": "grp_familie",
@@ -537,7 +537,7 @@ _TOPIC_GROUPS = [
         "id": "grp_law",
         "title": {"ru": "🏗️ Трудовое право",            "de": "🏗️ Arbeitsrecht"},
         "topic_ids": ["termination", "agg", "ausbildungsverguetung",
-                      "zvk_tarifrente", "dsgvo", "accidents", "bg_bau"],
+                      "zvk_tarifrente", "accidents"],
         "calculator": "kuendigung",
     },
     {
